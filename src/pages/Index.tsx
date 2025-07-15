@@ -2,6 +2,8 @@ import { useState } from "react";
 import { LoginForm } from "@/components/LoginForm";
 import { RegisterForm } from "@/components/RegisterForm";
 import { VerificationForm } from "@/components/VerificationForm";
+import { FaceVerificationForm } from "@/components/FaceVerificationForm";
+import { CameraTest } from "@/components/CameraTest";
 import { Layout } from "@/components/Layout";
 import { MicroEnterpriseDashboard } from "@/components/dashboard/MicroEnterpriseDashboard";
 import { SmallEnterpriseDashboard } from "@/components/dashboard/SmallEnterpriseDashboard";
@@ -22,6 +24,8 @@ const Index = () => {
   const [currentPage, setCurrentPage] = useState<PageType>("dashboard");
   const [showRegister, setShowRegister] = useState(false);
   const [showVerification, setShowVerification] = useState(false);
+  const [showFaceVerification, setShowFaceVerification] = useState(false);
+  const [showCameraTest, setShowCameraTest] = useState(false);
 
   const handleLogin = (
     icNumber: string,
@@ -36,12 +40,59 @@ const Index = () => {
   };
 
   if (!user) {
+    if (showCameraTest) {
+      return (
+        <div className="min-h-screen bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5">
+          <div className="container mx-auto p-4">
+            <Button
+              variant="outline"
+              onClick={() => {
+                setShowCameraTest(false);
+                setShowFaceVerification(false);
+              }}
+              className="mb-4"
+            >
+              Back to Login
+            </Button>
+            <CameraTest />
+          </div>
+        </div>
+      );
+    }
+
+    if (showFaceVerification) {
+      return (
+        <div>
+          <FaceVerificationForm
+            onBack={() => {
+              setShowFaceVerification(false);
+              setShowVerification(true);
+            }}
+            onComplete={() => {
+              // Handle completion - for now, go back to login
+              setShowFaceVerification(false);
+              setShowVerification(false);
+              setShowRegister(false);
+            }}
+          />
+          <div className="fixed bottom-4 right-4">
+            <Button variant="outline" onClick={() => setShowCameraTest(true)}>
+              Try Camera Test
+            </Button>
+          </div>
+        </div>
+      );
+    }
     if (showVerification) {
       return (
         <VerificationForm
           onBack={() => {
             setShowVerification(false);
-            setShowRegister(false);
+            setShowRegister(true);
+          }}
+          onContinue={() => {
+            setShowVerification(false);
+            setShowFaceVerification(true);
           }}
         />
       );

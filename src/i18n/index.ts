@@ -251,6 +251,31 @@ const resources = {
       swiftCode: "SWIFT Code",
       back: "Back",
       next: "Next",
+
+      // IC and Face Verification
+      icVerification: "IC Verification",
+      uploadICDescription:
+        "Please upload clear images of the front and back of your IC",
+      frontIC: "Front of IC",
+      backIC: "Back of IC",
+      clickToUpload: "Click to upload",
+      supportedFormats: "PNG, JPG, or JPEG (max 5MB)",
+      continue: "Continue",
+      faceVerification: "Face Verification",
+      faceVerificationDescription:
+        "Please position your face in the frame for verification",
+      faceVerificationInstructions:
+        "Make sure your face is well-lit and clearly visible",
+      complete: "Complete Verification",
+
+      // Camera and Face Verification
+      clickToStartCamera: "Click to start camera",
+      capture: "Capture Photo",
+      retake: "Retake",
+      faceVerificationStart: "Click the camera icon to start",
+      faceVerificationComplete: "Face verification successful",
+      cameraPermissionDenied:
+        "Camera access was denied. Please enable camera permissions.",
     },
   },
   ms: {
@@ -460,6 +485,31 @@ const resources = {
       swiftCode: "Kod SWIFT",
       back: "Kembali",
       next: "Seterusnya",
+
+      // IC and Face Verification
+      icVerification: "Pengesahan IC",
+      uploadICDescription:
+        "Sila muat naik gambar yang jelas untuk bahagian depan dan belakang IC anda",
+      frontIC: "Depan IC",
+      backIC: "Belakang IC",
+      clickToUpload: "Klik untuk muat naik",
+      supportedFormats: "PNG, JPG, atau JPEG (maksimum 5MB)",
+      continue: "Teruskan",
+      faceVerification: "Pengesahan Wajah",
+      faceVerificationDescription:
+        "Sila letakkan wajah anda dalam bingkai untuk pengesahan",
+      faceVerificationInstructions:
+        "Pastikan wajah anda diterangi dengan baik dan jelas kelihatan",
+      complete: "Selesai Pengesahan",
+
+      // Camera and Face Verification
+      clickToStartCamera: "Klik untuk mulakan kamera",
+      capture: "Ambil Gambar",
+      retake: "Ambil Semula",
+      faceVerificationStart: "Klik ikon kamera untuk mulakan",
+      faceVerificationComplete: "Pengesahan wajah berjaya",
+      cameraPermissionDenied:
+        "Akses kamera ditolak. Sila aktifkan kebenaran kamera.",
     },
   },
   zh: {
@@ -663,6 +713,27 @@ const resources = {
       swiftCode: "SWIFT代码",
       back: "返回",
       next: "下一步",
+
+      // IC and Face Verification
+      icVerification: "身份证验证",
+      uploadICDescription: "请上传您的身份证正面和背面的清晰图像",
+      frontIC: "身份证正面",
+      backIC: "身份证背面",
+      clickToUpload: "点击上传",
+      supportedFormats: "PNG, JPG, 或 JPEG (最大 5MB)",
+      continue: "继续",
+      faceVerification: "人脸验证",
+      faceVerificationDescription: "请将您的脸放在框架中进行验证",
+      faceVerificationInstructions: "确保您的脸部光线充足且清晰可见",
+      complete: "完成验证",
+
+      // Camera and Face Verification
+      clickToStartCamera: "点击启动相机",
+      capture: "拍照",
+      retake: "重拍",
+      faceVerificationStart: "点击相机图标开始",
+      faceVerificationComplete: "人脸验证成功",
+      cameraPermissionDenied: "相机访问被拒绝。请启用相机权限。",
     },
   },
 };
