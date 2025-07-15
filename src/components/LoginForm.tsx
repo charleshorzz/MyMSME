@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -8,28 +8,32 @@ import { LanguageSwitcher } from "./LanguageSwitcher";
 import { Eye, EyeOff, Shield, CreditCard } from "lucide-react";
 
 interface LoginFormProps {
-  onLogin: (icNumber: string, enterpriseLevel: 'micro' | 'small' | 'medium') => void;
+  onLogin: (
+    icNumber: string,
+    enterpriseLevel: "micro" | "small" | "medium"
+  ) => void;
+  onShowRegister?: () => void;
 }
 
-export function LoginForm({ onLogin }: LoginFormProps) {
+export function LoginForm({ onLogin, onShowRegister }: LoginFormProps) {
   const { t } = useTranslation();
-  const [icNumber, setIcNumber] = useState('');
-  const [password, setPassword] = useState('');
+  const [icNumber, setIcNumber] = useState("");
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    
+
     // Simulate authentication
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
     // Demo logic - determine enterprise level based on IC number
-    let level: 'micro' | 'small' | 'medium' = 'micro';
-    if (icNumber.endsWith('1') || icNumber.endsWith('2')) level = 'small';
-    if (icNumber.endsWith('3') || icNumber.endsWith('4')) level = 'medium';
-    
+    let level: "micro" | "small" | "medium" = "micro";
+    if (icNumber.endsWith("1") || icNumber.endsWith("2")) level = "small";
+    if (icNumber.endsWith("3") || icNumber.endsWith("4")) level = "medium";
+
     onLogin(icNumber, level);
     setIsLoading(false);
   };
@@ -43,8 +47,8 @@ export function LoginForm({ onLogin }: LoginFormProps) {
             <span className="text-white font-bold text-2xl">M</span>
           </div>
           <div>
-            <h1 className="text-3xl font-bold">{t('appName')}</h1>
-            <p className="text-muted-foreground">{t('appTagline')}</p>
+            <h1 className="text-3xl font-bold">{t("appName")}</h1>
+            <p className="text-muted-foreground">{t("appTagline")}</p>
           </div>
           <div className="flex justify-center">
             <LanguageSwitcher />
@@ -54,12 +58,12 @@ export function LoginForm({ onLogin }: LoginFormProps) {
         {/* Login Card */}
         <Card className="shadow-large glass-effect">
           <CardHeader className="text-center">
-            <CardTitle className="text-xl">{t('login')}</CardTitle>
+            <CardTitle className="text-xl">{t("login")}</CardTitle>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="ic">{t('icNumber')}</Label>
+                <Label htmlFor="ic">{t("icNumber")}</Label>
                 <Input
                   id="ic"
                   type="text"
@@ -70,9 +74,9 @@ export function LoginForm({ onLogin }: LoginFormProps) {
                   className="transition-fast"
                 />
               </div>
-              
+
               <div className="space-y-2">
-                <Label htmlFor="password">{t('password')}</Label>
+                <Label htmlFor="password">{t("password")}</Label>
                 <div className="relative">
                   <Input
                     id="password"
@@ -99,18 +103,26 @@ export function LoginForm({ onLogin }: LoginFormProps) {
                 </div>
               </div>
 
-              <Button 
-                type="submit" 
+              <Button
+                type="submit"
                 className="w-full transition-fast"
                 disabled={isLoading}
               >
-                {isLoading ? t('loading') : t('login')}
+                {isLoading ? t("loading") : t("login")}
               </Button>
             </form>
 
             <div className="mt-6 text-center space-y-3">
               <p className="text-sm text-muted-foreground">
-                {t('dontHaveAccount')} <Button variant="link" className="p-0 h-auto">{t('registerHere')}</Button>
+                {t("dontHaveAccount")}{" "}
+                <Button
+                  variant="link"
+                  className="p-0 h-auto"
+                  type="button"
+                  onClick={onShowRegister}
+                >
+                  {t("registerHere")}
+                </Button>
               </p>
             </div>
           </CardContent>
@@ -121,16 +133,20 @@ export function LoginForm({ onLogin }: LoginFormProps) {
           <Card className="shadow-soft glass-effect">
             <CardContent className="p-4 text-center">
               <Shield className="h-6 w-6 mx-auto mb-2 text-primary" />
-              <h3 className="text-sm font-semibold">{t('ekycVerified')}</h3>
-              <p className="text-xs text-muted-foreground">{t('secureIdentityVerification')}</p>
+              <h3 className="text-sm font-semibold">{t("ekycVerified")}</h3>
+              <p className="text-xs text-muted-foreground">
+                {t("secureIdentityVerification")}
+              </p>
             </CardContent>
           </Card>
-          
+
           <Card className="shadow-soft glass-effect">
             <CardContent className="p-4 text-center">
               <CreditCard className="h-6 w-6 mx-auto mb-2 text-secondary" />
-              <h3 className="text-sm font-semibold">{t('unitedMsmeId')}</h3>
-              <p className="text-xs text-muted-foreground">{t('oneIdAllServices')}</p>
+              <h3 className="text-sm font-semibold">{t("unitedMsmeId")}</h3>
+              <p className="text-xs text-muted-foreground">
+                {t("oneIdAllServices")}
+              </p>
             </CardContent>
           </Card>
         </div>
@@ -138,12 +154,14 @@ export function LoginForm({ onLogin }: LoginFormProps) {
         {/* Demo Instructions */}
         <Card className="shadow-soft bg-muted/50">
           <CardContent className="p-4">
-            <h3 className="text-sm font-semibold mb-2">{t('demoInstructions')}</h3>
+            <h3 className="text-sm font-semibold mb-2">
+              {t("demoInstructions")}
+            </h3>
             <div className="text-xs space-y-1 text-muted-foreground">
-              <p>• {t('microEnterpriseDemo')}</p>
-              <p>• {t('smallEnterpriseDemo')}</p>
-              <p>• {t('mediumEnterpriseDemo')}</p>
-              <p>• {t('useAnyPassword')}</p>
+              <p>• {t("microEnterpriseDemo")}</p>
+              <p>• {t("smallEnterpriseDemo")}</p>
+              <p>• {t("mediumEnterpriseDemo")}</p>
+              <p>• {t("useAnyPassword")}</p>
             </div>
           </CardContent>
         </Card>

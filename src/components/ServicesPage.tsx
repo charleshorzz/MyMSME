@@ -1,13 +1,13 @@
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { 
-  FileText, 
-  Globe, 
-  Calculator, 
-  Receipt, 
-  Brain, 
+import {
+  FileText,
+  Globe,
+  Calculator,
+  Receipt,
+  Brain,
   Building,
   CreditCard,
   Smartphone,
@@ -16,11 +16,11 @@ import {
   Shield,
   Users,
   BarChart3,
-  Briefcase
+  Briefcase,
 } from "lucide-react";
 
 interface ServicesPageProps {
-  userLevel: 'micro' | 'small' | 'medium';
+  userLevel: "micro" | "small" | "medium";
 }
 
 export function ServicesPage({ userLevel }: ServicesPageProps) {
@@ -29,129 +29,129 @@ export function ServicesPage({ userLevel }: ServicesPageProps) {
   const allServices = [
     // Basic Services (All levels)
     {
-      id: 'qr-payments',
-      title: t('qrPaymentGateway'),
-      description: t('acceptPaymentsViaQr'),
+      id: "qr-payments",
+      title: t("qrPaymentGateway"),
+      description: t("acceptPaymentsViaQr"),
       icon: Smartphone,
-      levels: ['micro', 'small', 'medium'],
-      price: 'RM 15/month',
-      category: t('paymentCategory')
+      levels: ["micro", "small", "medium"],
+      price: "RM 15/month",
+      category: t("paymentCategory"),
     },
     {
-      id: 'basic-records',
-      title: t('recordKeeping'),
-      description: t('basicBusinessRecord'),
+      id: "basic-records",
+      title: t("recordKeeping"),
+      description: t("basicBusinessRecord"),
       icon: FileText,
-      levels: ['micro', 'small', 'medium'],
-      price: 'RM 25/month',
-      category: t('accountingCategory')
+      levels: ["micro", "small", "medium"],
+      price: "RM 25/month",
+      category: t("accountingCategory"),
     },
     {
-      id: 'ssm-documents',
-      title: t('ssmCertificate'),
-      description: t('digitalSsmCertificate'),
+      id: "ssm-documents",
+      title: t("ssmCertificate"),
+      description: t("digitalSsmCertificate"),
       icon: Shield,
-      levels: ['micro', 'small', 'medium'],
-      price: 'Free',
-      category: t('documentsCategory')
+      levels: ["micro", "small", "medium"],
+      price: "Free",
+      category: t("documentsCategory"),
     },
-    
+
     // Small & Medium Services
     {
-      id: 'e-invoicing',
-      title: t('eInvoicing'),
-      description: 'Automated e-invoicing system',
+      id: "e-invoicing",
+      title: t("eInvoicing"),
+      description: "Automated e-invoicing system",
       icon: Receipt,
-      levels: ['small', 'medium'],
-      price: 'RM 50/month',
-      category: t('accountingCategory')
+      levels: ["small", "medium"],
+      price: "RM 50/month",
+      category: t("accountingCategory"),
     },
     {
-      id: 'website-builder',
-      title: t('websiteBuilder'),
-      description: 'Professional website templates',
+      id: "website-builder",
+      title: t("websiteBuilder"),
+      description: "Professional website templates",
       icon: Globe,
-      levels: ['small', 'medium'],
-      price: 'RM 80/month',
-      category: t('marketingCategory')
+      levels: ["small", "medium"],
+      price: "RM 80/month",
+      category: t("marketingCategory"),
     },
     {
-      id: 'accounting-suite',
-      title: t('accountingServices'),
-      description: 'Full accounting and bookkeeping',
+      id: "accounting-suite",
+      title: t("accountingServices"),
+      description: "Full accounting and bookkeeping",
       icon: Calculator,
-      levels: ['small', 'medium'],
-      price: 'RM 120/month',
-      category: t('accountingCategory')
+      levels: ["small", "medium"],
+      price: "RM 120/month",
+      category: t("accountingCategory"),
     },
     {
-      id: 'credit-analysis',
-      title: t('creditAnalysis'),
-      description: 'AI-powered credit score analysis',
+      id: "credit-analysis",
+      title: t("creditAnalysis"),
+      description: "AI-powered credit score analysis",
       icon: Brain,
-      levels: ['small', 'medium'],
-      price: 'RM 40/month',
-      category: t('financeCategory')
+      levels: ["small", "medium"],
+      price: "RM 40/month",
+      category: t("financeCategory"),
     },
-    
+
     // Medium Only Services
     {
-      id: 'enterprise-crm',
-      title: 'Enterprise CRM',
-      description: 'Advanced customer relationship management',
+      id: "enterprise-crm",
+      title: "Enterprise CRM",
+      description: "Advanced customer relationship management",
       icon: Users,
-      levels: ['medium'],
-      price: 'RM 200/month',
-      category: t('managementCategory')
+      levels: ["medium"],
+      price: "RM 200/month",
+      category: t("managementCategory"),
     },
     {
-      id: 'business-intelligence',
-      title: 'Business Intelligence',
-      description: 'Advanced analytics and reporting',
+      id: "business-intelligence",
+      title: "Business Intelligence",
+      description: "Advanced analytics and reporting",
       icon: BarChart3,
-      levels: ['medium'],
-      price: 'RM 150/month',
-      category: t('analyticsCategory')
+      levels: ["medium"],
+      price: "RM 150/month",
+      category: t("analyticsCategory"),
     },
     {
-      id: 'project-management',
-      title: 'Project Management Suite',
-      description: 'Comprehensive project management tools',
+      id: "project-management",
+      title: "Project Management Suite",
+      description: "Comprehensive project management tools",
       icon: Briefcase,
-      levels: ['medium'],
-      price: 'RM 180/month',
-      category: t('managementCategory')
+      levels: ["medium"],
+      price: "RM 180/month",
+      category: t("managementCategory"),
     },
     {
-      id: 'multi-location',
-      title: 'Multi-Location Management',
-      description: 'Manage multiple business locations',
+      id: "multi-location",
+      title: "Multi-Location Management",
+      description: "Manage multiple business locations",
       icon: Building,
-      levels: ['medium'],
-      price: 'RM 250/month',
-      category: t('operationsCategory')
+      levels: ["medium"],
+      price: "RM 250/month",
+      category: t("operationsCategory"),
     },
     {
-      id: 'automation-suite',
-      title: 'Business Automation',
-      description: 'Workflow automation and integration',
+      id: "automation-suite",
+      title: "Business Automation",
+      description: "Workflow automation and integration",
       icon: Zap,
-      levels: ['medium'],
-      price: 'RM 300/month',
-      category: t('automationCategory')
+      levels: ["medium"],
+      price: "RM 300/month",
+      category: t("automationCategory"),
     },
     {
-      id: 'cloud-backup',
-      title: 'Enterprise Cloud Backup',
-      description: 'Secure cloud storage and backup',
+      id: "cloud-backup",
+      title: "Enterprise Cloud Backup",
+      description: "Secure cloud storage and backup",
       icon: Cloud,
-      levels: ['medium'],
-      price: 'RM 100/month',
-      category: t('infrastructureCategory')
-    }
+      levels: ["medium"],
+      price: "RM 100/month",
+      category: t("infrastructureCategory"),
+    },
   ];
 
-  const availableServices = allServices.filter(service => 
+  const availableServices = allServices.filter((service) =>
     service.levels.includes(userLevel)
   );
 
@@ -164,21 +164,21 @@ export function ServicesPage({ userLevel }: ServicesPageProps) {
   }, {} as Record<string, typeof availableServices>);
 
   const getLevelBadgeColor = (levels: string[]) => {
-    if (levels.includes('medium')) return 'default';
-    if (levels.includes('small')) return 'secondary';
-    return 'outline';
+    if (levels.includes("medium")) return "default";
+    if (levels.includes("small")) return "secondary";
+    return "outline";
   };
 
   return (
     <div className="space-y-6">
       {/* Header */}
       <div className="text-center py-8">
-        <h1 className="text-3xl font-bold mb-2">{t('services')}</h1>
+        <h1 className="text-3xl font-bold mb-2">{t("services")}</h1>
         <p className="text-muted-foreground">
-          {t('servicesAvailableFor')} {t(userLevel)} businesses
+          {t("servicesAvailableFor")} {t(userLevel)} businesses
         </p>
         <Badge variant={getLevelBadgeColor([userLevel])} className="mt-2">
-          {t(userLevel)} {t('package')}
+          {t(userLevel)} {t("package")}
         </Badge>
       </div>
 
@@ -186,14 +186,17 @@ export function ServicesPage({ userLevel }: ServicesPageProps) {
       {Object.entries(servicesByCategory).map(([category, services]) => (
         <div key={category} className="space-y-4">
           <h2 className="text-xl font-semibold flex items-center gap-2">
-            {category} {t('services')}
+            {category} {t("services")}
           </h2>
-          
+
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {services.map((service) => {
               const Icon = service.icon;
               return (
-                <Card key={service.id} className="shadow-soft hover:shadow-medium transition-all cursor-pointer group">
+                <Card
+                  key={service.id}
+                  className="shadow-soft hover:shadow-medium transition-all cursor-pointer group"
+                >
                   <CardHeader className="pb-3">
                     <div className="flex items-start justify-between">
                       <div className="flex items-center gap-3">
@@ -201,34 +204,28 @@ export function ServicesPage({ userLevel }: ServicesPageProps) {
                           <Icon className="h-6 w-6 text-primary" />
                         </div>
                         <div>
-                          <CardTitle className="text-lg">{service.title}</CardTitle>
-                          <Badge variant={getLevelBadgeColor(service.levels)} className="mt-1">
+                          <CardTitle className="text-lg">
+                            {service.title}
+                          </CardTitle>
+                          <Badge
+                            variant={getLevelBadgeColor(service.levels)}
+                            className="mt-1"
+                          >
                             {service.price}
                           </Badge>
                         </div>
                       </div>
                     </div>
                   </CardHeader>
-                  
+
                   <CardContent className="pt-0">
                     <p className="text-muted-foreground mb-4">
                       {service.description}
                     </p>
-                    
+
                     <div className="space-y-3">
-                      <div className="flex justify-between text-sm">
-                        <span>{t('availableFor')}</span>
-                        <div className="flex gap-1">
-                          {service.levels.map(level => (
-                            <Badge key={level} variant="outline" className="text-xs">
-                              {t(level)}
-                            </Badge>
-                          ))}
-                        </div>
-                      </div>
-                      
                       <Button className="w-full group-hover:scale-105 transition-transform">
-                        {t('getStarted')}
+                        {t("getStarted")}
                       </Button>
                     </div>
                   </CardContent>
@@ -240,24 +237,20 @@ export function ServicesPage({ userLevel }: ServicesPageProps) {
       ))}
 
       {/* Upgrade Notice for Lower Tiers */}
-      {userLevel !== 'medium' && (
+      {userLevel !== "medium" && (
         <Card className="shadow-soft bg-gradient-to-r from-primary/5 to-secondary/5 border-primary/20">
           <CardContent className="p-6 text-center">
             <h3 className="text-lg font-semibold mb-2">
-              {t('unlockMoreServices')}
+              {t("unlockMoreServices")}
             </h3>
-            <p className="text-muted-foreground mb-4">
-              {t('upgradeYourPlan')}
-            </p>
+            <p className="text-muted-foreground mb-4">{t("upgradeYourPlan")}</p>
             <div className="flex justify-center gap-3">
-              {userLevel === 'micro' && (
+              {userLevel === "micro" && (
                 <Button variant="outline">
-                  {t('upgradeToSmallEnterprise')}
+                  {t("upgradeToSmallEnterprise")}
                 </Button>
               )}
-              <Button>
-                {t('upgradeToMediumEnterprise')}
-              </Button>
+              <Button>{t("upgradeToMediumEnterprise")}</Button>
             </div>
           </CardContent>
         </Card>
@@ -266,14 +259,14 @@ export function ServicesPage({ userLevel }: ServicesPageProps) {
       {/* Custom Service Request */}
       <Card className="shadow-soft">
         <CardHeader>
-          <CardTitle>{t('needCustomService')}</CardTitle>
+          <CardTitle>{t("needCustomService")}</CardTitle>
         </CardHeader>
         <CardContent>
           <p className="text-muted-foreground mb-4">
-            {t('cantFindWhatLookingFor')}
+            {t("cantFindWhatLookingFor")}
           </p>
           <Button variant="outline" className="w-full md:w-auto">
-            {t('requestCustomService')}
+            {t("requestCustomService")}
           </Button>
         </CardContent>
       </Card>

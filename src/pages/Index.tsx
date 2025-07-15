@@ -1,5 +1,7 @@
-import { useState } from 'react';
+import { useState } from "react";
 import { LoginForm } from "@/components/LoginForm";
+import { RegisterForm } from "@/components/RegisterForm";
+import { VerificationForm } from "@/components/VerificationForm";
 import { Layout } from "@/components/Layout";
 import { MicroEnterpriseDashboard } from "@/components/dashboard/MicroEnterpriseDashboard";
 import { SmallEnterpriseDashboard } from "@/components/dashboard/SmallEnterpriseDashboard";
@@ -10,33 +12,64 @@ import { Home, Briefcase, FileText, User, LogOut } from "lucide-react";
 
 type UserData = {
   icNumber: string;
-  enterpriseLevel: 'micro' | 'small' | 'medium';
+  enterpriseLevel: "micro" | "small" | "medium";
 } | null;
 
-type PageType = 'dashboard' | 'services' | 'documents' | 'profile';
+type PageType = "dashboard" | "services" | "documents" | "profile";
 
 const Index = () => {
   const [user, setUser] = useState<UserData>(null);
-  const [currentPage, setCurrentPage] = useState<PageType>('dashboard');
+  const [currentPage, setCurrentPage] = useState<PageType>("dashboard");
+  const [showRegister, setShowRegister] = useState(false);
+  const [showVerification, setShowVerification] = useState(false);
 
-  const handleLogin = (icNumber: string, enterpriseLevel: 'micro' | 'small' | 'medium') => {
+  const handleLogin = (
+    icNumber: string,
+    enterpriseLevel: "micro" | "small" | "medium"
+  ) => {
     setUser({ icNumber, enterpriseLevel });
   };
 
   const handleLogout = () => {
     setUser(null);
-    setCurrentPage('dashboard');
+    setCurrentPage("dashboard");
   };
 
   if (!user) {
-    return <LoginForm onLogin={handleLogin} />;
+    if (showVerification) {
+      return (
+        <VerificationForm
+          onBack={() => {
+            setShowVerification(false);
+            setShowRegister(false);
+          }}
+        />
+      );
+    }
+    if (showRegister) {
+      return (
+        <RegisterForm
+          onRegistered={() => {
+            setShowVerification(true);
+            setShowRegister(false);
+          }}
+          onBack={() => setShowRegister(false)}
+        />
+      );
+    }
+    return (
+      <LoginForm
+        onLogin={handleLogin}
+        onShowRegister={() => setShowRegister(true)}
+      />
+    );
   }
 
   const renderDashboard = () => {
     switch (user.enterpriseLevel) {
-      case 'small':
+      case "small":
         return <SmallEnterpriseDashboard />;
-      case 'medium':
+      case "medium":
         return <MediumEnterpriseDashboard />;
       default:
         return <MicroEnterpriseDashboard />;
@@ -45,22 +78,26 @@ const Index = () => {
 
   const renderContent = () => {
     switch (currentPage) {
-      case 'services':
+      case "services":
         return <ServicesPage userLevel={user.enterpriseLevel} />;
-      case 'documents':
+      case "documents":
         return (
           <div className="text-center py-20">
             <FileText className="h-16 w-16 mx-auto mb-4 text-muted-foreground" />
             <h2 className="text-2xl font-bold mb-2">Documents</h2>
-            <p className="text-muted-foreground">Your business documents and certificates</p>
+            <p className="text-muted-foreground">
+              Your business documents and certificates
+            </p>
           </div>
         );
-      case 'profile':
+      case "profile":
         return (
           <div className="text-center py-20">
             <User className="h-16 w-16 mx-auto mb-4 text-muted-foreground" />
             <h2 className="text-2xl font-bold mb-2">Profile</h2>
-            <p className="text-muted-foreground">Manage your account settings</p>
+            <p className="text-muted-foreground">
+              Manage your account settings
+            </p>
           </div>
         );
       default:
@@ -73,36 +110,36 @@ const Index = () => {
       {/* Navigation Tabs */}
       <div className="flex flex-wrap gap-2 mb-6 p-1 bg-muted rounded-lg">
         <Button
-          variant={currentPage === 'dashboard' ? 'default' : 'ghost'}
+          variant={currentPage === "dashboard" ? "default" : "ghost"}
           size="sm"
-          onClick={() => setCurrentPage('dashboard')}
+          onClick={() => setCurrentPage("dashboard")}
           className="flex items-center gap-2"
         >
           <Home className="h-4 w-4" />
           Dashboard
         </Button>
         <Button
-          variant={currentPage === 'services' ? 'default' : 'ghost'}
+          variant={currentPage === "services" ? "default" : "ghost"}
           size="sm"
-          onClick={() => setCurrentPage('services')}
+          onClick={() => setCurrentPage("services")}
           className="flex items-center gap-2"
         >
           <Briefcase className="h-4 w-4" />
           Services
         </Button>
         <Button
-          variant={currentPage === 'documents' ? 'default' : 'ghost'}
+          variant={currentPage === "documents" ? "default" : "ghost"}
           size="sm"
-          onClick={() => setCurrentPage('documents')}
+          onClick={() => setCurrentPage("documents")}
           className="flex items-center gap-2"
         >
           <FileText className="h-4 w-4" />
           Documents
         </Button>
         <Button
-          variant={currentPage === 'profile' ? 'default' : 'ghost'}
+          variant={currentPage === "profile" ? "default" : "ghost"}
           size="sm"
-          onClick={() => setCurrentPage('profile')}
+          onClick={() => setCurrentPage("profile")}
           className="flex items-center gap-2"
         >
           <User className="h-4 w-4" />
