@@ -255,21 +255,6 @@ export function ServicesPage({ userLevel }: ServicesPageProps) {
           </CardContent>
         </Card>
       )}
-
-      {/* Custom Service Request */}
-      <Card className="shadow-soft">
-        <CardHeader>
-          <CardTitle>{t("needCustomService")}</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <p className="text-muted-foreground mb-4">
-            {t("cantFindWhatLookingFor")}
-          </p>
-          <Button variant="outline" className="w-full md:w-auto">
-            {t("requestCustomService")}
-          </Button>
-        </CardContent>
-      </Card>
     </div>
   );
 }

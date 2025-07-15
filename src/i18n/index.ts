@@ -18,6 +18,41 @@ const resources = {
       icNumber: "IC Number",
       password: "Password",
       confirmPassword: "Confirm Password",
+      rememberMe: "Remember me",
+      forgotPassword: "Forgot password?",
+      loginSuccess: "Login Successful",
+      welcomeBack: "Welcome back to MyMSME",
+      loginFailed: "Login Failed",
+      invalidCredentials: "Invalid credentials. Please try again.",
+      error: "Error",
+      pleaseEnterIC: "Please enter your IC number",
+      pleaseEnterPassword: "Please enter your password",
+
+      // Verification
+      idVerification: "ID Verification",
+      uploadIdDescription: "Please upload clear photos of your ID card",
+      frontId: "Front of ID",
+      backId: "Back of ID",
+      clickToUpload: "Click to upload",
+      supportedFormats: "JPG, PNG, or PDF up to 5MB",
+      retake: "Retake",
+      fileTooLarge: "File is too large. Maximum size is 5MB.",
+
+      // Face Verification
+      faceVerification: "Face Verification",
+      faceVerificationDescription:
+        "Please position your face in the frame for verification",
+      faceVerificationInstructions:
+        "Position your face within the circle and look directly at the camera",
+      faceVerificationStart: "Click to start camera for face verification",
+      faceVerificationComplete: "Face verification complete",
+      clickToStartCamera: "Click to start camera",
+      capture: "Capture",
+      back: "Back",
+      continue: "Continue",
+      complete: "Complete",
+      cameraPermissionDenied:
+        "Camera permission denied. Please allow camera access to continue.",
 
       // Common
       welcome: "Welcome",
@@ -115,6 +150,12 @@ const resources = {
       // Registration
       dontHaveAccount: "Don't have an account?",
       registerHere: "Register here",
+      fullName: "Full Name",
+      email: "Email",
+      registerSuccess: "Registration Successful",
+      personalInfo: "Personal Information",
+      companyInfo: "Company Information",
+      paymentGateway: "Payment Gateway",
 
       // Security
       ekycVerified: "eKYC Verified",
