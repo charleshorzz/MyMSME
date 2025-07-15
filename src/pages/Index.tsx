@@ -2,6 +2,7 @@ import { useState } from "react";
 import { LoginForm } from "@/components/LoginForm";
 import { RegisterForm } from "@/components/RegisterForm";
 import { VerificationForm } from "@/components/VerificationForm";
+import { FaceVerificationForm } from "@/components/FaceVerificationForm";
 import { Layout } from "@/components/Layout";
 import { MicroEnterpriseDashboard } from "@/components/dashboard/MicroEnterpriseDashboard";
 import { SmallEnterpriseDashboard } from "@/components/dashboard/SmallEnterpriseDashboard";
@@ -22,6 +23,7 @@ const Index = () => {
   const [currentPage, setCurrentPage] = useState<PageType>("dashboard");
   const [showRegister, setShowRegister] = useState(false);
   const [showVerification, setShowVerification] = useState(false);
+  const [showFaceVerification, setShowFaceVerification] = useState(false);
 
   const handleLogin = (
     icNumber: string,
@@ -36,12 +38,32 @@ const Index = () => {
   };
 
   if (!user) {
+    if (showFaceVerification) {
+      return (
+        <FaceVerificationForm
+          onBack={() => {
+            setShowFaceVerification(false);
+            setShowVerification(true);
+          }}
+          onComplete={() => {
+            // Handle completion - for now, go back to login
+            setShowFaceVerification(false);
+            setShowVerification(false);
+            setShowRegister(false);
+          }}
+        />
+      );
+    }
     if (showVerification) {
       return (
         <VerificationForm
           onBack={() => {
             setShowVerification(false);
-            setShowRegister(false);
+            setShowRegister(true);
+          }}
+          onContinue={() => {
+            setShowVerification(false);
+            setShowFaceVerification(true);
           }}
         />
       );
