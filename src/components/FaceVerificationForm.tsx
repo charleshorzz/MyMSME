@@ -1,8 +1,11 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
-import { Camera, AlertCircle, CheckCircle } from "lucide-react";
+import { Camera, AlertCircle, CheckCircle, Info } from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import { useCamera } from "@/hooks/useCamera";
+
+const FACE_VIDEO_ID = "face-verification-video";
 
 interface FaceVerificationFormProps {
   onBack?: () => void;
@@ -14,169 +17,48 @@ export function FaceVerificationForm({
   onComplete,
 }: FaceVerificationFormProps) {
   const { t } = useTranslation();
-  const videoRef = useRef<HTMLVideoElement | null>(null);
-  const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const [hasPermission, setHasPermission] = useState<boolean | null>(null);
-  const [isCameraActive, setIsCameraActive] = useState(false);
   const [capturedImage, setCapturedImage] = useState<string | null>(null);
-  const [error, setError] = useState<string | null>(null);
-  const [debugInfo, setDebugInfo] = useState<string | null>(null);
+  const [browserInfo, setBrowserInfo] = useState<string | null>(null);
 
-  // When component mounts, check for camera support
-  useEffect(() => {
-    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-      setError("Camera API not supported in this browser");
-    }
+  const {
+    videoRef,
+    isActive,
+    isLoading,
+    error,
+    debugInfo,
+    startCamera,
+    stopCamera,
+    captureImage,
+  } = useCamera({
+    facingMode: "user",
+    width: 1280,
+    height: 720,
+    videoElementId: FACE_VIDEO_ID,
+  });
 
-    // Clean up function to stop the camera when component unmounts
-    return () => {
+  const handleCapture = () => {
+    const image = captureImage();
+    if (image) {
+      setCapturedImage(image);
       stopCamera();
-    };
-  }, []);
-
-  const stopCamera = () => {
-    try {
-      if (videoRef.current && videoRef.current.srcObject) {
-        const stream = videoRef.current.srcObject as MediaStream;
-        const tracks = stream.getTracks();
-        tracks.forEach((track) => track.stop());
-        videoRef.current.srcObject = null;
-      }
-    } catch (err) {
-      console.error("Error stopping camera:", err);
     }
   };
 
-  const startCamera = async () => {
-    try {
-      setDebugInfo("Starting camera initialization...");
-
-      // Reset any previous errors
-      setError(null);
-
-      // Check if videoRef is available
-      if (!videoRef.current) {
-        setDebugInfo("Video ref is null during startCamera call");
-        setError(
-          "Video element not found. Please try again or use a different browser."
-        );
-        return;
-      }
-
-      setDebugInfo("Requesting camera access...");
-
-      const stream = await navigator.mediaDevices.getUserMedia({
-        video: {
-          facingMode: "user",
-          width: { ideal: 1280 },
-          height: { ideal: 720 },
-        },
-        audio: false,
-      });
-
-      setDebugInfo("Camera access granted. Setting up video stream...");
-
-      // Double check that videoRef is still valid
-      if (!videoRef.current) {
-        setDebugInfo("Video ref became null after getUserMedia");
-        setError("Video element lost. Please try again.");
-        // Make sure to stop the stream we just got
-        stream.getTracks().forEach((track) => track.stop());
-        return;
-      }
-
-      // Directly set the srcObject
-      videoRef.current.srcObject = stream;
-
-      // Force a play attempt
-      try {
-        setDebugInfo("Attempting to play video...");
-        await videoRef.current.play();
-        setDebugInfo("Video is now playing");
-        setIsCameraActive(true);
-        setHasPermission(true);
-      } catch (playErr) {
-        const error = playErr as Error;
-        setDebugInfo(`Error playing video: ${error.message}`);
-        setError(`Could not start video: ${error.message}`);
-        stream.getTracks().forEach((track) => track.stop());
-      }
-    } catch (err: unknown) {
-      console.error("Error accessing camera:", err);
-      const error = err as Error;
-      setDebugInfo(`Camera error: ${error.name} - ${error.message}`);
-
-      if (error instanceof DOMException) {
-        if (error.name === "NotAllowedError") {
-          setError(t("cameraPermissionDenied"));
-        } else if (error.name === "NotFoundError") {
-          setError("No camera found. Please connect a camera.");
-        } else if (error.name === "NotReadableError") {
-          setError("Camera is in use by another application.");
-        } else {
-          setError(`Camera error: ${error.message}`);
-        }
-      } else {
-        setError(`Camera error: ${error.message}`);
-      }
-
-      setHasPermission(false);
-    }
-  };
-
-  const captureImage = () => {
-    try {
-      if (!videoRef.current) {
-        setDebugInfo("Video ref is null during capture");
-        setError("Video element not found. Cannot capture image.");
-        return;
-      }
-
-      if (!canvasRef.current) {
-        setDebugInfo("Canvas ref is null during capture");
-        setError("Canvas element not found. Cannot capture image.");
-        return;
-      }
-
-      const video = videoRef.current;
-      const canvas = canvasRef.current;
-      const context = canvas.getContext("2d");
-
-      if (!context) {
-        setDebugInfo("Could not get canvas context");
-        setError("Could not initialize image capture");
-        return;
-      }
-
-      setDebugInfo(
-        `Capturing image. Video dimensions: ${video.videoWidth}x${video.videoHeight}, Video ready state: ${video.readyState}`
-      );
-
-      // Set canvas dimensions to match video
-      canvas.width = video.videoWidth || 640;
-      canvas.height = video.videoHeight || 480;
-
-      // Draw the current frame from video to canvas
-      context.drawImage(video, 0, 0, canvas.width, canvas.height);
-
-      // Convert canvas to data URL
-      const imageDataUrl = canvas.toDataURL("image/png");
-      setCapturedImage(imageDataUrl);
-      setDebugInfo("Image captured successfully");
-
-      // Stop the camera
-      stopCamera();
-      setIsCameraActive(false);
-    } catch (err: unknown) {
-      const error = err as Error;
-      setDebugInfo(`Error capturing image: ${error.message}`);
-      setError(`Error capturing image: ${error.message}`);
-    }
-  };
-
-  const retakePhoto = () => {
+  const handleRetake = () => {
     setCapturedImage(null);
     startCamera();
+  };
+
+  const showBrowserInfo = () => {
+    const info = `
+      User Agent: ${navigator.userAgent}
+      Platform: ${navigator.platform}
+      mediaDevices supported: ${!!navigator.mediaDevices}
+      getUserMedia supported: ${!!(
+        navigator.mediaDevices && navigator.mediaDevices.getUserMedia
+      )}
+    `;
+    setBrowserInfo(info);
   };
 
   return (
@@ -209,6 +91,14 @@ export function FaceVerificationForm({
           </Alert>
         )}
 
+        {browserInfo && (
+          <Alert className="mb-4 bg-green-50 text-green-800 border-green-200">
+            <AlertDescription className="text-xs font-mono whitespace-pre-wrap">
+              {browserInfo}
+            </AlertDescription>
+          </Alert>
+        )}
+
         <div className="flex flex-col items-center justify-center space-y-6">
           {capturedImage ? (
             <div className="relative">
@@ -222,42 +112,52 @@ export function FaceVerificationForm({
               </div>
             </div>
           ) : (
-            <>
-              {isCameraActive ? (
-                <div className="relative w-64 h-64 rounded-full overflow-hidden border-2 border-primary">
-                  <video
-                    ref={videoRef}
-                    autoPlay
-                    playsInline
-                    muted
-                    className="absolute min-w-full min-h-full object-cover"
-                    style={{ transform: "scaleX(-1)" }} // Mirror effect
-                  />
-                  {/* Overlay with face outline guide */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-48 h-48 border-2 border-dashed border-white rounded-full opacity-50"></div>
-                  </div>
-                </div>
-              ) : (
+            <div className="relative w-64 h-64 rounded-full overflow-hidden border-2 border-primary">
+              <video
+                id={FACE_VIDEO_ID}
+                ref={videoRef}
+                autoPlay
+                playsInline
+                muted
+                className="absolute min-w-full min-h-full object-cover"
+                style={{ transform: "scaleX(-1)" }} // Mirror effect
+              />
+
+              {!isActive && !isLoading && (
                 <div
-                  className="w-64 h-64 rounded-full bg-muted flex flex-col items-center justify-center border-2 border-dashed border-muted-foreground/25 cursor-pointer"
+                  className="absolute inset-0 flex flex-col items-center justify-center bg-black/10 cursor-pointer"
                   onClick={startCamera}
                 >
-                  <Camera className="h-20 w-20 text-muted-foreground mb-2" />
-                  <span className="text-sm text-muted-foreground">
+                  <Camera className="h-16 w-16 text-white mb-2" />
+                  <span className="text-sm text-white">
                     {t("clickToStartCamera")}
                   </span>
                 </div>
               )}
-            </>
-          )}
 
-          <canvas ref={canvasRef} style={{ display: "none" }}></canvas>
+              {isLoading && (
+                <div className="absolute inset-0 flex items-center justify-center bg-black/30">
+                  <div className="text-white text-sm">
+                    Initializing camera...
+                  </div>
+                </div>
+              )}
+
+              {/* Overlay with face outline guide - only show when camera is active */}
+              {isActive && (
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-48 h-48 border-2 border-dashed border-white rounded-full opacity-50"></div>
+                </div>
+              )}
+            </div>
+          )}
 
           <p className="text-center text-sm text-muted-foreground">
             {capturedImage
               ? t("faceVerificationComplete")
-              : isCameraActive
+              : isLoading
+              ? "Starting camera..."
+              : isActive
               ? t("faceVerificationInstructions")
               : t("faceVerificationStart")}
           </p>
@@ -270,15 +170,17 @@ export function FaceVerificationForm({
 
           {capturedImage ? (
             <div className="space-x-2">
-              <Button variant="outline" onClick={retakePhoto}>
+              <Button variant="outline" onClick={handleRetake}>
                 {t("retake")}
               </Button>
               <Button onClick={onComplete}>{t("complete")}</Button>
             </div>
           ) : (
-            isCameraActive && (
-              <Button onClick={captureImage}>{t("capture")}</Button>
-            )
+            <>
+              {isActive && (
+                <Button onClick={handleCapture}>{t("capture")}</Button>
+              )}
+            </>
           )}
         </div>
       </div>
