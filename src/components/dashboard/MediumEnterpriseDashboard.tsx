@@ -24,12 +24,12 @@ export function MediumEnterpriseDashboard() {
   const { t } = useTranslation();
 
   const kpis = [
-    { label: "Annual Revenue", value: "RM 2.4M", change: "+22%", icon: DollarSign, color: "text-success" },
-    { label: "Monthly Growth", value: "15.2%", change: "+3.1%", icon: TrendingUp, color: "text-primary" },
-    { label: "Active Projects", value: "12", change: "+4", icon: Briefcase, color: "text-secondary" },
-    { label: "Team Members", value: "28", change: "+5", icon: Users, color: "text-accent" },
-    { label: "Client Satisfaction", value: "96%", change: "+2%", icon: Target, color: "text-success" },
-    { label: "Invoices Processed", value: "156", change: "+12", icon: Receipt, color: "text-primary" }
+    { label: t('annualRevenue'), value: "RM 2.4M", change: "+22%", icon: DollarSign, color: "text-success" },
+    { label: t('monthlyGrowth'), value: "15.2%", change: "+3.1%", icon: TrendingUp, color: "text-primary" },
+    { label: t('activeProjects'), value: "12", change: "+4", icon: Briefcase, color: "text-secondary" },
+    { label: t('teamMembers'), value: "28", change: "+5", icon: Users, color: "text-accent" },
+    { label: t('clientSatisfaction'), value: "96%", change: "+2%", icon: Target, color: "text-success" },
+    { label: t('invoicesProcessed'), value: "156", change: "+12", icon: Receipt, color: "text-primary" }
   ];
 
   const recentProjects = [
@@ -44,7 +44,7 @@ export function MediumEnterpriseDashboard() {
       {/* Welcome Section */}
       <div className="text-center py-8">
         <h1 className="text-3xl font-bold mb-2">{t('welcome')} to {t('medium')}</h1>
-        <p className="text-muted-foreground">Enterprise-grade tools for established businesses</p>
+        <p className="text-muted-foreground">{t('enterpriseGradeTools')}</p>
       </div>
 
       {/* Executive KPIs */}
@@ -72,11 +72,11 @@ export function MediumEnterpriseDashboard() {
 
       <Tabs defaultValue="overview" className="space-y-6">
         <TabsList className="grid w-full grid-cols-5">
-          <TabsTrigger value="overview">Overview</TabsTrigger>
-          <TabsTrigger value="projects">Projects</TabsTrigger>
-          <TabsTrigger value="finance">Finance</TabsTrigger>
-          <TabsTrigger value="operations">Operations</TabsTrigger>
-          <TabsTrigger value="analytics">Analytics</TabsTrigger>
+          <TabsTrigger value="overview">{t('overview')}</TabsTrigger>
+          <TabsTrigger value="projects">{t('projects')}</TabsTrigger>
+          <TabsTrigger value="finance">{t('financeCategory')}</TabsTrigger>
+          <TabsTrigger value="operations">{t('operationsTab')}</TabsTrigger>
+          <TabsTrigger value="analytics">{t('analyticsCategory')}</TabsTrigger>
         </TabsList>
 
         <TabsContent value="overview" className="space-y-6">
@@ -86,12 +86,12 @@ export function MediumEnterpriseDashboard() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <BarChart3 className="h-5 w-5" />
-                  Revenue Overview
+                  {t('revenueOverview')}
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="h-32 flex items-center justify-center border-2 border-dashed border-muted-foreground/25 rounded-lg">
-                  <p className="text-muted-foreground">Revenue Chart</p>
+                  <p className="text-muted-foreground">{t('revenueChart')}</p>
                 </div>
               </CardContent>
             </Card>
@@ -101,20 +101,20 @@ export function MediumEnterpriseDashboard() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Briefcase className="h-5 w-5" />
-                  Project Status
+                  {t('projectStatus')}
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
                 <div className="flex justify-between">
-                  <span className="text-sm">Active</span>
+                  <span className="text-sm">{t('active')}</span>
                   <Badge variant="default">8</Badge>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-sm">Planning</span>
+                  <span className="text-sm">{t('planning')}</span>
                   <Badge variant="secondary">3</Badge>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-sm">Completed</span>
+                  <span className="text-sm">{t('completed')}</span>
                   <Badge variant="outline">15</Badge>
                 </div>
               </CardContent>
@@ -125,7 +125,7 @@ export function MediumEnterpriseDashboard() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Users className="h-5 w-5" />
-                  Team Performance
+                  {t('teamPerformance')}
                 </CardTitle>
               </CardHeader>
               <CardContent>

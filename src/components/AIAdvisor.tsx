@@ -12,7 +12,7 @@ export function AIAdvisor() {
   const [messages, setMessages] = useState([
     {
       type: 'ai',
-      content: 'Hello! I\'m your AI advisor. How can I help you with your business today?'
+      content: t('aiAdvisorWelcome')
     }
   ]);
 
@@ -24,7 +24,7 @@ export function AIAdvisor() {
       { type: 'user', content: message },
       { 
         type: 'ai', 
-        content: 'Thank you for your message. I\'m here to help you navigate the MyMSME platform and provide business guidance. This is a demo response.' 
+        content: t('aiDemoResponse')
       }
     ];
 
@@ -88,7 +88,7 @@ export function AIAdvisor() {
               <Input
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
-                placeholder="Type your message..."
+                placeholder={t('typeYourMessage')}
                 onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
                 className="flex-1"
               />

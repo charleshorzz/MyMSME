@@ -30,30 +30,30 @@ export function ServicesPage({ userLevel }: ServicesPageProps) {
     // Basic Services (All levels)
     {
       id: 'qr-payments',
-      title: 'QR Payment Gateway',
-      description: 'Accept digital payments via QR codes',
+      title: t('qrPaymentGateway'),
+      description: t('acceptPaymentsViaQr'),
       icon: Smartphone,
       levels: ['micro', 'small', 'medium'],
       price: 'RM 15/month',
-      category: 'Payment'
+      category: t('paymentCategory')
     },
     {
       id: 'basic-records',
       title: t('recordKeeping'),
-      description: 'Basic business record management',
+      description: t('basicBusinessRecord'),
       icon: FileText,
       levels: ['micro', 'small', 'medium'],
       price: 'RM 25/month',
-      category: 'Accounting'
+      category: t('accountingCategory')
     },
     {
       id: 'ssm-documents',
       title: t('ssmCertificate'),
-      description: 'Digital SSM certificate and documents',
+      description: t('digitalSsmCertificate'),
       icon: Shield,
       levels: ['micro', 'small', 'medium'],
       price: 'Free',
-      category: 'Documents'
+      category: t('documentsCategory')
     },
     
     // Small & Medium Services
@@ -64,7 +64,7 @@ export function ServicesPage({ userLevel }: ServicesPageProps) {
       icon: Receipt,
       levels: ['small', 'medium'],
       price: 'RM 50/month',
-      category: 'Accounting'
+      category: t('accountingCategory')
     },
     {
       id: 'website-builder',
@@ -73,7 +73,7 @@ export function ServicesPage({ userLevel }: ServicesPageProps) {
       icon: Globe,
       levels: ['small', 'medium'],
       price: 'RM 80/month',
-      category: 'Marketing'
+      category: t('marketingCategory')
     },
     {
       id: 'accounting-suite',
@@ -82,7 +82,7 @@ export function ServicesPage({ userLevel }: ServicesPageProps) {
       icon: Calculator,
       levels: ['small', 'medium'],
       price: 'RM 120/month',
-      category: 'Accounting'
+      category: t('accountingCategory')
     },
     {
       id: 'credit-analysis',
@@ -91,7 +91,7 @@ export function ServicesPage({ userLevel }: ServicesPageProps) {
       icon: Brain,
       levels: ['small', 'medium'],
       price: 'RM 40/month',
-      category: 'Finance'
+      category: t('financeCategory')
     },
     
     // Medium Only Services
@@ -102,7 +102,7 @@ export function ServicesPage({ userLevel }: ServicesPageProps) {
       icon: Users,
       levels: ['medium'],
       price: 'RM 200/month',
-      category: 'Management'
+      category: t('managementCategory')
     },
     {
       id: 'business-intelligence',
@@ -111,7 +111,7 @@ export function ServicesPage({ userLevel }: ServicesPageProps) {
       icon: BarChart3,
       levels: ['medium'],
       price: 'RM 150/month',
-      category: 'Analytics'
+      category: t('analyticsCategory')
     },
     {
       id: 'project-management',
@@ -120,7 +120,7 @@ export function ServicesPage({ userLevel }: ServicesPageProps) {
       icon: Briefcase,
       levels: ['medium'],
       price: 'RM 180/month',
-      category: 'Management'
+      category: t('managementCategory')
     },
     {
       id: 'multi-location',
@@ -129,7 +129,7 @@ export function ServicesPage({ userLevel }: ServicesPageProps) {
       icon: Building,
       levels: ['medium'],
       price: 'RM 250/month',
-      category: 'Operations'
+      category: t('operationsCategory')
     },
     {
       id: 'automation-suite',
@@ -138,7 +138,7 @@ export function ServicesPage({ userLevel }: ServicesPageProps) {
       icon: Zap,
       levels: ['medium'],
       price: 'RM 300/month',
-      category: 'Automation'
+      category: t('automationCategory')
     },
     {
       id: 'cloud-backup',
@@ -147,7 +147,7 @@ export function ServicesPage({ userLevel }: ServicesPageProps) {
       icon: Cloud,
       levels: ['medium'],
       price: 'RM 100/month',
-      category: 'Infrastructure'
+      category: t('infrastructureCategory')
     }
   ];
 
@@ -175,10 +175,10 @@ export function ServicesPage({ userLevel }: ServicesPageProps) {
       <div className="text-center py-8">
         <h1 className="text-3xl font-bold mb-2">{t('services')}</h1>
         <p className="text-muted-foreground">
-          Services available for {t(userLevel)} businesses
+          {t('servicesAvailableFor')} {t(userLevel)} businesses
         </p>
         <Badge variant={getLevelBadgeColor([userLevel])} className="mt-2">
-          {t(userLevel)} Package
+          {t(userLevel)} {t('package')}
         </Badge>
       </div>
 
@@ -186,7 +186,7 @@ export function ServicesPage({ userLevel }: ServicesPageProps) {
       {Object.entries(servicesByCategory).map(([category, services]) => (
         <div key={category} className="space-y-4">
           <h2 className="text-xl font-semibold flex items-center gap-2">
-            {category} Services
+            {category} {t('services')}
           </h2>
           
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -217,7 +217,7 @@ export function ServicesPage({ userLevel }: ServicesPageProps) {
                     
                     <div className="space-y-3">
                       <div className="flex justify-between text-sm">
-                        <span>Available for:</span>
+                        <span>{t('availableFor')}</span>
                         <div className="flex gap-1">
                           {service.levels.map(level => (
                             <Badge key={level} variant="outline" className="text-xs">
@@ -228,7 +228,7 @@ export function ServicesPage({ userLevel }: ServicesPageProps) {
                       </div>
                       
                       <Button className="w-full group-hover:scale-105 transition-transform">
-                        Get Started
+                        {t('getStarted')}
                       </Button>
                     </div>
                   </CardContent>
@@ -244,19 +244,19 @@ export function ServicesPage({ userLevel }: ServicesPageProps) {
         <Card className="shadow-soft bg-gradient-to-r from-primary/5 to-secondary/5 border-primary/20">
           <CardContent className="p-6 text-center">
             <h3 className="text-lg font-semibold mb-2">
-              Unlock More Services
+              {t('unlockMoreServices')}
             </h3>
             <p className="text-muted-foreground mb-4">
-              Upgrade your plan to access advanced enterprise features and services
+              {t('upgradeYourPlan')}
             </p>
             <div className="flex justify-center gap-3">
               {userLevel === 'micro' && (
                 <Button variant="outline">
-                  Upgrade to Small Enterprise
+                  {t('upgradeToSmallEnterprise')}
                 </Button>
               )}
               <Button>
-                Upgrade to {userLevel === 'micro' ? 'Medium' : 'Medium'} Enterprise
+                {t('upgradeToMediumEnterprise')}
               </Button>
             </div>
           </CardContent>
@@ -266,14 +266,14 @@ export function ServicesPage({ userLevel }: ServicesPageProps) {
       {/* Custom Service Request */}
       <Card className="shadow-soft">
         <CardHeader>
-          <CardTitle>Need a Custom Service?</CardTitle>
+          <CardTitle>{t('needCustomService')}</CardTitle>
         </CardHeader>
         <CardContent>
           <p className="text-muted-foreground mb-4">
-            Can't find what you're looking for? Our team can create custom solutions tailored to your business needs.
+            {t('cantFindWhatLookingFor')}
           </p>
           <Button variant="outline" className="w-full md:w-auto">
-            Request Custom Service
+            {t('requestCustomService')}
           </Button>
         </CardContent>
       </Card>

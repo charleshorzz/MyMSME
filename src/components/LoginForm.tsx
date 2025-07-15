@@ -110,7 +110,7 @@ export function LoginForm({ onLogin }: LoginFormProps) {
 
             <div className="mt-6 text-center space-y-3">
               <p className="text-sm text-muted-foreground">
-                Don't have an account? <Button variant="link" className="p-0 h-auto">Register here</Button>
+                {t('dontHaveAccount')} <Button variant="link" className="p-0 h-auto">{t('registerHere')}</Button>
               </p>
             </div>
           </CardContent>
@@ -121,16 +121,16 @@ export function LoginForm({ onLogin }: LoginFormProps) {
           <Card className="shadow-soft glass-effect">
             <CardContent className="p-4 text-center">
               <Shield className="h-6 w-6 mx-auto mb-2 text-primary" />
-              <h3 className="text-sm font-semibold">eKYC Verified</h3>
-              <p className="text-xs text-muted-foreground">Secure identity verification</p>
+              <h3 className="text-sm font-semibold">{t('ekycVerified')}</h3>
+              <p className="text-xs text-muted-foreground">{t('secureIdentityVerification')}</p>
             </CardContent>
           </Card>
           
           <Card className="shadow-soft glass-effect">
             <CardContent className="p-4 text-center">
               <CreditCard className="h-6 w-6 mx-auto mb-2 text-secondary" />
-              <h3 className="text-sm font-semibold">United MSME ID</h3>
-              <p className="text-xs text-muted-foreground">One ID for all services</p>
+              <h3 className="text-sm font-semibold">{t('unitedMsmeId')}</h3>
+              <p className="text-xs text-muted-foreground">{t('oneIdAllServices')}</p>
             </CardContent>
           </Card>
         </div>
@@ -138,12 +138,12 @@ export function LoginForm({ onLogin }: LoginFormProps) {
         {/* Demo Instructions */}
         <Card className="shadow-soft bg-muted/50">
           <CardContent className="p-4">
-            <h3 className="text-sm font-semibold mb-2">Demo Instructions:</h3>
+            <h3 className="text-sm font-semibold mb-2">{t('demoInstructions')}</h3>
             <div className="text-xs space-y-1 text-muted-foreground">
-              <p>• IC ending with 0: Micro Enterprise</p>
-              <p>• IC ending with 1-2: Small Enterprise</p>
-              <p>• IC ending with 3-4: Medium Enterprise</p>
-              <p>• Use any password to login</p>
+              <p>• {t('microEnterpriseDemo')}</p>
+              <p>• {t('smallEnterpriseDemo')}</p>
+              <p>• {t('mediumEnterpriseDemo')}</p>
+              <p>• {t('useAnyPassword')}</p>
             </div>
           </CardContent>
         </Card>

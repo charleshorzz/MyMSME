@@ -41,10 +41,10 @@ export function MicroEnterpriseDashboard() {
               <QRCode value={qrData} size={160} />
             </div>
             <p className="text-sm text-muted-foreground text-center">
-              Share this QR code for quick payments and business identification
+              {t('shareQrCode')}
             </p>
             <Button variant="outline" className="w-full">
-              Download QR Code
+              {t('downloadQrCode')}
             </Button>
           </CardContent>
         </Card>
@@ -54,21 +54,21 @@ export function MicroEnterpriseDashboard() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <TrendingUp className="h-5 w-5" />
-              Quick Stats
+              {t('quickStats')}
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="flex items-center justify-between p-3 bg-muted rounded-lg">
               <div className="flex items-center gap-2">
                 <DollarSign className="h-4 w-4 text-success" />
-                <span className="text-sm">Today's Sales</span>
+                <span className="text-sm">{t('todaysSales')}</span>
               </div>
               <span className="font-semibold">RM 150.00</span>
             </div>
             <div className="flex items-center justify-between p-3 bg-muted rounded-lg">
               <div className="flex items-center gap-2">
                 <Clock className="h-4 w-4 text-primary" />
-                <span className="text-sm">Recent Activity</span>
+                <span className="text-sm">{t('recentActivity')}</span>
               </div>
               <span className="font-semibold">3 transactions</span>
             </div>
@@ -94,7 +94,7 @@ export function MicroEnterpriseDashboard() {
             ))}
           </div>
           <Button variant="outline" className="w-full mt-4">
-            View All Transactions
+            {t('viewAll')} {t('transactions')}
           </Button>
         </CardContent>
       </Card>
@@ -104,21 +104,21 @@ export function MicroEnterpriseDashboard() {
         <Card className="shadow-soft hover:shadow-medium transition-shadow cursor-pointer">
           <CardContent className="p-6 text-center">
             <h3 className="font-semibold mb-2">{t('recordKeeping')}</h3>
-            <p className="text-sm text-muted-foreground">Track your business records</p>
+            <p className="text-sm text-muted-foreground">{t('trackBusinessRecords')}</p>
           </CardContent>
         </Card>
         
         <Card className="shadow-soft hover:shadow-medium transition-shadow cursor-pointer">
           <CardContent className="p-6 text-center">
-            <h3 className="font-semibold mb-2">Payment Gateway</h3>
-            <p className="text-sm text-muted-foreground">Accept digital payments</p>
+            <h3 className="font-semibold mb-2">{t('paymentGateway')}</h3>
+            <p className="text-sm text-muted-foreground">{t('acceptDigitalPayments')}</p>
           </CardContent>
         </Card>
         
         <Card className="shadow-soft hover:shadow-medium transition-shadow cursor-pointer">
           <CardContent className="p-6 text-center">
-            <h3 className="font-semibold mb-2">Basic Reports</h3>
-            <p className="text-sm text-muted-foreground">View simple business reports</p>
+            <h3 className="font-semibold mb-2">{t('basicReports')}</h3>
+            <p className="text-sm text-muted-foreground">{t('simpleBusinessReports')}</p>
           </CardContent>
         </Card>
       </div>
