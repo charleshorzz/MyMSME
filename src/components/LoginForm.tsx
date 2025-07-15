@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { Eye, EyeOff, Shield, CreditCard } from "lucide-react";
+import { useToast } from "@/components/ui/use-toast";
 
 interface LoginFormProps {
   onLogin: (
@@ -17,25 +18,62 @@ interface LoginFormProps {
 
 export function LoginForm({ onLogin, onShowRegister }: LoginFormProps) {
   const { t } = useTranslation();
+  const { toast } = useToast();
   const [icNumber, setIcNumber] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [rememberMe, setRememberMe] = useState(true);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!icNumber.trim()) {
+      toast({
+        title: t("error"),
+        description: t("pleaseEnterIC"),
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (!password.trim()) {
+      toast({
+        title: t("error"),
+        description: t("pleaseEnterPassword"),
+        variant: "destructive",
+      });
+      return;
+    }
+
     setIsLoading(true);
 
-    // Simulate authentication
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    try {
+      // Simulate authentication
+      await new Promise((resolve) => setTimeout(resolve, 1000));
 
-    // Demo logic - determine enterprise level based on IC number
-    let level: "micro" | "small" | "medium" = "micro";
-    if (icNumber.endsWith("1") || icNumber.endsWith("2")) level = "small";
-    if (icNumber.endsWith("3") || icNumber.endsWith("4")) level = "medium";
+      // Demo logic - determine enterprise level based on IC number
+      let level: "micro" | "small" | "medium" = "micro";
+      if (icNumber.endsWith("1") || icNumber.endsWith("2")) level = "small";
+      if (icNumber.endsWith("3") || icNumber.endsWith("4")) level = "medium";
 
-    onLogin(icNumber, level);
-    setIsLoading(false);
+      // Call the login handler
+      onLogin(icNumber, level);
+
+      // Show success toast
+      toast({
+        title: t("loginSuccess"),
+        description: t("welcomeBack"),
+      });
+    } catch (error) {
+      toast({
+        title: t("loginFailed"),
+        description: t("invalidCredentials"),
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -101,6 +139,28 @@ export function LoginForm({ onLogin, onShowRegister }: LoginFormProps) {
                     )}
                   </Button>
                 </div>
+              </div>
+
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-2">
+                  <input
+                    type="checkbox"
+                    id="remember"
+                    checked={rememberMe}
+                    onChange={(e) => setRememberMe(e.target.checked)}
+                    className="rounded border-gray-300 text-primary focus:ring-primary"
+                  />
+                  <Label htmlFor="remember" className="text-sm cursor-pointer">
+                    {t("rememberMe")}
+                  </Label>
+                </div>
+                <Button
+                  variant="link"
+                  className="p-0 h-auto text-sm"
+                  type="button"
+                >
+                  {t("forgotPassword")}
+                </Button>
               </div>
 
               <Button

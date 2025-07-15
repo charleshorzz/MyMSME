@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { LoginForm } from "@/components/LoginForm";
 import { RegisterForm } from "@/components/RegisterForm";
 import { VerificationForm } from "@/components/VerificationForm";
@@ -11,35 +11,47 @@ import { MediumEnterpriseDashboard } from "@/components/dashboard/MediumEnterpri
 import { ServicesPage } from "@/components/ServicesPage";
 import { Button } from "@/components/ui/button";
 import { Home, Briefcase, FileText, User, LogOut } from "lucide-react";
-
-type UserData = {
-  icNumber: string;
-  enterpriseLevel: "micro" | "small" | "medium";
-} | null;
+import { useAuth } from "@/contexts/AuthContext";
 
 type PageType = "dashboard" | "services" | "documents" | "profile";
 
+// Key for storing current page in localStorage
+const PAGE_STORAGE_KEY = "mymsme-current-page";
+
 const Index = () => {
-  const [user, setUser] = useState<UserData>(null);
-  const [currentPage, setCurrentPage] = useState<PageType>("dashboard");
+  // Use the auth context
+  const { user, login, logout, isAuthenticated } = useAuth();
+
+  // Initialize page state from localStorage if available
+  const [currentPage, setCurrentPage] = useState<PageType>(() => {
+    const savedPage = localStorage.getItem(PAGE_STORAGE_KEY);
+    return (savedPage as PageType) || "dashboard";
+  });
+
   const [showRegister, setShowRegister] = useState(false);
   const [showVerification, setShowVerification] = useState(false);
   const [showFaceVerification, setShowFaceVerification] = useState(false);
   const [showCameraTest, setShowCameraTest] = useState(false);
 
+  // Save current page to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem(PAGE_STORAGE_KEY, currentPage);
+  }, [currentPage]);
+
   const handleLogin = (
     icNumber: string,
     enterpriseLevel: "micro" | "small" | "medium"
   ) => {
-    setUser({ icNumber, enterpriseLevel });
+    login(icNumber, enterpriseLevel);
   };
 
   const handleLogout = () => {
-    setUser(null);
+    logout();
     setCurrentPage("dashboard");
+    localStorage.setItem(PAGE_STORAGE_KEY, "dashboard");
   };
 
-  if (!user) {
+  if (!isAuthenticated) {
     if (showCameraTest) {
       return (
         <div className="min-h-screen bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5">
@@ -114,6 +126,11 @@ const Index = () => {
         onShowRegister={() => setShowRegister(true)}
       />
     );
+  }
+
+  // Ensure user is defined before accessing its properties
+  if (!user) {
+    return null; // This shouldn't happen due to isAuthenticated check, but TypeScript needs it
   }
 
   const renderDashboard = () => {
