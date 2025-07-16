@@ -54,7 +54,7 @@ const Index = () => {
   if (!isAuthenticated) {
     if (showCameraTest) {
       return (
-        <div className="min-h-screen bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5">
+        <div className="min-h-screen bg-white">
           <div className="container mx-auto p-4">
             <Button
               variant="outline"
@@ -74,7 +74,7 @@ const Index = () => {
 
     if (showFaceVerification) {
       return (
-        <div>
+        <div className="bg-white min-h-screen">
           <FaceVerificationForm
             onBack={() => {
               setShowFaceVerification(false);
