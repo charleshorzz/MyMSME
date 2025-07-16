@@ -9,11 +9,12 @@ import { MicroEnterpriseDashboard } from "@/components/dashboard/MicroEnterprise
 import { SmallEnterpriseDashboard } from "@/components/dashboard/SmallEnterpriseDashboard";
 import { MediumEnterpriseDashboard } from "@/components/dashboard/MediumEnterpriseDashboard";
 import { ServicesPage } from "@/components/ServicesPage";
+import EInvoicePage from "@/components/E-Invoice";
 import { Button } from "@/components/ui/button";
 import { Home, Briefcase, FileText, User, LogOut } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 
-type PageType = "dashboard" | "services" | "documents" | "profile";
+type PageType = "dashboard" | "services" | "documents" | "profile" | "e-invoices";
 
 // Key for storing current page in localStorage
 const PAGE_STORAGE_KEY = "mymsme-current-page";
@@ -168,6 +169,13 @@ const Index = () => {
             </p>
           </div>
         );
+      case "e-invoices":
+        return (
+          <div>
+            <div>E-Invoice Page Test</div>
+            <EInvoicePage userLevel={user.enterpriseLevel} />
+          </div>
+        );
       default:
         return renderDashboard();
     }
@@ -212,6 +220,15 @@ const Index = () => {
         >
           <User className="h-4 w-4" />
           Profile
+        </Button>
+        <Button
+          variant={currentPage === "e-invoices" ? "default" : "ghost"}
+          size="sm"
+          onClick={() => setCurrentPage("e-invoices")}
+          className="flex items-center gap-2"
+        >
+          <FileText className="h-4 w-4" />
+          E-Invoices
         </Button>
         <Button
           variant="outline"
