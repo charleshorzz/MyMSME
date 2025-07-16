@@ -9,13 +9,11 @@ import { MicroEnterpriseDashboard } from "@/components/dashboard/MicroEnterprise
 import { SmallEnterpriseDashboard } from "@/components/dashboard/SmallEnterpriseDashboard";
 import { MediumEnterpriseDashboard } from "@/components/dashboard/MediumEnterpriseDashboard";
 import { ServicesPage } from "@/components/ServicesPage";
-import EInvoicePage from "@/components/E-Invoice";
 import { Button } from "@/components/ui/button";
-import { Home, Briefcase, FileText, User, LogOut, Globe } from "lucide-react";
+import { Home, Briefcase, FileText, User, LogOut } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
-import { MarketplacePage } from "@/components/Marketplace";
 
-type PageType = "dashboard" | "services" | "documents" | "marketplace" | "e-invoices" | "profile";
+type PageType = "dashboard" | "services" | "documents" | "profile";
 
 // Key for storing current page in localStorage
 const PAGE_STORAGE_KEY = "mymsme-current-page";
@@ -150,8 +148,6 @@ const Index = () => {
     switch (currentPage) {
       case "services":
         return <ServicesPage userLevel={user.enterpriseLevel} />;
-      case "marketplace":
-        return <MarketplacePage userLevel={user.enterpriseLevel} />;
       case "documents":
         return (
           <div className="text-center py-20">
@@ -170,13 +166,6 @@ const Index = () => {
             <p className="text-muted-foreground">
               Manage your account settings
             </p>
-          </div>
-        );
-      case "e-invoices":
-        return (
-          <div>
-            <div>E-Invoice Page Test</div>
-            <EInvoicePage userLevel={user.enterpriseLevel} />
           </div>
         );
       default:
@@ -207,15 +196,6 @@ const Index = () => {
           Services
         </Button>
         <Button
-          variant={currentPage === "marketplace" ? "default" : "ghost"}
-          size="sm"
-          onClick={() => setCurrentPage("marketplace")}
-          className="flex items-center gap-2"
-        >
-          <Globe className="h-4 w-4" />
-          Marketplace
-        </Button>
-        <Button
           variant={currentPage === "documents" ? "default" : "ghost"}
           size="sm"
           onClick={() => setCurrentPage("documents")}
@@ -232,15 +212,6 @@ const Index = () => {
         >
           <User className="h-4 w-4" />
           Profile
-        </Button>
-        <Button
-          variant={currentPage === "e-invoices" ? "default" : "ghost"}
-          size="sm"
-          onClick={() => setCurrentPage("e-invoices")}
-          className="flex items-center gap-2"
-        >
-          <FileText className="h-4 w-4" />
-          E-Invoices
         </Button>
         <Button
           variant="outline"
