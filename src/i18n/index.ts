@@ -317,6 +317,14 @@ const resources = {
       faceVerificationComplete: "Face verification successful",
       cameraPermissionDenied:
         "Camera access was denied. Please enable camera permissions.",
+
+      // Marketplace
+      marketplace: "Marketplace",
+      findBusinessesToCollaborate: "Find businesses for B2B collaboration and networking.",
+      searchBusinesses: "Search businesses...",
+      businesses: "Businesses",
+      noBusinessesFound: "No businesses found.",
+      contact: "Contact",
     },
   },
   ms: {
@@ -551,6 +559,14 @@ const resources = {
       faceVerificationComplete: "Pengesahan wajah berjaya",
       cameraPermissionDenied:
         "Akses kamera ditolak. Sila aktifkan kebenaran kamera.",
+
+      // Marketplace (Malay)
+      marketplace: "Pasaran",
+      findBusinessesToCollaborate: "Cari perniagaan untuk kerjasama B2B dan rangkaian.",
+      searchBusinesses: "Cari perniagaan...",
+      businesses: "Perniagaan",
+      noBusinessesFound: "Tiada perniagaan dijumpai.",
+      contact: "Hubungi",
     },
   },
   zh: {
@@ -775,6 +791,14 @@ const resources = {
       faceVerificationStart: "点击相机图标开始",
       faceVerificationComplete: "人脸验证成功",
       cameraPermissionDenied: "相机访问被拒绝。请启用相机权限。",
+
+      // Marketplace (Chinese)
+      marketplace: "企业市场",
+      findBusinessesToCollaborate: "寻找企业进行B2B合作与交流。",
+      searchBusinesses: "搜索企业...",
+      businesses: "企业",
+      noBusinessesFound: "未找到企业。",
+      contact: "联系",
     },
   },
 };
