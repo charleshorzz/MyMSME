@@ -50,7 +50,7 @@ export function CameraTest() {
   };
 
   return (
-    <div className="p-6 max-w-md mx-auto">
+    <div className="p-6 max-w-md mx-auto bg-white min-h-screen flex flex-col justify-center">
       <h2 className="text-2xl font-bold mb-4">Camera Test</h2>
 
       {error && (
