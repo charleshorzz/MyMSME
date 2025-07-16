@@ -10,10 +10,11 @@ import { SmallEnterpriseDashboard } from "@/components/dashboard/SmallEnterprise
 import { MediumEnterpriseDashboard } from "@/components/dashboard/MediumEnterpriseDashboard";
 import { ServicesPage } from "@/components/ServicesPage";
 import { Button } from "@/components/ui/button";
-import { Home, Briefcase, FileText, User, LogOut } from "lucide-react";
+import { Home, Briefcase, FileText, User, LogOut, Globe } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
+import { MarketplacePage } from "@/components/Marketplace";
 
-type PageType = "dashboard" | "services" | "documents" | "profile";
+type PageType = "dashboard" | "services" | "documents" | "profile" | "marketplace";
 
 // Key for storing current page in localStorage
 const PAGE_STORAGE_KEY = "mymsme-current-page";
@@ -148,6 +149,8 @@ const Index = () => {
     switch (currentPage) {
       case "services":
         return <ServicesPage userLevel={user.enterpriseLevel} />;
+      case "marketplace":
+        return <MarketplacePage userLevel={user.enterpriseLevel} />;
       case "documents":
         return (
           <div className="text-center py-20">
@@ -194,6 +197,15 @@ const Index = () => {
         >
           <Briefcase className="h-4 w-4" />
           Services
+        </Button>
+        <Button
+          variant={currentPage === "marketplace" ? "default" : "ghost"}
+          size="sm"
+          onClick={() => setCurrentPage("marketplace")}
+          className="flex items-center gap-2"
+        >
+          <Globe className="h-4 w-4" />
+          Marketplace
         </Button>
         <Button
           variant={currentPage === "documents" ? "default" : "ghost"}
