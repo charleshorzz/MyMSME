@@ -11,10 +11,11 @@ import { MediumEnterpriseDashboard } from "@/components/dashboard/MediumEnterpri
 import { ServicesPage } from "@/components/ServicesPage";
 import EInvoicePage from "@/components/E-Invoice";
 import { Button } from "@/components/ui/button";
-import { Home, Briefcase, FileText, User, LogOut } from "lucide-react";
+import { Home, Briefcase, FileText, User, LogOut, Globe } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
+import { MarketplacePage } from "@/components/Marketplace";
 
-type PageType = "dashboard" | "services" | "documents" | "profile" | "e-invoices";
+type PageType = "dashboard" | "services" | "documents" | "marketplace" | "e-invoices" | "profile";
 
 // Key for storing current page in localStorage
 const PAGE_STORAGE_KEY = "mymsme-current-page";
@@ -55,7 +56,7 @@ const Index = () => {
   if (!isAuthenticated) {
     if (showCameraTest) {
       return (
-        <div className="min-h-screen bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5">
+        <div className="min-h-screen bg-white">
           <div className="container mx-auto p-4">
             <Button
               variant="outline"
@@ -75,7 +76,7 @@ const Index = () => {
 
     if (showFaceVerification) {
       return (
-        <div>
+        <div className="bg-white min-h-screen">
           <FaceVerificationForm
             onBack={() => {
               setShowFaceVerification(false);
@@ -149,6 +150,8 @@ const Index = () => {
     switch (currentPage) {
       case "services":
         return <ServicesPage userLevel={user.enterpriseLevel} />;
+      case "marketplace":
+        return <MarketplacePage userLevel={user.enterpriseLevel} />;
       case "documents":
         return (
           <div className="text-center py-20">
@@ -202,6 +205,15 @@ const Index = () => {
         >
           <Briefcase className="h-4 w-4" />
           Services
+        </Button>
+        <Button
+          variant={currentPage === "marketplace" ? "default" : "ghost"}
+          size="sm"
+          onClick={() => setCurrentPage("marketplace")}
+          className="flex items-center gap-2"
+        >
+          <Globe className="h-4 w-4" />
+          Marketplace
         </Button>
         <Button
           variant={currentPage === "documents" ? "default" : "ghost"}
