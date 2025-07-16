@@ -7,18 +7,17 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { Eye, EyeOff, Shield, CreditCard } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
+import { useAuth } from "@/contexts/AuthContext";
 
 interface LoginFormProps {
-  onLogin: (
-    icNumber: string,
-    enterpriseLevel: "micro" | "small" | "medium"
-  ) => void;
   onShowRegister?: () => void;
 }
 
-export function LoginForm({ onLogin, onShowRegister }: LoginFormProps) {
+export function LoginForm({ onShowRegister }: LoginFormProps) {
   const { t } = useTranslation();
   const { toast } = useToast();
+  const { login } = useAuth();
+
   const [icNumber, setIcNumber] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -49,22 +48,21 @@ export function LoginForm({ onLogin, onShowRegister }: LoginFormProps) {
     setIsLoading(true);
 
     try {
-      // Simulate authentication
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      // 使用 AuthContext 的 login 方法
+      const result = await login(icNumber, password, rememberMe);
 
-      // Demo logic - determine enterprise level based on IC number
-      let level: "micro" | "small" | "medium" = "micro";
-      if (icNumber.endsWith("1") || icNumber.endsWith("2")) level = "small";
-      if (icNumber.endsWith("3") || icNumber.endsWith("4")) level = "medium";
-
-      // Call the login handler
-      onLogin(icNumber, level);
-
-      // Show success toast
-      toast({
-        title: t("loginSuccess"),
-        description: t("welcomeBack"),
-      });
+      if (result.success) {
+        toast({
+          title: t("loginSuccess"),
+          description: t("welcomeBack"),
+        });
+      } else {
+        toast({
+          title: t("loginFailed"),
+          description: result.message || t("invalidCredentials"),
+          variant: "destructive",
+        });
+      }
     } catch (error) {
       toast({
         title: t("loginFailed"),
