@@ -11,6 +11,7 @@ import DocumentsPage from "./pages/DocumentsPage";
 import { MicroEnterpriseDashboard } from "@/components/dashboard/MicroEnterpriseDashboard";
 import { SmallEnterpriseDashboard } from "@/components/dashboard/SmallEnterpriseDashboard";
 import { MediumEnterpriseDashboard } from "@/components/dashboard/MediumEnterpriseDashboard";
+import EInvoicePage from "@/components/E-Invoice";
 import { Layout } from "@/components/Layout";
 
 const queryClient = new QueryClient();
@@ -50,6 +51,14 @@ const App = () => (
                 </Layout>
               }
             />
+            <Route
+              path="/micro-enterprise/e-invoice"
+              element={
+                <Layout userLevel="micro">
+                  <EInvoicePage userLevel="micro" />
+                </Layout>
+              }
+            />
 
             {/* 小型企业路由 */}
             <Route
@@ -76,6 +85,14 @@ const App = () => (
                 </Layout>
               }
             />
+            <Route
+              path="/small-enterprise/e-invoice"
+              element={
+                <Layout userLevel="small">
+                  <EInvoicePage userLevel="small" />
+                </Layout>
+              }
+            />
 
             {/* 中型企业路由 */}
             <Route
@@ -99,6 +116,14 @@ const App = () => (
               element={
                 <Layout userLevel="medium">
                   <DocumentsPage />
+                </Layout>
+              }
+            />
+            <Route
+              path="/medium-enterprise/e-invoice"
+              element={
+                <Layout userLevel="medium">
+                  <EInvoicePage userLevel="medium" />
                 </Layout>
               }
             />

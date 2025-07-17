@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -38,6 +39,7 @@ import {
 
 export function MediumEnterpriseDashboard() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const [isLoanDialogOpen, setIsLoanDialogOpen] = useState(false);
 
   // Enterprise data for loan eligibility
@@ -413,7 +415,7 @@ export function MediumEnterpriseDashboard() {
         </TabsList>
 
         <TabsContent value="overview" className="space-y-6">
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             {/* Revenue Overview */}
             <Card className="shadow-soft">
               <CardHeader>
@@ -449,6 +451,38 @@ export function MediumEnterpriseDashboard() {
                 <div className="flex justify-between">
                   <span className="text-sm">{t("completed")}</span>
                   <Badge variant="outline">15</Badge>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* E-Invoicing Section */}
+            <Card className="shadow-soft">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Receipt className="h-5 w-5" />
+                  {t("eInvoicing")}
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <div className="flex justify-between">
+                  <span className="text-sm">Monthly Invoices</span>
+                  <span className="font-semibold">124</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-sm">Total Value</span>
+                  <span className="font-semibold">RM 2.4M</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-sm">Paid Rate</span>
+                  <span className="font-semibold text-success">98%</span>
+                </div>
+                <div className="flex gap-2">
+                  <Button size="sm" className="flex-1" onClick={() => navigate("/medium-enterprise/e-invoice?create=true")}>
+                    {t("Create Invoice")}
+                  </Button>
+                  <Button variant="outline" size="sm" className="flex-1" onClick={() => navigate("/medium-enterprise/e-invoice")}>
+                    {t("View Invoices")}
+                  </Button>
                 </div>
               </CardContent>
             </Card>

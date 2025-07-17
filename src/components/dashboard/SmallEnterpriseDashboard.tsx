@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -19,6 +20,7 @@ import {
 
 export function SmallEnterpriseDashboard() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   const recentInvoices = [
     {
@@ -203,7 +205,7 @@ export function SmallEnterpriseDashboard() {
         <Card className="shadow-soft">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <FileText className="h-5 w-5" />
+              <Receipt className="h-5 w-5" />
               {t("eInvoicing")}
             </CardTitle>
           </CardHeader>
@@ -237,7 +239,14 @@ export function SmallEnterpriseDashboard() {
                 </div>
               </div>
             ))}
-            <Button className="w-full">{t("createNewInvoice")}</Button>
+            <div className="flex gap-2">
+              <Button className="flex-1" onClick={() => navigate("/small-enterprise/e-invoice?create=true")}>
+                {t("createNewInvoice")}
+              </Button>
+              <Button variant="outline" className="flex-1" onClick={() => navigate("/small-enterprise/e-invoice")}>
+                {t("View All Invoices")}
+              </Button>
+            </div>
           </CardContent>
         </Card>
 
