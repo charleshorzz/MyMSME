@@ -15,6 +15,8 @@ export type User = {
   isKycVerified: boolean;
   contact: string;
   email: string;
+  password?: string; // 添加密码字段
+  level?: "micro" | "small" | "medium"; // 添加用户级别字段
   createdAt: string;
   updatedAt: string;
 };

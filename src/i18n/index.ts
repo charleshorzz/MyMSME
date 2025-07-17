@@ -11,6 +11,7 @@ const resources = {
       documents: "Documents",
       profile: "Profile",
       logout: "Logout",
+      notifications: "Notifications",
 
       // Authentication
       login: "Login",
@@ -62,6 +63,12 @@ const resources = {
       save: "Save",
       edit: "Edit",
       delete: "Delete",
+      download: "Download",
+      name: "Name",
+      type: "Type",
+      date: "Date",
+      size: "Size",
+      actions: "Actions",
 
       // Enterprise levels
       micro: "Micro Enterprise",
@@ -130,7 +137,6 @@ const resources = {
       analyticsCharts: "Analytics charts will be displayed here",
 
       // Services
-      paymentGateway: "Payment Gateway",
       basicReports: "Basic Reports",
       acceptDigitalPayments: "Accept digital payments",
       simpleBusinessReports: "View simple business reports",
@@ -150,12 +156,7 @@ const resources = {
       // Registration
       dontHaveAccount: "Don't have an account?",
       registerHere: "Register here",
-      fullName: "Full Name",
-      email: "Email",
       registerSuccess: "Registration Successful",
-      personalInfo: "Personal Information",
-      companyInfo: "Company Information",
-      paymentGateway: "Payment Gateway",
 
       // Security
       ekycVerified: "eKYC Verified",
@@ -249,74 +250,36 @@ const resources = {
       satisfaction: "Satisfaction",
       progress: "Progress",
 
-      // Financial
-      financialOverview: "Financial Overview",
-      totalAssets: "Total Assets",
-      monthlyExpenses: "Monthly Expenses",
-      netProfit: "Net Profit",
-      excellentCreditRating: "Excellent Credit Rating",
-      paymentHistory: "Payment History",
-      creditUtilization: "Credit Utilization",
-      businessStability: "Business Stability",
-      excellent: "Excellent",
-      applyForBusinessLoan: "Apply for Business Loan",
-
-      // Operations
-      documentManagement: "Document Management",
-      centralizedDocumentSystem: "Centralized document system",
-      multiSiteManagement: "Multi-Site Management",
-      manageMultipleLocations: "Manage multiple locations",
-      automationSuite: "Automation Suite",
-      workflowAutomation: "Workflow automation",
-      resourcePlanning: "Resource Planning",
-      erpIntegration: "ERP integration",
-
-      // Analytics
-      advancedAnalyticsDashboard: "Advanced Analytics Dashboard",
-      advancedAnalytics: "Advanced Analytics",
-      realtimeBusinessIntelligence:
-        "Real-time business intelligence and predictive analytics",
-
-      // Registration steps and fields
-      personalInfo: "Personal Information",
-      companyInfo: "Company Information",
-      paymentGateway: "Payment Gateway",
-      fullName: "Full Name",
-      email: "Email",
+      // Profile Page
+      manageYourProfile: "Manage your personal and company information",
+      personalInformation: "Personal Information",
+      companyInformation: "Company Information",
+      communicationPreferences: "Communication Preferences",
+      saveChanges: "Save Changes",
+      savePreferences: "Save Preferences",
       phone: "Phone Number",
+      position: "Position",
+      owner: "Owner",
       companyName: "Company Name",
-      companyReg: "Company Registration No.",
-      companyAddress: "Company Address",
-      bankName: "Bank Name",
-      accountNumber: "Account Number",
-      swiftCode: "SWIFT Code",
-      back: "Back",
-      next: "Next",
+      businessId: "Business ID",
+      address: "Address",
+      industry: "Industry",
+      retail: "Retail",
+      emailNotifications: "Email Notifications",
+      smsNotifications: "SMS Notifications",
+      marketingEmails: "Marketing Emails",
 
-      // IC and Face Verification
-      icVerification: "IC Verification",
-      uploadICDescription:
-        "Please upload clear images of the front and back of your IC",
-      frontIC: "Front of IC",
-      backIC: "Back of IC",
-      clickToUpload: "Click to upload",
-      supportedFormats: "PNG, JPG, or JPEG (max 5MB)",
-      continue: "Continue",
-      faceVerification: "Face Verification",
-      faceVerificationDescription:
-        "Please position your face in the frame for verification",
-      faceVerificationInstructions:
-        "Make sure your face is well-lit and clearly visible",
-      complete: "Complete Verification",
-
-      // Camera and Face Verification
-      clickToStartCamera: "Click to start camera",
-      capture: "Capture Photo",
-      retake: "Retake",
-      faceVerificationStart: "Click the camera icon to start",
-      faceVerificationComplete: "Face verification successful",
-      cameraPermissionDenied:
-        "Camera access was denied. Please enable camera permissions.",
+      // Documents Page
+      manageYourDocuments: "Manage your business documents and files",
+      searchDocuments: "Search documents...",
+      uploadDocument: "Upload Document",
+      allDocuments: "All Documents",
+      recentlyViewed: "Recently Viewed",
+      invoice: "Invoice",
+      contract: "Contract",
+      tax: "Tax Document",
+      handbook: "Handbook",
+      plan: "Business Plan",
     },
   },
   ms: {
@@ -558,9 +521,10 @@ const resources = {
       // Navigation
       dashboard: "仪表板",
       services: "服务",
-      documents: "文件",
-      profile: "资料",
-      logout: "登出",
+      documents: "文档",
+      profile: "个人资料",
+      logout: "退出登录",
+      notifications: "通知",
 
       // Authentication
       login: "登录",
@@ -568,6 +532,15 @@ const resources = {
       icNumber: "身份证号码",
       password: "密码",
       confirmPassword: "确认密码",
+      rememberMe: "记住我",
+      forgotPassword: "忘记密码？",
+      loginSuccess: "登录成功",
+      welcomeBack: "欢迎回到MyMSME",
+      loginFailed: "登录失败",
+      invalidCredentials: "无效的凭据。请重试。",
+      error: "错误",
+      pleaseEnterIC: "请输入您的身份证号码",
+      pleaseEnterPassword: "请输入您的密码",
 
       // Common
       welcome: "欢迎",
@@ -577,6 +550,12 @@ const resources = {
       save: "保存",
       edit: "编辑",
       delete: "删除",
+      download: "下载",
+      name: "名称",
+      type: "类型",
+      date: "日期",
+      size: "大小",
+      actions: "操作",
 
       // Enterprise levels
       micro: "微型企业",
@@ -587,13 +566,13 @@ const resources = {
       qrCode: "二维码",
       transactions: "交易",
       eInvoicing: "电子发票",
-      websiteBuilder: "网站建设器",
+      websiteBuilder: "网站构建器",
       ssmCertificate: "SSM证书",
       creditAnalysis: "信用分析",
 
       // Services
       accountingServices: "会计服务",
-      recordKeeping: "记录保持",
+      recordKeeping: "记录保存",
       invoiceManagement: "发票管理",
       websiteHosting: "网站托管",
       aiAdvisor: "AI顾问",
@@ -601,17 +580,18 @@ const resources = {
       // App info
       appName: "MyMSME",
       appTagline: "您的数字商业平台",
-      description: "通过马来西亚数字金融生态系统简化您的业务运营",
+      description: "通过马来西亚的数字金融生态系统简化您的业务运营",
 
-      // All Chinese translations
+      // Dashboard
       quickStats: "快速统计",
       todaysSales: "今日销售",
       recentActivity: "最近活动",
       viewAll: "查看全部",
       getStarted: "开始使用",
       downloadQrCode: "下载二维码",
-      shareQrCode: "分享此二维码进行快速支付和商业识别",
+      shareQrCode: "分享此二维码以进行快速支付和业务识别",
 
+      // Business metrics
       monthlyRevenue: "月收入",
       invoicesSent: "已发送发票",
       activeClients: "活跃客户",
@@ -620,170 +600,74 @@ const resources = {
       newClients: "新客户",
       yearOverYear: "同比",
 
+      // E-invoicing
       createNewInvoice: "创建新发票",
       invoiceId: "发票ID",
       client: "客户",
       amount: "金额",
       status: "状态",
-      paid: "已付",
-      pending: "待付",
+      paid: "已付款",
+      pending: "待处理",
       overdue: "逾期",
 
-      buildYourWebsite: "建设您的网站",
+      // Website
+      buildYourWebsite: "构建您的网站",
       createProfessionalWebsite: "为您的业务创建专业网站",
       websiteVisits: "本月网站访问量",
       pageViews: "页面浏览量",
 
-      businessAnalytics: "商业分析",
-      analyticsCharts: "分析图表将在此处显示",
+      // Analytics
+      businessAnalytics: "业务分析",
+      analyticsCharts: "分析图表将显示在此处",
 
-      paymentGateway: "支付网关",
-      basicReports: "基础报告",
+      // Services
+      basicReports: "基本报告",
       acceptDigitalPayments: "接受数字支付",
-      simpleBusinessReports: "查看简单的业务报告",
-      trackBusinessRecords: "追踪您的业务记录",
+      simpleBusinessReports: "查看简单业务报告",
+      trackBusinessRecords: "跟踪您的业务记录",
       fullAccountingSuite: "完整会计套件",
-      automatedInvoicing: "自动开票",
+      automatedInvoicing: "自动发票",
       professionalHosting: "专业托管",
       aiPoweredInsights: "AI驱动的洞察",
 
-      demoInstructions: "演示说明：",
-      microEnterpriseDemo: "身份证以0结尾：微型企业",
-      smallEnterpriseDemo: "身份证以1-2结尾：小型企业",
-      mediumEnterpriseDemo: "身份证以3-4结尾：中型企业",
-      useAnyPassword: "使用任何密码登录",
-
-      dontHaveAccount: "没有账户？",
-      registerHere: "在此注册",
-
-      ekycVerified: "eKYC已验证",
-      secureIdentityVerification: "安全身份验证",
-      unitedMsmeId: "统一MSME ID",
-      oneIdAllServices: "一个ID所有服务",
-
-      paymentCategory: "支付",
-      accountingCategory: "会计",
-      documentsCategory: "文档",
-      marketingCategory: "营销",
-      financeCategory: "金融",
-      managementCategory: "管理",
-      analyticsCategory: "分析",
-      operationsCategory: "运营",
-      automationCategory: "自动化",
-      infrastructureCategory: "基础设施",
-
-      free: "免费",
-      availableFor: "适用于：",
-      servicesAvailableFor: "服务适用于",
-      package: "套餐",
-      unlockMoreServices: "解锁更多服务",
-      upgradeYourPlan: "升级您的计划以访问高级企业功能和服务",
-      upgradeToSmallEnterprise: "升级到小型企业",
-      upgradeToMediumEnterprise: "升级到中型企业",
-      needCustomService: "需要定制服务？",
-      cantFindWhatLookingFor:
-        "找不到您需要的？我们的团队可以创建适合您业务需求的定制解决方案。",
-      requestCustomService: "请求定制服务",
-
-      aiAdvisorWelcome: "您好！我是您的AI顾问。我今天可以如何帮助您的业务？",
-      typeYourMessage: "输入您的消息...",
-      aiDemoResponse:
-        "感谢您的消息。我在这里帮助您导航MyMSME平台并提供商业指导。这是演示回复。",
-
-      advancedToolsEstablished: "为成长企业提供的高级工具",
-      enterpriseGradeTools: "为成熟企业提供的企业级工具",
-      annualRevenue: "年收入",
-      monthlyGrowth: "月增长",
-      activeProjects: "活跃项目",
-      teamMembers: "团队成员",
-      clientSatisfaction: "客户满意度",
-      invoicesProcessed: "已处理发票",
-
-      overview: "概览",
-      projects: "项目",
-      operationsTab: "运营",
-
-      revenueOverview: "收入概览",
-      revenueChart: "收入图表",
-      projectStatus: "项目状态",
-      active: "活跃",
-      planning: "规划中",
-      completed: "已完成",
-      teamPerformance: "团队表现",
-      productivity: "生产力",
-      efficiency: "效率",
-      satisfaction: "满意度",
-      progress: "进度",
-
-      financialOverview: "财务概览",
-      totalAssets: "总资产",
-      monthlyExpenses: "月度费用",
-      netProfit: "净利润",
-      excellentCreditRating: "优秀信用评级",
-      paymentHistory: "付款历史",
-      creditUtilization: "信用利用率",
-      businessStability: "业务稳定性",
-      excellent: "优秀",
-      applyForBusinessLoan: "申请商业贷款",
-
-      documentManagement: "文档管理",
-      centralizedDocumentSystem: "集中文档系统",
-      multiSiteManagement: "多站点管理",
-      manageMultipleLocations: "管理多个位置",
-      automationSuite: "自动化套件",
-      workflowAutomation: "工作流自动化",
-      resourcePlanning: "资源规划",
-      erpIntegration: "ERP集成",
-
-      advancedAnalyticsDashboard: "高级分析仪表板",
-      advancedAnalytics: "高级分析",
-      realtimeBusinessIntelligence: "实时商业智能和预测分析",
-
-      // Registration steps and fields
-      personalInfo: "个人信息",
-      companyInfo: "公司信息",
-      paymentGateway: "支付网关",
-      fullName: "全名",
-      email: "电子邮件",
+      // Profile Page
+      manageYourProfile: "管理您的个人和公司信息",
+      personalInformation: "个人信息",
+      companyInformation: "公司信息",
+      communicationPreferences: "通信偏好",
+      saveChanges: "保存更改",
+      savePreferences: "保存偏好",
       phone: "电话号码",
+      position: "职位",
+      owner: "所有者",
       companyName: "公司名称",
-      companyReg: "公司注册号",
-      companyAddress: "公司地址",
-      bankName: "银行名称",
-      accountNumber: "账号",
-      swiftCode: "SWIFT代码",
-      back: "返回",
-      next: "下一步",
+      businessId: "商业ID",
+      address: "地址",
+      industry: "行业",
+      retail: "零售",
+      emailNotifications: "电子邮件通知",
+      smsNotifications: "短信通知",
+      marketingEmails: "营销邮件",
 
-      // IC and Face Verification
-      icVerification: "身份证验证",
-      uploadICDescription: "请上传您的身份证正面和背面的清晰图像",
-      frontIC: "身份证正面",
-      backIC: "身份证背面",
-      clickToUpload: "点击上传",
-      supportedFormats: "PNG, JPG, 或 JPEG (最大 5MB)",
-      continue: "继续",
-      faceVerification: "人脸验证",
-      faceVerificationDescription: "请将您的脸放在框架中进行验证",
-      faceVerificationInstructions: "确保您的脸部光线充足且清晰可见",
-      complete: "完成验证",
-
-      // Camera and Face Verification
-      clickToStartCamera: "点击启动相机",
-      capture: "拍照",
-      retake: "重拍",
-      faceVerificationStart: "点击相机图标开始",
-      faceVerificationComplete: "人脸验证成功",
-      cameraPermissionDenied: "相机访问被拒绝。请启用相机权限。",
+      // Documents Page
+      manageYourDocuments: "管理您的业务文档和文件",
+      searchDocuments: "搜索文档...",
+      uploadDocument: "上传文档",
+      allDocuments: "所有文档",
+      recentlyViewed: "最近查看",
+      invoice: "发票",
+      contract: "合同",
+      tax: "税务文件",
+      handbook: "手册",
+      plan: "业务计划",
     },
   },
 };
 
 i18n.use(initReactI18next).init({
   resources,
-  lng: "en", // default language
+  lng: "zh", // Default language
   fallbackLng: "en",
-
   interpolation: {
     escapeValue: false,
   },
