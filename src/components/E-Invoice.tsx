@@ -1,4 +1,5 @@
 import { useState, useMemo } from "react";
+import InvoiceDetails from "./InvoiceDetails";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -100,6 +101,7 @@ const EInvoicePage = ({ userLevel = "micro" }: EInvoicePageProps) => {
   const [roleType, setRoleType] = useState<RoleType>("all");
   const [statusFilter, setStatusFilter] = useState<StatusType>("all");
   const [searchTerm, setSearchTerm] = useState("");
+  const [selectedInvoice, setSelectedInvoice] = useState<any | null>(null);
 
   // Filter invoices based on selected filters
   const filteredInvoices = useMemo(() => {
@@ -371,7 +373,17 @@ const EInvoicePage = ({ userLevel = "micro" }: EInvoicePageProps) => {
                         </TableCell>
                         <TableCell>
                           <div>
-                            <div className="font-medium">{invoice.recipient}</div>
+                            <div className="font-medium">
+                              {invoice.role === "sender" ? (
+                                <>
+                                  <span>Recipient: </span>{invoice.recipient}
+                                </>
+                              ) : (
+                                <>
+                                  <span>Sender: </span>{invoice.recipient}
+                                </>
+                              )}
+                            </div>
                             <div className="text-sm text-muted-foreground truncate max-w-[200px]">
                               {invoice.description}
                             </div>
@@ -397,9 +409,9 @@ const EInvoicePage = ({ userLevel = "micro" }: EInvoicePageProps) => {
                         </TableCell>
                         <TableCell>
                           <div className="flex items-center gap-1">
-                            <Button variant="ghost" size="sm">
-                              <Eye className="h-4 w-4" />
-                            </Button>
+                        <Button variant="ghost" size="sm" onClick={() => setSelectedInvoice(invoice)}>
+                          <Eye className="h-4 w-4" />
+                        </Button>
                             <Button variant="ghost" size="sm">
                               <Download className="h-4 w-4" />
                             </Button>
@@ -413,7 +425,11 @@ const EInvoicePage = ({ userLevel = "micro" }: EInvoicePageProps) => {
             </div>
           </CardContent>
         </Card>
-      </div>
+      {/* Invoice Details Modal */}
+      {selectedInvoice && (
+        <InvoiceDetails invoice={selectedInvoice} onClose={() => setSelectedInvoice(null)} />
+      )}
+    </div>
   );
 };
 
