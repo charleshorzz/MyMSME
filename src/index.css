@@ -225,7 +225,7 @@
     @apply bg-background text-foreground font-sans antialiased;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
-  
+
   html {
     scroll-behavior: smooth;
   }
@@ -263,7 +263,7 @@
   .gradient-primary {
     background: var(--gradient-primary);
   }
-  
+
   .gradient-secondary {
     background: var(--gradient-secondary);
   }
@@ -318,7 +318,7 @@
   .shadow-inner {
     box-shadow: var(--shadow-inner);
   }
-  
+
   .shadow-glow {
     box-shadow: var(--shadow-glow);
   }
@@ -331,11 +331,11 @@
   .transition-fast {
     transition: var(--transition-fast);
   }
-  
+
   .transition-normal {
     transition: var(--transition-normal);
   }
-  
+
   .transition-slow {
     transition: var(--transition-slow);
   }

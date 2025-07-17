@@ -6,6 +6,8 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Eye, EyeOff } from "lucide-react";
 import { LanguageSwitcher } from "./LanguageSwitcher";
+import { useAuth } from "@/contexts/AuthContext";
+import { useToast } from "@/components/ui/use-toast";
 
 interface RegisterFormProps {
   onRegistered?: () => void;
@@ -14,10 +16,14 @@ interface RegisterFormProps {
 
 export function RegisterForm({ onRegistered, onBack }: RegisterFormProps) {
   const { t } = useTranslation();
+  const { register } = useAuth();
+  const { toast } = useToast();
+
   const [form, setForm] = useState({
-    icNumber: "",
+    icNo: "",
     fullName: "",
     email: "",
+    contact: "",
     password: "",
     confirmPassword: "",
   });
@@ -31,15 +37,70 @@ export function RegisterForm({ onRegistered, onBack }: RegisterFormProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // 表单验证
+    if (
+      !form.icNo ||
+      !form.fullName ||
+      !form.email ||
+      !form.contact ||
+      !form.password
+    ) {
+      toast({
+        title: t("error"),
+        description: t("pleaseCompleteForm"),
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (form.password !== form.confirmPassword) {
+      toast({
+        title: t("error"),
+        description: t("passwordsDoNotMatch"),
+        variant: "destructive",
+      });
+      return;
+    }
+
     setIsLoading(true);
-    // Simulate registration
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    setIsLoading(false);
-    if (onRegistered) onRegistered();
+
+    try {
+      // 使用 AuthContext 的 register 方法
+      const result = await register({
+        icNo: form.icNo,
+        fullName: form.fullName,
+        email: form.email,
+        contact: form.contact,
+        password: form.password,
+      });
+
+      if (result.success) {
+        toast({
+          title: t("success"),
+          description: t("registrationSuccess"),
+        });
+        if (onRegistered) onRegistered();
+      } else {
+        toast({
+          title: t("error"),
+          description: result.message || t("registrationFailed"),
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      toast({
+        title: t("error"),
+        description: t("registrationFailed"),
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5 p-4">
+    <div className="min-h-screen flex items-center justify-center bg-white p-4">
       <div className="w-full max-w-xl space-y-6">
         <div className="text-center space-y-4">
           <div className="mx-auto h-16 w-16 rounded-2xl gradient-primary flex items-center justify-center shadow-large">
@@ -58,11 +119,11 @@ export function RegisterForm({ onRegistered, onBack }: RegisterFormProps) {
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="icNumber">{t("icNumber")}</Label>
+                <Label htmlFor="icNo">{t("icNumber")}</Label>
                 <Input
-                  id="icNumber"
-                  name="icNumber"
-                  value={form.icNumber}
+                  id="icNo"
+                  name="icNo"
+                  value={form.icNo}
                   onChange={handleChange}
                   required
                 />
@@ -84,6 +145,17 @@ export function RegisterForm({ onRegistered, onBack }: RegisterFormProps) {
                   name="email"
                   type="email"
                   value={form.email}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="contact">{t("contact")}</Label>
+                <Input
+                  id="contact"
+                  name="contact"
+                  type="tel"
+                  value={form.contact}
                   onChange={handleChange}
                   required
                 />
@@ -144,7 +216,7 @@ export function RegisterForm({ onRegistered, onBack }: RegisterFormProps) {
               </div>
               <div className="flex mt-6 justify-between">
                 <Button type="button" variant="outline" onClick={onBack}>
-                  {t("back") || "Back"}
+                  {t("back") || "返回"}
                 </Button>
                 <Button type="submit" disabled={isLoading}>
                   {isLoading ? t("loading") : t("register")}

@@ -238,7 +238,7 @@ export function ServicesPage({ userLevel }: ServicesPageProps) {
 
       {/* Upgrade Notice for Lower Tiers */}
       {userLevel !== "medium" && (
-        <Card className="shadow-soft bg-gradient-to-r from-primary/5 to-secondary/5 border-primary/20">
+        <Card className="shadow-soft bg-white border-primary/20">
           <CardContent className="p-6 text-center">
             <h3 className="text-lg font-semibold mb-2">
               {t("unlockMoreServices")}
