@@ -1,8 +1,10 @@
 import { useTranslation } from 'react-i18next';
+import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { 
   Building2, 
   Users, 
@@ -17,11 +19,117 @@ import {
   DollarSign,
   Receipt,
   Calendar,
-  Briefcase
+  Briefcase,
+  CheckCircle,
+  ExternalLink,
+  Percent,
+  TrendingDown
 } from "lucide-react";
 
 export function MediumEnterpriseDashboard() {
   const { t } = useTranslation();
+  const [isLoanDialogOpen, setIsLoanDialogOpen] = useState(false);
+
+  // Enterprise data for loan eligibility
+  const enterpriseData = {
+    annualRevenue: 2400000, // RM 2.4M
+    monthlyGrowth: 15.2, // 15.2%
+    paymentHistory: 98, // 98%
+    creditRating: 'A+',
+    businessStability: 'Excellent'
+  };
+
+  // Bank requirements and loan products
+  const bankLoanProducts = [
+    {
+      id: 1,
+      bankName: "Maybank",
+      bankLogo: "🏦",
+      loanProduct: "Business Growth Loan",
+      interestRate: "4.5% - 6.8%",
+      maxAmount: "RM 5M",
+      minRevenue: 1000000,
+      minGrowth: 10,
+      minPaymentHistory: 90,
+      processingTime: "7-14 days",
+      eligible: true,
+      requirements: ["Annual revenue > RM 1M", "Monthly growth > 10%", "Payment history > 90%"],
+      benefits: ["Flexible repayment", "No collateral required", "Quick approval"]
+    },
+    {
+      id: 2,
+      bankName: "CIMB Bank",
+      bankLogo: "🏪",
+      loanProduct: "SME Expansion Loan",
+      interestRate: "4.8% - 7.2%",
+      maxAmount: "RM 3M",
+      minRevenue: 800000,
+      minGrowth: 8,
+      minPaymentHistory: 85,
+      processingTime: "5-10 days",
+      eligible: true,
+      requirements: ["Annual revenue > RM 800K", "Monthly growth > 8%", "Payment history > 85%"],
+      benefits: ["Competitive rates", "Fast processing", "Dedicated relationship manager"]
+    },
+    {
+      id: 3,
+      bankName: "Public Bank",
+      bankLogo: "🏛️",
+      loanProduct: "Enterprise Development Loan",
+      interestRate: "5.2% - 7.5%",
+      maxAmount: "RM 10M",
+      minRevenue: 3000000,
+      minGrowth: 12,
+      minPaymentHistory: 95,
+      processingTime: "10-21 days",
+      eligible: false,
+      requirements: ["Annual revenue > RM 3M", "Monthly growth > 12%", "Payment history > 95%"],
+      benefits: ["Large loan amounts", "Long tenure", "Government backing"]
+    },
+    {
+      id: 4,
+      bankName: "Hong Leong Bank",
+      bankLogo: "🏢",
+      loanProduct: "Business Accelerator Loan",
+      interestRate: "4.2% - 6.5%",
+      maxAmount: "RM 2M",
+      minRevenue: 500000,
+      minGrowth: 5,
+      minPaymentHistory: 80,
+      processingTime: "3-7 days",
+      eligible: true,
+      requirements: ["Annual revenue > RM 500K", "Monthly growth > 5%", "Payment history > 80%"],
+      benefits: ["Lowest rates", "Fastest approval", "Digital application"]
+    },
+    {
+      id: 5,
+      bankName: "RHB Bank",
+      bankLogo: "🏦",
+      loanProduct: "SME Progress Loan",
+      interestRate: "5.0% - 7.8%",
+      maxAmount: "RM 4M",
+      minRevenue: 1500000,
+      minGrowth: 15,
+      minPaymentHistory: 92,
+      processingTime: "7-14 days",
+      eligible: true,
+      requirements: ["Annual revenue > RM 1.5M", "Monthly growth > 15%", "Payment history > 92%"],
+      benefits: ["Seasonal repayment", "Grace period", "Business advisory"]
+    }
+  ];
+
+  // Filter eligible banks based on enterprise data
+  const eligibleBanks = bankLoanProducts.filter(bank => 
+    enterpriseData.annualRevenue >= bank.minRevenue &&
+    enterpriseData.monthlyGrowth >= bank.minGrowth &&
+    enterpriseData.paymentHistory >= bank.minPaymentHistory
+  );
+
+  const ineligibleBanks = bankLoanProducts.filter(bank => 
+    enterpriseData.annualRevenue < bank.minRevenue ||
+    enterpriseData.monthlyGrowth < bank.minGrowth ||
+    enterpriseData.paymentHistory < bank.minPaymentHistory
+  );
 
   const kpis = [
     { label: t('annualRevenue'), value: "RM 2.4M", change: "+22%", icon: DollarSign, color: "text-success" },
@@ -240,7 +348,196 @@ export function MediumEnterpriseDashboard() {
                       <span className="text-success">Excellent</span>
                     </div>
                   </div>
-                  <Button className="w-full">Apply for Business Loan</Button>
+                  <Dialog open={isLoanDialogOpen} onOpenChange={setIsLoanDialogOpen}>
+                    <DialogTrigger asChild>
+                      <Button className="w-full">Apply for Business Loan</Button>
+                    </DialogTrigger>
+                    <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+                      <DialogHeader>
+                        <DialogTitle className="text-2xl font-bold">Business Loan Applications</DialogTitle>
+                      </DialogHeader>
+                      
+                      <div className="space-y-6">
+                        {/* Enterprise Summary */}
+                        <Card>
+                          <CardHeader>
+                            <CardTitle className="flex items-center gap-2">
+                              <Building2 className="h-5 w-5" />
+                              Your Enterprise Profile
+                            </CardTitle>
+                          </CardHeader>
+                          <CardContent>
+                            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                              <div className="text-center">
+                                <div className="text-2xl font-bold text-success">RM {(enterpriseData.annualRevenue / 1000000).toFixed(1)}M</div>
+                                <div className="text-sm text-muted-foreground">Annual Revenue</div>
+                              </div>
+                              <div className="text-center">
+                                <div className="text-2xl font-bold text-primary">{enterpriseData.monthlyGrowth}%</div>
+                                <div className="text-sm text-muted-foreground">Monthly Growth</div>
+                              </div>
+                              <div className="text-center">
+                                <div className="text-2xl font-bold text-success">{enterpriseData.paymentHistory}%</div>
+                                <div className="text-sm text-muted-foreground">Payment History</div>
+                              </div>
+                              <div className="text-center">
+                                <div className="text-2xl font-bold text-success">{enterpriseData.creditRating}</div>
+                                <div className="text-sm text-muted-foreground">Credit Rating</div>
+                              </div>
+                            </div>
+                          </CardContent>
+                        </Card>
+
+                        {/* Eligible Banks */}
+                        <div>
+                          <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
+                            <CheckCircle className="h-5 w-5 text-success" />
+                            Eligible Loan Products ({eligibleBanks.length})
+                          </h3>
+                          <div className="space-y-4">
+                            {eligibleBanks.map((bank) => (
+                              <Card key={bank.id} className="border-success/20 bg-success/5">
+                                <CardContent className="p-6">
+                                  <div className="flex items-start justify-between mb-4">
+                                    <div className="flex items-center gap-3">
+                                      <div className="text-3xl">{bank.bankLogo}</div>
+                                      <div>
+                                        <h4 className="font-semibold text-lg">{bank.bankName}</h4>
+                                        <p className="text-muted-foreground">{bank.loanProduct}</p>
+                                      </div>
+                                    </div>
+                                    <Badge variant="default" className="bg-success text-success-foreground">
+                                      <CheckCircle className="h-3 w-3 mr-1" />
+                                      Eligible
+                                    </Badge>
+                                  </div>
+                                  
+                                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                                    <div className="text-center p-3 bg-background rounded-lg">
+                                      <div className="text-lg font-semibold text-primary">{bank.interestRate}</div>
+                                      <div className="text-sm text-muted-foreground">Interest Rate</div>
+                                    </div>
+                                    <div className="text-center p-3 bg-background rounded-lg">
+                                      <div className="text-lg font-semibold text-success">{bank.maxAmount}</div>
+                                      <div className="text-sm text-muted-foreground">Max Amount</div>
+                                    </div>
+                                    <div className="text-center p-3 bg-background rounded-lg">
+                                      <div className="text-lg font-semibold text-secondary">{bank.processingTime}</div>
+                                      <div className="text-sm text-muted-foreground">Processing Time</div>
+                                    </div>
+                                  </div>
+
+                                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                    <div>
+                                      <h5 className="font-medium mb-2">Requirements Met:</h5>
+                                      <ul className="space-y-1">
+                                        {bank.requirements.map((req, idx) => (
+                                          <li key={idx} className="text-sm flex items-center gap-2">
+                                            <CheckCircle className="h-3 w-3 text-success" />
+                                            {req}
+                                          </li>
+                                        ))}
+                                      </ul>
+                                    </div>
+                                    <div>
+                                      <h5 className="font-medium mb-2">Key Benefits:</h5>
+                                      <ul className="space-y-1">
+                                        {bank.benefits.map((benefit, idx) => (
+                                          <li key={idx} className="text-sm flex items-center gap-2">
+                                            <CheckCircle className="h-3 w-3 text-primary" />
+                                            {benefit}
+                                          </li>
+                                        ))}
+                                      </ul>
+                                    </div>
+                                  </div>
+
+                                  <div className="flex gap-2">
+                                    <Button className="flex-1" onClick={() => window.open(`https://${bank.bankName.toLowerCase().replace(' ', '')}.com/business-loans`, '_blank')}>
+                                      <ExternalLink className="h-4 w-4 mr-2" />
+                                      Apply Now
+                                    </Button>
+                                    <Button variant="outline" onClick={() => alert('More details about ' + bank.loanProduct)}>
+                                      Learn More
+                                    </Button>
+                                  </div>
+                                </CardContent>
+                              </Card>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* Ineligible Banks */}
+                        {ineligibleBanks.length > 0 && (
+                          <div>
+                            <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
+                              <TrendingDown className="h-5 w-5 text-muted-foreground" />
+                              Requirements Not Met ({ineligibleBanks.length})
+                            </h3>
+                            <div className="space-y-4">
+                              {ineligibleBanks.map((bank) => (
+                                <Card key={bank.id} className="border-muted bg-muted/20">
+                                  <CardContent className="p-6">
+                                    <div className="flex items-start justify-between mb-4">
+                                      <div className="flex items-center gap-3">
+                                        <div className="text-3xl opacity-50">{bank.bankLogo}</div>
+                                        <div>
+                                          <h4 className="font-semibold text-lg text-muted-foreground">{bank.bankName}</h4>
+                                          <p className="text-muted-foreground">{bank.loanProduct}</p>
+                                        </div>
+                                      </div>
+                                      <Badge variant="secondary">
+                                        Requirements Not Met
+                                      </Badge>
+                                    </div>
+                                    
+                                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                                      <div className="text-center p-3 bg-background rounded-lg">
+                                        <div className="text-lg font-semibold text-muted-foreground">{bank.interestRate}</div>
+                                        <div className="text-sm text-muted-foreground">Interest Rate</div>
+                                      </div>
+                                      <div className="text-center p-3 bg-background rounded-lg">
+                                        <div className="text-lg font-semibold text-muted-foreground">{bank.maxAmount}</div>
+                                        <div className="text-sm text-muted-foreground">Max Amount</div>
+                                      </div>
+                                      <div className="text-center p-3 bg-background rounded-lg">
+                                        <div className="text-lg font-semibold text-muted-foreground">{bank.processingTime}</div>
+                                        <div className="text-sm text-muted-foreground">Processing Time</div>
+                                      </div>
+                                    </div>
+
+                                    <div>
+                                      <h5 className="font-medium mb-2 text-muted-foreground">Missing Requirements:</h5>
+                                      <ul className="space-y-1">
+                                        {enterpriseData.annualRevenue < bank.minRevenue && (
+                                          <li className="text-sm flex items-center gap-2">
+                                            <TrendingDown className="h-3 w-3 text-destructive" />
+                                            Need RM {(bank.minRevenue / 1000000).toFixed(1)}M+ annual revenue (Current: RM {(enterpriseData.annualRevenue / 1000000).toFixed(1)}M)
+                                          </li>
+                                        )}
+                                        {enterpriseData.monthlyGrowth < bank.minGrowth && (
+                                          <li className="text-sm flex items-center gap-2">
+                                            <TrendingDown className="h-3 w-3 text-destructive" />
+                                            Need {bank.minGrowth}%+ monthly growth (Current: {enterpriseData.monthlyGrowth}%)
+                                          </li>
+                                        )}
+                                        {enterpriseData.paymentHistory < bank.minPaymentHistory && (
+                                          <li className="text-sm flex items-center gap-2">
+                                            <TrendingDown className="h-3 w-3 text-destructive" />
+                                            Need {bank.minPaymentHistory}%+ payment history (Current: {enterpriseData.paymentHistory}%)
+                                          </li>
+                                        )}
+                                      </ul>
+                                    </div>
+                                  </CardContent>
+                                </Card>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </DialogContent>
+                  </Dialog>
                 </div>
               </CardContent>
             </Card>
