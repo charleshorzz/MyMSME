@@ -89,6 +89,14 @@ const resources = {
       invoiceManagement: "Invoice Management",
       websiteHosting: "Website Hosting",
       aiAdvisor: "AI Advisor",
+      basicReports: "Basic Reports",
+      acceptDigitalPayments: "Accept digital payments",
+      simpleBusinessReports: "View simple business reports",
+      trackBusinessRecords: "Track your business records",
+      fullAccountingSuite: "Full accounting suite",
+      automatedInvoicing: "Automated invoicing",
+      professionalHosting: "Professional hosting",
+      aiPoweredInsights: "AI-powered insights",
 
       // App info
       appName: "MyMSME",
@@ -136,22 +144,12 @@ const resources = {
       businessAnalytics: "Business Analytics",
       analyticsCharts: "Analytics charts will be displayed here",
 
-      // Services
-      basicReports: "Basic Reports",
-      acceptDigitalPayments: "Accept digital payments",
-      simpleBusinessReports: "View simple business reports",
-      trackBusinessRecords: "Track your business records",
-      fullAccountingSuite: "Full accounting suite",
-      automatedInvoicing: "Automated invoicing",
-      professionalHosting: "Professional hosting",
-      aiPoweredInsights: "AI-powered insights",
-
       // Demo
       demoInstructions: "Demo Instructions:",
-      microEnterpriseDemo: "IC 010101010101: Micro Enterprise",
-      smallEnterpriseDemo: "IC 020202020202: Small Enterprise",
-      mediumEnterpriseDemo: "IC 03030303003: Medium Enterprise",
-      useAnyPassword: "Use any password Qwerty123! to log in",
+      microEnterpriseDemo: "IC ending with 0: Micro Enterprise",
+      smallEnterpriseDemo: "IC ending with 1-2: Small Enterprise",
+      mediumEnterpriseDemo: "IC ending with 3-4: Medium Enterprise",
+      useAnyPassword: "Use any password to login",
 
       // Registration
       dontHaveAccount: "Don't have an account?",
@@ -280,246 +278,41 @@ const resources = {
       tax: "Tax Document",
       handbook: "Handbook",
       plan: "Business Plan",
-    },
-  },
-  ms: {
-    translation: {
-      // Navigation
-      dashboard: "Papan Pemuka",
-      services: "Perkhidmatan",
-      documents: "Dokumen",
-      profile: "Profil",
-      logout: "Log Keluar",
 
-      // Authentication
-      login: "Log Masuk",
-      register: "Daftar",
-      icNumber: "Nombor IC",
-      password: "Kata Laluan",
-      confirmPassword: "Sahkan Kata Laluan",
-
-      // Common
-      welcome: "Selamat Datang",
-      loading: "Memuatkan...",
-      submit: "Hantar",
-      cancel: "Batal",
-      save: "Simpan",
-      edit: "Edit",
-      delete: "Padam",
-
-      // Enterprise levels
-      micro: "Perusahaan Mikro",
-      small: "Perusahaan Kecil",
-      medium: "Perusahaan Sederhana",
-
-      // Features
-      qrCode: "Kod QR",
-      transactions: "Transaksi",
-      eInvoicing: "E-Invois",
-      websiteBuilder: "Pembina Laman Web",
-      ssmCertificate: "Sijil SSM",
-      creditAnalysis: "Analisis Kredit",
-
-      // Services
-      accountingServices: "Perkhidmatan Perakaunan",
-      recordKeeping: "Penyimpanan Rekod",
-      invoiceManagement: "Pengurusan Invois",
-      websiteHosting: "Pengehosan Laman Web",
-      aiAdvisor: "Penasihat AI",
-
-      // App info
-      appName: "MyMSME",
-      appTagline: "Platform Perniagaan Digital Anda",
-      description:
-        "Urus operasi perniagaan anda dengan ekosistem kewangan digital Malaysia",
-
-      // All other translations - using same keys but in Malay
-      quickStats: "Statistik Pantas",
-      todaysSales: "Jualan Hari Ini",
-      recentActivity: "Aktiviti Terkini",
-      viewAll: "Lihat Semua",
-      getStarted: "Mulakan",
-      downloadQrCode: "Muat Turun Kod QR",
-      shareQrCode:
-        "Kongsi kod QR ini untuk pembayaran pantas dan pengenalan perniagaan",
-
-      monthlyRevenue: "Hasil Bulanan",
-      invoicesSent: "Invois Dihantar",
-      activeClients: "Pelanggan Aktif",
-      growthRate: "Kadar Pertumbuhan",
-      thisMonth: "bulan ini",
-      newClients: "pelanggan baru",
-      yearOverYear: "tahun ke tahun",
-
-      createNewInvoice: "Cipta Invois Baru",
-      invoiceId: "ID Invois",
-      client: "Pelanggan",
-      amount: "Jumlah",
-      status: "Status",
-      paid: "Dibayar",
-      pending: "Menunggu",
-      overdue: "Tertunggak",
-
-      buildYourWebsite: "Bina Laman Web Anda",
-      createProfessionalWebsite:
-        "Cipta laman web profesional untuk perniagaan anda",
-      websiteVisits: "Lawatan laman web bulan ini",
-      pageViews: "Paparan halaman",
-
-      businessAnalytics: "Analitik Perniagaan",
-      analyticsCharts: "Carta analitik akan dipaparkan di sini",
-
-      paymentGateway: "Gateway Pembayaran",
-      basicReports: "Laporan Asas",
-      acceptDigitalPayments: "Terima pembayaran digital",
-      simpleBusinessReports: "Lihat laporan perniagaan mudah",
-      trackBusinessRecords: "Jejaki rekod perniagaan anda",
-      fullAccountingSuite: "Suite perakaunan penuh",
-      automatedInvoicing: "Invois automatik",
-      professionalHosting: "Pengehosan profesional",
-      aiPoweredInsights: "Wawasan berkuasa AI",
-
-      demoInstructions: "Arahan Demo:",
-      microEnterpriseDemo: "IC  010101010101: Perusahaan Mikro",
-      smallEnterpriseDemo: "IC 020202020202: Perusahaan Kecil",
-      mediumEnterpriseDemo: "IC 030303030303: Perusahaan Sederhana",
-      useAnyPassword: "Gunakan  kata laluan Qwerty123! untuk log masuk",
-
-      dontHaveAccount: "Tiada akaun?",
-      registerHere: "Daftar di sini",
-
-      ekycVerified: "eKYC Disahkan",
-      secureIdentityVerification: "Pengesahan identiti selamat",
-      unitedMsmeId: "ID MSME Bersatu",
-      oneIdAllServices: "Satu ID untuk semua perkhidmatan",
-
-      paymentCategory: "Pembayaran",
-      accountingCategory: "Perakaunan",
-      documentsCategory: "Dokumen",
-      marketingCategory: "Pemasaran",
-      financeCategory: "Kewangan",
-      managementCategory: "Pengurusan",
-      analyticsCategory: "Analitik",
-      operationsCategory: "Operasi",
-      automationCategory: "Automasi",
-      infrastructureCategory: "Infrastruktur",
-
-      free: "Percuma",
-      availableFor: "Tersedia untuk:",
-      servicesAvailableFor: "Perkhidmatan tersedia untuk",
-      package: "Pakej",
-      unlockMoreServices: "Buka Lebih Banyak Perkhidmatan",
-      upgradeYourPlan:
-        "Naik taraf pelan anda untuk mengakses ciri dan perkhidmatan perusahaan maju",
-      upgradeToSmallEnterprise: "Naik taraf ke Perusahaan Kecil",
-      upgradeToMediumEnterprise: "Naik taraf ke Perusahaan Sederhana",
-      needCustomService: "Perlukan Perkhidmatan Kustom?",
-      cantFindWhatLookingFor:
-        "Tidak jumpa apa yang dicari? Pasukan kami boleh cipta penyelesaian kustom sesuai keperluan perniagaan anda.",
-      requestCustomService: "Minta Perkhidmatan Kustom",
-
-      aiAdvisorWelcome:
-        "Hello! Saya penasihat AI anda. Bagaimana saya boleh bantu perniagaan anda hari ini?",
-      typeYourMessage: "Taip mesej anda...",
-      aiDemoResponse:
-        "Terima kasih atas mesej anda. Saya di sini untuk bantu anda navigasi platform MyMSME dan berikan panduan perniagaan. Ini respons demo.",
-
-      advancedToolsEstablished: "Alat maju untuk perniagaan berkembang",
-      enterpriseGradeTools: "Alat gred perusahaan untuk perniagaan mantap",
-      annualRevenue: "Hasil Tahunan",
-      monthlyGrowth: "Pertumbuhan Bulanan",
-      activeProjects: "Projek Aktif",
-      teamMembers: "Ahli Pasukan",
-      clientSatisfaction: "Kepuasan Pelanggan",
-      invoicesProcessed: "Invois Diproses",
-
-      overview: "Ringkasan",
-      projects: "Projek",
-      operationsTab: "Operasi",
-
-      revenueOverview: "Ringkasan Hasil",
-      revenueChart: "Carta Hasil",
-      projectStatus: "Status Projek",
-      active: "Aktif",
-      planning: "Merancang",
-      completed: "Selesai",
-      teamPerformance: "Prestasi Pasukan",
-      productivity: "Produktiviti",
-      efficiency: "Kecekapan",
-      satisfaction: "Kepuasan",
-      progress: "Kemajuan",
-
-      financialOverview: "Ringkasan Kewangan",
-      totalAssets: "Jumlah Aset",
-      monthlyExpenses: "Perbelanjaan Bulanan",
-      netProfit: "Keuntungan Bersih",
-      excellentCreditRating: "Rating Kredit Cemerlang",
-      paymentHistory: "Sejarah Pembayaran",
-      creditUtilization: "Penggunaan Kredit",
-      businessStability: "Kestabilan Perniagaan",
-      excellent: "Cemerlang",
-      applyForBusinessLoan: "Mohon Pinjaman Perniagaan",
-
-      documentManagement: "Pengurusan Dokumen",
-      centralizedDocumentSystem: "Sistem dokumen terpusat",
-      multiSiteManagement: "Pengurusan Multi-Tapak",
-      manageMultipleLocations: "Urus pelbagai lokasi",
-      automationSuite: "Suite Automasi",
-      workflowAutomation: "Automasi aliran kerja",
-      resourcePlanning: "Perancangan Sumber",
-      erpIntegration: "Integrasi ERP",
-
-      advancedAnalyticsDashboard: "Papan Pemuka Analitik Maju",
-      advancedAnalytics: "Analitik Maju",
-      realtimeBusinessIntelligence:
-        "Risikan perniagaan masa nyata dan analitik ramalan",
-
-      // Registration steps and fields
-      personalInfo: "Maklumat Peribadi",
-      companyInfo: "Maklumat Syarikat",
-      paymentGateway: "Gerbang Pembayaran",
-      fullName: "Nama Penuh",
-      email: "Emel",
-      phone: "Nombor Telefon",
-      companyName: "Nama Syarikat",
-      companyReg: "No. Pendaftaran Syarikat",
-      companyAddress: "Alamat Syarikat",
-      bankName: "Nama Bank",
-      accountNumber: "Nombor Akaun",
-      swiftCode: "Kod SWIFT",
-      back: "Kembali",
-      next: "Seterusnya",
-
-      // IC and Face Verification
-      icVerification: "Pengesahan IC",
-      uploadICDescription:
-        "Sila muat naik gambar yang jelas untuk bahagian depan dan belakang IC anda",
-      frontIC: "Depan IC",
-      backIC: "Belakang IC",
-      clickToUpload: "Klik untuk muat naik",
-      supportedFormats: "PNG, JPG, atau JPEG (maksimum 5MB)",
-      continue: "Teruskan",
-      faceVerification: "Pengesahan Wajah",
-      faceVerificationDescription:
-        "Sila letakkan wajah anda dalam bingkai untuk pengesahan",
-      faceVerificationInstructions:
-        "Pastikan wajah anda diterangi dengan baik dan jelas kelihatan",
-      complete: "Selesai Pengesahan",
-
-      // Camera and Face Verification
-      clickToStartCamera: "Klik untuk mulakan kamera",
-      capture: "Ambil Gambar",
-      retake: "Ambil Semula",
-      faceVerificationStart: "Klik ikon kamera untuk mulakan",
-      faceVerificationComplete: "Pengesahan wajah berjaya",
-      cameraPermissionDenied:
-        "Akses kamera ditolak. Sila aktifkan kebenaran kamera.",
+      // Company Setup Page
+      companySetup: "Company Setup",
+      companySetupDescription: "Create a new company or join an existing one",
+      setupYourCompany: "Setup Your Company",
+      createOrJoinCompany: "Create a new company or join an existing one",
+      createNewCompany: "Create New Company",
+      joinExistingCompany: "Join Existing Company",
+      registrationNumber: "Registration Number",
+      companyAddress: "Company Address",
+      employeeCount: "Number of Employees",
+      enterpriseLevel: "Enterprise Level",
+      selectEnterpriseLevel: "Select enterprise level",
+      creating: "Creating...",
+      createCompany: "Create Company",
+      companyCode: "Company Code",
+      enterCompanyCode: "Enter company code",
+      companyCodeDescription: "Ask your company administrator for the code",
+      yourPositionInCompany: "Your position in the company",
+      joining: "Joining...",
+      joinCompany: "Join Company",
+      companyCreated: "Company Created",
+      companyCreatedDescription: "Your company has been successfully created",
+      companyJoined: "Company Joined",
+      companyJoinedDescription: "You have successfully joined the company",
+      createCompanyError: "Failed to create company. Please try again.",
+      joinCompanyError: "Failed to join company. Please try again.",
+      companyNotFound:
+        "Company not found. Please check the code and try again.",
     },
   },
   zh: {
     translation: {
       // Navigation
-      dashboard: "仪表板",
+      dashboard: "仪表盘",
       services: "服务",
       documents: "文档",
       profile: "个人资料",
@@ -576,6 +369,14 @@ const resources = {
       invoiceManagement: "发票管理",
       websiteHosting: "网站托管",
       aiAdvisor: "AI顾问",
+      basicReports: "基本报告",
+      acceptDigitalPayments: "接受数字支付",
+      simpleBusinessReports: "查看简单业务报告",
+      trackBusinessRecords: "跟踪您的业务记录",
+      fullAccountingSuite: "完整会计套件",
+      automatedInvoicing: "自动发票",
+      professionalHosting: "专业托管",
+      aiPoweredInsights: "AI驱动的洞察",
 
       // App info
       appName: "MyMSME",
@@ -620,16 +421,6 @@ const resources = {
       businessAnalytics: "业务分析",
       analyticsCharts: "分析图表将显示在此处",
 
-      // Services
-      basicReports: "基本报告",
-      acceptDigitalPayments: "接受数字支付",
-      simpleBusinessReports: "查看简单业务报告",
-      trackBusinessRecords: "跟踪您的业务记录",
-      fullAccountingSuite: "完整会计套件",
-      automatedInvoicing: "自动发票",
-      professionalHosting: "专业托管",
-      aiPoweredInsights: "AI驱动的洞察",
-
       // Profile Page
       manageYourProfile: "管理您的个人和公司信息",
       personalInformation: "个人信息",
@@ -660,6 +451,34 @@ const resources = {
       tax: "税务文件",
       handbook: "手册",
       plan: "业务计划",
+
+      // Company Setup Page
+      companySetup: "公司设置",
+      companySetupDescription: "创建新公司或加入现有公司",
+      setupYourCompany: "设置您的公司",
+      createOrJoinCompany: "创建新公司或加入现有公司",
+      createNewCompany: "创建新公司",
+      joinExistingCompany: "加入现有公司",
+      registrationNumber: "注册号",
+      companyAddress: "公司地址",
+      employeeCount: "员工数量",
+      enterpriseLevel: "企业级别",
+      selectEnterpriseLevel: "选择企业级别",
+      creating: "创建中...",
+      createCompany: "创建公司",
+      companyCode: "公司代码",
+      enterCompanyCode: "输入公司代码",
+      companyCodeDescription: "向您的公司管理员询问代码",
+      yourPositionInCompany: "您在公司中的职位",
+      joining: "加入中...",
+      joinCompany: "加入公司",
+      companyCreated: "公司已创建",
+      companyCreatedDescription: "您的公司已成功创建",
+      companyJoined: "公司已加入",
+      companyJoinedDescription: "您已成功加入公司",
+      createCompanyError: "创建公司失败。请重试。",
+      joinCompanyError: "加入公司失败。请重试。",
+      companyNotFound: "未找到公司。请检查代码并重试。",
     },
   },
 };

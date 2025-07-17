@@ -42,8 +42,11 @@ const Index = () => {
 
   // 根据用户级别路由到相应页面
   useEffect(() => {
-    if (isAuthenticated && user?.level) {
-      if (user.level === "micro") {
+    if (isAuthenticated && user) {
+      if (user.level === null) {
+        // 如果用户已登录但没有设置企业级别，重定向到公司设置页面
+        navigate("/company-setup");
+      } else if (user.level === "micro") {
         navigate("/micro-enterprise");
       } else if (user.level === "small") {
         navigate("/small-enterprise");
@@ -73,11 +76,6 @@ const Index = () => {
         </div>
       </div>
     );
-  }
-
-  // 如果用户已登录但没有级别信息，显示默认仪表盘
-  if (isAuthenticated && !user?.level) {
-    return renderDefaultDashboard();
   }
 
   // 未登录状态下显示登录/注册相关页面

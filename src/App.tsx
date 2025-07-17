@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import ProfilePage from "./pages/ProfilePage";
 import DocumentsPage from "./pages/DocumentsPage";
+import CompanySetupPage from "./pages/CompanySetupPage";
 import { MicroEnterpriseDashboard } from "@/components/dashboard/MicroEnterpriseDashboard";
 import { SmallEnterpriseDashboard } from "@/components/dashboard/SmallEnterpriseDashboard";
 import { MediumEnterpriseDashboard } from "@/components/dashboard/MediumEnterpriseDashboard";
@@ -24,6 +25,9 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
+
+            {/* 公司设置页面 */}
+            <Route path="/company-setup" element={<CompanySetupPage />} />
 
             {/* 微型企业路由 */}
             <Route

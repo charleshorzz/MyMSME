@@ -16,7 +16,7 @@ export type User = {
   contact: string;
   email: string;
   password?: string; // 添加密码字段
-  level?: "micro" | "small" | "medium"; // 添加用户级别字段
+  level?: "micro" | "small" | "medium" | null; // 添加用户级别字段，可以为null
   createdAt: string;
   updatedAt: string;
 };
@@ -27,14 +27,14 @@ export type Company = {
   businessName: string;
   businessStartDate: string;
   incentiveSource: string;
-  registrationPeriod: number;
   businessInfo: boolean;
   businessAddress: string;
-  businessContact: string;
-  businessEmail: string;
-  businessType: string;
-  businessCode: number[];
-  ownerIC: string | null;
+  registrationNumber: string;
+  address: string;
+  industry: string;
+  registrationPeriod: number; // 用作员工数量的代理
+  companyCode: string; // 唯一公司代码，用于邀请其他用户加入
+  ownerIC: string;
   createdAt: string;
   updatedAt: string;
 };
