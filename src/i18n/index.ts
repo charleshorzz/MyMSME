@@ -148,10 +148,10 @@ const resources = {
 
       // Demo
       demoInstructions: "Demo Instructions:",
-      microEnterpriseDemo: "IC ending with 0: Micro Enterprise",
-      smallEnterpriseDemo: "IC ending with 1-2: Small Enterprise",
-      mediumEnterpriseDemo: "IC ending with 3-4: Medium Enterprise",
-      useAnyPassword: "Use any password to login",
+      microEnterpriseDemo: "IC 010101010101: Micro Enterprise",
+      smallEnterpriseDemo: "IC 020202020202: Small Enterprise",
+      mediumEnterpriseDemo: "IC 03030303003: Medium Enterprise",
+      useAnyPassword: "Use any password Qwerty123! to log in",
 
       // Registration
       dontHaveAccount: "Don't have an account?",
@@ -380,10 +380,10 @@ const resources = {
       aiPoweredInsights: "Wawasan berkuasa AI",
 
       demoInstructions: "Arahan Demo:",
-      microEnterpriseDemo: "IC berakhir 0: Perusahaan Mikro",
-      smallEnterpriseDemo: "IC berakhir 1-2: Perusahaan Kecil",
-      mediumEnterpriseDemo: "IC berakhir 3-4: Perusahaan Sederhana",
-      useAnyPassword: "Gunakan sebarang kata laluan untuk log masuk",
+      microEnterpriseDemo: "IC  010101010101: Perusahaan Mikro",
+      smallEnterpriseDemo: "IC 020202020202: Perusahaan Kecil",
+      mediumEnterpriseDemo: "IC 030303030303: Perusahaan Sederhana",
+      useAnyPassword: "Gunakan  kata laluan Qwerty123! untuk log masuk",
 
       dontHaveAccount: "Tiada akaun?",
       registerHere: "Daftar di sini",
