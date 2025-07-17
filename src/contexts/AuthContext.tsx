@@ -19,6 +19,7 @@ export type UserData = {
   contact?: string;
   email?: string;
   lastLogin?: string;
+  level: "micro" | "small" | "medium" | null;
 } | null;
 
 // 定义上下文类型
@@ -102,6 +103,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
               contact: userData.contact,
               email: userData.email,
               lastLogin: new Date().toISOString(),
+              level: userData.level || null,
             });
           } else {
             // 如果找不到用户，清除会话
@@ -137,7 +139,6 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
     rememberMe: boolean = false
   ): Promise<{ success: boolean; message: string }> => {
     try {
-      // 在实际应用中，这里应该使用 Supabase Auth，但现在我们模拟认证
       // 从 Supabase 获取用户
       const userData = await userService.getUserByIcNo(icNumber);
 
@@ -145,8 +146,10 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
         return { success: false, message: "用户不存在" };
       }
 
-      // 在实际应用中，这里应该验证密码
-      // 但现在我们简单地接受任何密码
+      // 验证密码
+      if (userData.password && userData.password !== password) {
+        return { success: false, message: "密码不正确" };
+      }
 
       // 获取公司信息以确定企业级别
       const companyData = await companyService.getCompanyByOwnerIC(
@@ -169,6 +172,8 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
         contact: userData.contact,
         email: userData.email,
         lastLogin: new Date().toISOString(),
+        // 优先使用数据库中的 level，如果没有则使用根据公司信息计算的 enterpriseLevel
+        level: userData.level || enterpriseLevel,
       };
 
       // 设置用户状态
@@ -201,6 +206,10 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
         return { success: false, message: "该身份证号码已注册" };
       }
 
+      // 确定用户级别 (默认为 micro)
+      // 在实际应用中，这可能基于注册表单中的其他信息
+      const userLevel = "micro";
+
       // 创建新用户
       const newUser = await userService.createUser({
         icNo: userData.icNo,
@@ -208,6 +217,8 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
         email: userData.email,
         contact: userData.contact,
         isKycVerified: false,
+        password: userData.password, // 添加密码
+        level: userLevel, // 添加用户级别
       });
 
       if (!newUser) {

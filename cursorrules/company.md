@@ -2,7 +2,7 @@ Company Entity
 
 0. id, int
 1. nameType, String
-2. businessName, String
+2. businessName, timestamp
 3. businessStartDate, String
 4. incentiveSource, String
 5. registrationPeriod, int

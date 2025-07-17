@@ -37,6 +37,7 @@ export function RegisterForm({ onRegistered, onBack }: RegisterFormProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    console.log("called");
 
     // 表单验证
     if (
