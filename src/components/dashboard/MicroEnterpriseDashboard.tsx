@@ -50,6 +50,7 @@ export function MicroEnterpriseDashboard() {
       icon: Smartphone,
       price: "RM 15/month",
       category: t("paymentCategory"),
+      onClick: () => navigate("/digital-payment"),
     },
     {
       id: "basic-records",
@@ -236,7 +237,10 @@ export function MicroEnterpriseDashboard() {
                   <p className="text-muted-foreground mb-4">
                     {service.description}
                   </p>
-                  <Button className="w-full group-hover:scale-105 transition-transform">
+                  <Button 
+                    className="w-full group-hover:scale-105 transition-transform"
+                    onClick={service.onClick || (() => {})}
+                  >
                     {t("getStarted")}
                   </Button>
                 </CardContent>

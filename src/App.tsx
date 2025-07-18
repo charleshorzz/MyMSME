@@ -9,6 +9,7 @@ import NotFound from "./pages/NotFound";
 import ProfilePage from "./pages/ProfilePage";
 import DocumentsPage from "./pages/DocumentsPage";
 import CompanySetupPage from "./pages/CompanySetupPage";
+import { DigitalPaymentPage } from "./pages/DigitalPaymentPage";
 import { MicroEnterpriseDashboard } from "@/components/dashboard/MicroEnterpriseDashboard";
 import { SmallEnterpriseDashboard } from "@/components/dashboard/SmallEnterpriseDashboard";
 import { MediumEnterpriseDashboard } from "@/components/dashboard/MediumEnterpriseDashboard";
@@ -179,6 +180,16 @@ const App = () => (
               element={
                 <Layout userLevel="medium">
                   <EnterpriseAnalytics />
+                </Layout>
+              }
+            />
+
+            {/* Digital Payment - Available for all enterprise levels */}
+            <Route
+              path="/digital-payment"
+              element={
+                <Layout userLevel="small">
+                  <DigitalPaymentPage />
                 </Layout>
               }
             />

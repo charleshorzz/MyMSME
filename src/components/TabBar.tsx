@@ -10,8 +10,10 @@ import {
   LayoutGrid,
   Receipt,
   BarChart3,
+  CreditCard,
 } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 
 interface TabBarProps {
   activeTab?: string;
@@ -45,6 +47,9 @@ export function TabBar({
         break;
       case "analytics":
         navigate(`/${userLevel}-enterprise/analytics`);
+        break;
+      case "digital-payment":
+        navigate("/digital-payment");
         break;
       default:
         navigate(`/${userLevel}-enterprise`);
@@ -80,6 +85,10 @@ export function TabBar({
             <Receipt className="h-4 w-4" />
             <span>{t("eInvoicing")}</span>
           </TabsTrigger>
+          <TabsTrigger value="digital-payment" className="flex items-center gap-1">
+            <CreditCard className="h-4 w-4" />
+            <span>Digital Payment</span>
+          </TabsTrigger>
           <TabsTrigger value="marketplace" className="flex items-center gap-1">
             <Receipt className="h-4 w-4" />
             <span>{t("Marketplace")}</span>
@@ -94,6 +103,7 @@ export function TabBar({
       </Tabs>
 
       <div className="flex items-center gap-2">
+        <LanguageSwitcher compact />
         <Button variant="ghost" size="icon" title={t("notifications")}>
           <Bell className="h-5 w-5" />
         </Button>
