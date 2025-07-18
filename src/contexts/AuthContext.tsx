@@ -103,7 +103,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
               contact: userData.contact,
               email: userData.email,
               lastLogin: new Date().toISOString(),
-              level: userData.level || null,
+              level: userData.level,
             });
           } else {
             // 如果找不到用户，清除会话
@@ -172,8 +172,8 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
         contact: userData.contact,
         email: userData.email,
         lastLogin: new Date().toISOString(),
-        // 优先使用数据库中的 level，如果没有则使用根据公司信息计算的 enterpriseLevel
-        level: userData.level || enterpriseLevel,
+        // 保持原始的level值，如果是null则不使用备选值
+        level: userData.level,
       };
 
       // 设置用户状态
@@ -206,19 +206,15 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
         return { success: false, message: "该身份证号码已注册" };
       }
 
-      // 确定用户级别 (默认为 micro)
-      // 在实际应用中，这可能基于注册表单中的其他信息
-      const userLevel = "micro";
-
-      // 创建新用户
+      // 创建新用户，level设置为null
       const newUser = await userService.createUser({
         icNo: userData.icNo,
         fullName: userData.fullName,
         email: userData.email,
         contact: userData.contact,
         isKycVerified: false,
-        password: userData.password, // 添加密码
-        level: userLevel, // 添加用户级别
+        password: userData.password,
+        level: null, // 设置为null，等待用户创建或加入公司
       });
 
       if (!newUser) {

@@ -23,16 +23,39 @@ export const companyService = {
   },
 
   /**
+   * 通过公司代码获取公司
+   * 公司代码可以是注册号码或自定义代码
+   */
+  async getCompanyByCode(code: string): Promise<Company | null> {
+    const { data, error } = await supabase
+      .from("companies")
+      .select("*")
+      .or(`companyCode.eq.${code}`)
+      .single();
+
+    if (error) {
+      console.error("通过代码获取公司失败:", error);
+      return null;
+    }
+
+    return data as Company;
+  },
+
+  /**
    * 创建新公司
    */
   async createCompany(
     companyData: Omit<Company, "id" | "createdAt" | "updatedAt">
   ): Promise<Company | null> {
+    // 生成唯一的公司代码
+    const companyCode = `C${Date.now().toString().slice(-6)}`;
+
     const { data, error } = await supabase
       .from("companies")
       .insert([
         {
           ...companyData,
+          companyCode, // 添加公司代码
           createdAt: new Date().toISOString(),
           updatedAt: new Date().toISOString(),
         },

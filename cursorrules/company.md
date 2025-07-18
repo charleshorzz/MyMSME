@@ -2,8 +2,8 @@ Company Entity
 
 0. id, int
 1. nameType, String
-2. businessName, timestamp
-3. businessStartDate, String
+2. businessName, String
+3. businessStartDate, timeStamp
 4. incentiveSource, String
 5. registrationPeriod, int
 6. businessInfo, boolean
@@ -12,5 +12,5 @@ Company Entity
 8. businessEmail, string
 9. businessType, String
 10. businessCode, list of int
-11. ownerIC, can be null
-12.
+11. ownerIC, list of int
+12. createdAt, timestamp
