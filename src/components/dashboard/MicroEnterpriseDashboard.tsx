@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -11,10 +12,12 @@ import {
   FileText,
   Smartphone,
   Shield,
+  Receipt,
 } from "lucide-react";
 
 export function MicroEnterpriseDashboard() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   const qrData = JSON.stringify({
     businessId: "MICRO001",
@@ -54,6 +57,14 @@ export function MicroEnterpriseDashboard() {
       description: t("basicBusinessRecord"),
       icon: FileText,
       price: "RM 25/month",
+      category: t("accountingCategory"),
+    },
+    {
+      id: "e-invoicing",
+      title: t("eInvoicing"),
+      description: t("automatedEInvoicing"),
+      icon: Receipt,
+      price: "RM 35/month",
       category: t("accountingCategory"),
     },
     {
@@ -152,6 +163,44 @@ export function MicroEnterpriseDashboard() {
           <Button variant="outline" className="w-full mt-4">
             {t("viewAll")} {t("transactions")}
           </Button>
+        </CardContent>
+      </Card>
+
+      {/* E-Invoicing Section */}
+      <Card className="shadow-soft">
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Receipt className="h-5 w-5" />
+            {t("eInvoicing")}
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="text-center py-6 border-2 border-dashed border-muted-foreground/25 rounded-lg">
+            <Receipt className="h-12 w-12 mx-auto mb-4 text-muted-foreground" />
+            <h3 className="font-semibold mb-2">{t("Manage Invoices")}</h3>
+            <p className="text-sm text-muted-foreground mb-4">
+              {t("Create And Manage Invoices")}
+            </p>
+            <div className="flex gap-2 justify-center">
+              <Button size="sm" onClick={() => navigate("/micro-enterprise/e-invoice?create=true")}>
+                {t("Create Invoice")}
+              </Button>
+              <Button variant="outline" size="sm" onClick={() => navigate("/micro-enterprise/e-invoice")}>
+                {t("View Invoices")}
+              </Button>
+            </div>
+          </div>
+          
+          <div className="space-y-2">
+            <div className="flex justify-between text-sm">
+              <span>{t("invoicesSent")}:</span>
+              <span className="font-semibold">5</span>
+            </div>
+            <div className="flex justify-between text-sm">
+              <span>{t("totalValue")}:</span>
+              <span className="font-semibold">RM 1,250.00</span>
+            </div>
+          </div>
         </CardContent>
       </Card>
 

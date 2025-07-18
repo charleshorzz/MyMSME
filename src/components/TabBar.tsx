@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import { Bell, LogOut, FileText, User, LayoutGrid } from "lucide-react";
+import { Bell, LogOut, FileText, User, LayoutGrid, Receipt } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 
 interface TabBarProps {
@@ -28,6 +28,9 @@ export function TabBar({
         break;
       case "documents":
         navigate(`/${userLevel}-enterprise/documents`);
+        break;
+      case "e-invoice":
+        navigate(`/${userLevel}-enterprise/e-invoice`);
         break;
       default:
         navigate(`/${userLevel}-enterprise`);
@@ -58,6 +61,10 @@ export function TabBar({
           <TabsTrigger value="documents" className="flex items-center gap-1">
             <FileText className="h-4 w-4" />
             <span>{t("documents")}</span>
+          </TabsTrigger>
+          <TabsTrigger value="e-invoice" className="flex items-center gap-1">
+            <Receipt className="h-4 w-4" />
+            <span>{t("eInvoicing")}</span>
           </TabsTrigger>
         </TabsList>
       </Tabs>

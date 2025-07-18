@@ -1,11 +1,15 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import InvoiceDetails from "./InvoiceDetails";
+import { CreateInvoice } from "./CreateInvoice";
+import { QRInvoices } from "./QRInvoices";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Input } from "@/components/ui/input";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { 
   Search, 
   Filter, 
@@ -16,10 +20,13 @@ import {
   Building2,
   Users,
   Landmark,
-  FileText
+  FileText,
+  Plus,
+  QrCode,
+  Receipt
 } from "lucide-react";
 
-// Sample invoice data - in a real app, this would come from an API
+// Sample invoice data - manual invoices only (B2B/B2G)
 const sampleInvoices = [
   {
     id: "INV-001",
@@ -36,16 +43,16 @@ const sampleInvoices = [
   },
   {
     id: "INV-002",
-    type: "B2C" as const,
+    type: "B2B" as const,
     role: "sender" as const,
-    recipient: "John Doe",
-    amount: 2500.00,
+    recipient: "ABC Manufacturing Sdn Bhd",
+    amount: 8500.00,
     currency: "MYR",
     date: "2024-01-20",
     dueDate: "2024-02-20",
     status: "pending" as const,
     description: "Consulting Services",
-    taxAmount: 150.00,
+    taxAmount: 510.00,
   },
   {
     id: "INV-003",
@@ -75,16 +82,16 @@ const sampleInvoices = [
   },
   {
     id: "INV-005",
-    type: "B2C" as const,
+    type: "B2G" as const,
     role: "recipient" as const,
     recipient: "Your Company",
-    amount: 1200.00,
+    amount: 12000.00,
     currency: "MYR",
     date: "2024-01-30",
     dueDate: "2024-02-28",
     status: "paid" as const,
-    description: "Marketing Services",
-    taxAmount: 72.00,
+    description: "Government Contract Services",
+    taxAmount: 720.00,
   },
 ];
 
@@ -97,11 +104,23 @@ interface EInvoicePageProps {
 }
 
 const EInvoicePage = ({ userLevel = "micro" }: EInvoicePageProps) => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [transactionType, setTransactionType] = useState<TransactionType>("all");
   const [roleType, setRoleType] = useState<RoleType>("all");
   const [statusFilter, setStatusFilter] = useState<StatusType>("all");
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedInvoice, setSelectedInvoice] = useState<any | null>(null);
+  const [showCreateInvoice, setShowCreateInvoice] = useState(false);
+
+  // Check if create parameter is in URL
+  useEffect(() => {
+    const createParam = searchParams.get("create");
+    if (createParam === "true") {
+      setShowCreateInvoice(true);
+      // Remove the create parameter from URL after opening
+      setSearchParams({});
+    }
+  }, [searchParams, setSearchParams]);
 
   // Filter invoices based on selected filters
   const filteredInvoices = useMemo(() => {
@@ -184,19 +203,48 @@ const EInvoicePage = ({ userLevel = "micro" }: EInvoicePageProps) => {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">E-Invoice Management</h1>
-          <p className="text-muted-foreground">
-            View and manage your electronic invoices by transaction type and role
-          </p>
-        </div>
-        <Button className="flex items-center gap-2">
-          <Download className="h-4 w-4" />
-          Export All
-        </Button>
-      </div>
+      {showCreateInvoice ? (
+        <CreateInvoice 
+          userLevel={userLevel} 
+          onClose={() => setShowCreateInvoice(false)} 
+        />
+      ) : (
+        <>
+          {/* Header */}
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-3xl font-bold tracking-tight">E-Invoice Management</h1>
+              <p className="text-muted-foreground">
+                Manage your electronic invoices - manual and QR payment generated
+              </p>
+            </div>
+            <div className="flex gap-2">
+              <Button onClick={() => setShowCreateInvoice(true)} className="flex items-center gap-2">
+                <Plus className="h-4 w-4" />
+                Create Manual Invoice
+              </Button>
+              <Button variant="outline" className="flex items-center gap-2">
+                <Download className="h-4 w-4" />
+                Export All
+              </Button>
+            </div>
+          </div>
+
+          {/* Invoice Management Tabs */}
+          <Tabs defaultValue="manual" className="w-full">
+            <TabsList className="grid w-full grid-cols-2">
+              <TabsTrigger value="manual" className="flex items-center gap-2">
+                <Receipt className="h-4 w-4" />
+                Manual Invoices
+              </TabsTrigger>
+              <TabsTrigger value="qr" className="flex items-center gap-2">
+                <QrCode className="h-4 w-4" />
+                QR Payment Invoices
+              </TabsTrigger>
+            </TabsList>
+            
+            <TabsContent value="manual" className="space-y-6">
+              {/* Manual Invoices Content */}
 
         {/* Summary Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -425,9 +473,19 @@ const EInvoicePage = ({ userLevel = "micro" }: EInvoicePageProps) => {
             </div>
           </CardContent>
         </Card>
-      {/* Invoice Details Modal */}
-      {selectedInvoice && (
-        <InvoiceDetails invoice={selectedInvoice} onClose={() => setSelectedInvoice(null)} />
+        
+        {/* Invoice Details Modal */}
+        {selectedInvoice && (
+          <InvoiceDetails invoice={selectedInvoice} onClose={() => setSelectedInvoice(null)} />
+        )}
+            </TabsContent>
+            
+            <TabsContent value="qr" className="space-y-6">
+              {/* QR Payment Invoices Content */}
+              <QRInvoices userLevel={userLevel} />
+            </TabsContent>
+          </Tabs>
+        </>
       )}
     </div>
   );
