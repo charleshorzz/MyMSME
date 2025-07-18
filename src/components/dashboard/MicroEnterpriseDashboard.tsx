@@ -82,7 +82,7 @@ export function MicroEnterpriseDashboard() {
       {/* Welcome Section */}
       <div className="text-center py-8">
         <h1 className="text-3xl font-bold mb-2">
-          {t("welcome")} to {t("micro")}
+          {t("welcome")} {t("to")} {t("micro")}
         </h1>
         <p className="text-muted-foreground">{t("description")}</p>
       </div>

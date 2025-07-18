@@ -25,13 +25,14 @@ import {
   QrCode,
   Receipt
 } from "lucide-react";
+import { t } from "i18next";
 
 // Sample invoice data - manual invoices only (B2B/B2G)
 const sampleInvoices = [
   {
     id: "INV-001",
     type: "B2B" as const,
-    role: "sender" as const,
+    role: <span className="text-sm">{t("sender")}</span>,
     recipient: "Tech Solutions Sdn Bhd",
     amount: 15000.00,
     currency: "MYR",
@@ -213,19 +214,19 @@ const EInvoicePage = ({ userLevel = "micro" }: EInvoicePageProps) => {
           {/* Header */}
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-bold tracking-tight">E-Invoice Management</h1>
+              <h1 className="text-3xl font-bold tracking-tight">{t("invoiceManagement")}</h1>
               <p className="text-muted-foreground">
-                Manage your electronic invoices - manual and QR payment generated
+                {t("manageYourElectronicInvoices")}
               </p>
             </div>
             <div className="flex gap-2">
               <Button onClick={() => setShowCreateInvoice(true)} className="flex items-center gap-2">
                 <Plus className="h-4 w-4" />
-                Create Manual Invoice
+                {t("createManualInvoice")}
               </Button>
               <Button variant="outline" className="flex items-center gap-2">
                 <Download className="h-4 w-4" />
-                Export All
+                {t("exportAll")}
               </Button>
             </div>
           </div>
@@ -235,11 +236,11 @@ const EInvoicePage = ({ userLevel = "micro" }: EInvoicePageProps) => {
             <TabsList className="grid w-full grid-cols-2">
               <TabsTrigger value="manual" className="flex items-center gap-2">
                 <Receipt className="h-4 w-4" />
-                Manual Invoices
+                {t("manualInvoice")}
               </TabsTrigger>
               <TabsTrigger value="qr" className="flex items-center gap-2">
                 <QrCode className="h-4 w-4" />
-                QR Payment Invoices
+                {t("qrPaymentInvoice")}
               </TabsTrigger>
             </TabsList>
             
@@ -250,46 +251,46 @@ const EInvoicePage = ({ userLevel = "micro" }: EInvoicePageProps) => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Total Invoices</CardTitle>
+              <CardTitle className="text-sm font-medium">{t("totalInvoices")}</CardTitle>
               <FileText className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{summary.total}</div>
               <p className="text-xs text-muted-foreground">
-                {formatCurrency(summary.totalAmount)} total value
+                {formatCurrency(summary.totalAmount)} {t("totalValue")}
               </p>
             </CardContent>
           </Card>
           
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Sent</CardTitle>
+              <CardTitle className="text-sm font-medium">{t("sent")}</CardTitle>
               <ArrowUpRight className="h-4 w-4 text-blue-600" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{summary.sent}</div>
               <p className="text-xs text-muted-foreground">
-                {formatCurrency(summary.sentAmount)} invoiced
+                {formatCurrency(summary.sentAmount)} {t("invoiced")}
               </p>
             </CardContent>
           </Card>
           
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Received</CardTitle>
+              <CardTitle className="text-sm font-medium">{t("Received")}</CardTitle>
               <ArrowDownLeft className="h-4 w-4 text-green-600" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{summary.received}</div>
               <p className="text-xs text-muted-foreground">
-                {formatCurrency(summary.receivedAmount)} received
+                {formatCurrency(summary.receivedAmount)} {t("received")}
               </p>
             </CardContent>
           </Card>
           
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Transaction Types</CardTitle>
+              <CardTitle className="text-sm font-medium">{t("transactionType")}</CardTitle>
               <Filter className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
@@ -305,15 +306,15 @@ const EInvoicePage = ({ userLevel = "micro" }: EInvoicePageProps) => {
         {/* Filters */}
         <Card>
           <CardHeader>
-            <CardTitle className="text-lg">Filters</CardTitle>
+            <CardTitle className="text-lg">{t("filter")}</CardTitle>
             <CardDescription>
-              Filter invoices by transaction type, role, status, or search terms
+              {t("filterBy")}
             </CardDescription>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
               <div className="space-y-2">
-                <label className="text-sm font-medium">Search</label>
+                <label className="text-sm font-medium">{t("search")}</label>
                 <div className="relative">
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                   <Input
@@ -326,13 +327,13 @@ const EInvoicePage = ({ userLevel = "micro" }: EInvoicePageProps) => {
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-medium">Transaction Type</label>
+                <label className="text-sm font-medium">{t("transactionType")}</label>
                 <Select value={transactionType} onValueChange={(value: TransactionType) => setTransactionType(value)}>
                   <SelectTrigger>
                     <SelectValue placeholder="Select type" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="all">All Types</SelectItem>
+                    <SelectItem value="all">{t("allTypes")}</SelectItem>
                     <SelectItem value="B2B">B2B (Business to Business)</SelectItem>
                     <SelectItem value="B2C">B2C (Business to Consumer)</SelectItem>
                     <SelectItem value="B2G">B2G (Business to Government)</SelectItem>
@@ -341,30 +342,30 @@ const EInvoicePage = ({ userLevel = "micro" }: EInvoicePageProps) => {
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-medium">Role</label>
+                <label className="text-sm font-medium">{t("role")}</label>
                 <Select value={roleType} onValueChange={(value: RoleType) => setRoleType(value)}>
                   <SelectTrigger>
                     <SelectValue placeholder="Select role" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="all">All Roles</SelectItem>
-                    <SelectItem value="sender">Sender (Outgoing)</SelectItem>
-                    <SelectItem value="recipient">Recipient (Incoming)</SelectItem>
+                    <SelectItem value="all">{t("allRoles")}</SelectItem>
+                    <SelectItem value="sender">{t("senderOutgoing")}</SelectItem>
+                    <SelectItem value="recipient">{t("receiverIncoming")}</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-medium">Status</label>
+                <label className="text-sm font-medium">{t("status")}</label>
                 <Select value={statusFilter} onValueChange={(value: StatusType) => setStatusFilter(value)}>
                   <SelectTrigger>
                     <SelectValue placeholder="Select status" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="all">All Status</SelectItem>
-                    <SelectItem value="paid">Paid</SelectItem>
-                    <SelectItem value="pending">Pending</SelectItem>
-                    <SelectItem value="overdue">Overdue</SelectItem>
+                    <SelectItem value="all">{t("allStatuses")}</SelectItem>
+                    <SelectItem value="paid">{t("paid")}</SelectItem>
+                    <SelectItem value="pending">{t("pending")}</SelectItem>
+                    <SelectItem value="overdue">{t("overdue")}</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -375,7 +376,7 @@ const EInvoicePage = ({ userLevel = "micro" }: EInvoicePageProps) => {
         {/* Invoice Table */}
         <Card>
           <CardHeader>
-            <CardTitle className="text-lg">Invoices</CardTitle>
+            <CardTitle className="text-lg">{t("Invoices")}</CardTitle>
             <CardDescription>
               {filteredInvoices.length} invoice{filteredInvoices.length !== 1 ? "s" : ""} found
             </CardDescription>
@@ -385,7 +386,7 @@ const EInvoicePage = ({ userLevel = "micro" }: EInvoicePageProps) => {
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>Invoice ID</TableHead>
+                    <TableHead>{t("invoiceId")}</TableHead>
                     <TableHead>Type</TableHead>
                     <TableHead>Role</TableHead>
                     <TableHead>Recipient/Sender</TableHead>
