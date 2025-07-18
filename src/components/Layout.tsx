@@ -1,6 +1,7 @@
 import React from "react";
 import { TabBar } from "./TabBar";
 import { useLocation } from "react-router-dom";
+import { AIAdvisor } from "./AIAdvisor";
 
 interface LayoutProps {
   userLevel?: string;
@@ -40,6 +41,9 @@ export function Layout({ userLevel = "micro", children }: LayoutProps) {
         <TabBar activeTab={getActiveTab()} userLevel={getUserLevel()} />
       )}
       <div className="container mx-auto px-4 py-6">{children}</div>
+
+      {/* AI顾问组件 - 在所有页面显示 */}
+      <AIAdvisor />
     </div>
   );
 }
