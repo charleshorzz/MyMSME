@@ -205,7 +205,7 @@ export function MarketplacePage({ userLevel }: MarketplacePageProps) {
   return (
     <div className="space-y-6">
       <div className="text-center py-8">
-        <h1 className="text-3xl font-bold mb-2">{t("marketplace") || "Marketplace"}</h1>
+        <h1 className="text-3xl font-bold mb-2">{t("Marketplace") || "Marketplace"}</h1>
         <p className="text-muted-foreground">
           {t("findBusinessesToCollaborate") || "Find businesses for B2B collaboration and networking."}
         </p>
@@ -236,7 +236,7 @@ export function MarketplacePage({ userLevel }: MarketplacePageProps) {
       {Object.entries(grouped).map(([type, businesses]) => (
         <div key={type} className="space-y-4">
           <h2 className="text-xl font-semibold flex items-center gap-2">
-            {typeIcon(type)} {t(type) || type.charAt(0).toUpperCase() + type.slice(1)} {t("businesses") || "Businesses"}
+            {typeIcon(type)} {t(type) || type.charAt(0).toUpperCase() + type.slice(1)}
           </h2>
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {businesses.map((b) => (

@@ -32,7 +32,7 @@ const sampleInvoices = [
   {
     id: "INV-001",
     type: "B2B" as const,
-    role: <span className="text-sm">{t("sender")}</span>,
+    role: "sender",
     recipient: "Tech Solutions Sdn Bhd",
     amount: 15000.00,
     currency: "MYR",
@@ -84,7 +84,7 @@ const sampleInvoices = [
   {
     id: "INV-005",
     type: "B2G" as const,
-    role: "recipient" as const,
+    role: "recipient",
     recipient: "Your Company",
     amount: 12000.00,
     currency: "MYR",
@@ -318,7 +318,7 @@ const EInvoicePage = ({ userLevel = "micro" }: EInvoicePageProps) => {
                 <div className="relative">
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                   <Input
-                    placeholder="Search invoices..."
+                    placeholder={t("searchInvoices")}
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     className="pl-10"
@@ -387,21 +387,21 @@ const EInvoicePage = ({ userLevel = "micro" }: EInvoicePageProps) => {
                 <TableHeader>
                   <TableRow>
                     <TableHead>{t("invoiceId")}</TableHead>
-                    <TableHead>Type</TableHead>
-                    <TableHead>Role</TableHead>
-                    <TableHead>Recipient/Sender</TableHead>
-                    <TableHead>Amount</TableHead>
-                    <TableHead>Date</TableHead>
-                    <TableHead>Due Date</TableHead>
-                    <TableHead>Status</TableHead>
-                    <TableHead>Actions</TableHead>
+                    <TableHead>{t("type")}</TableHead>
+                    <TableHead>{t("role")}</TableHead>
+                    <TableHead>{t("recipient")}/{t("sender")}</TableHead>
+                    <TableHead>{t("amount")}</TableHead>
+                    <TableHead>{t("date")}</TableHead>
+                    <TableHead>{t("dueDate")}</TableHead>
+                    <TableHead>{t("status")}</TableHead>
+                    <TableHead>{t("actions")}</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {filteredInvoices.length === 0 ? (
                     <TableRow>
                       <TableCell colSpan={9} className="text-center py-10 text-muted-foreground">
-                        No invoices found matching your filters
+                        {t("noInvoicesFound")}
                       </TableCell>
                     </TableRow>
                   ) : (
@@ -425,11 +425,11 @@ const EInvoicePage = ({ userLevel = "micro" }: EInvoicePageProps) => {
                             <div className="font-medium">
                               {invoice.role === "sender" ? (
                                 <>
-                                  <span>Recipient: </span>{invoice.recipient}
+                                  <span>{t("recipient")}: </span>{invoice.recipient}
                                 </>
                               ) : (
                                 <>
-                                  <span>Sender: </span>{invoice.recipient}
+                                  <span>{t("sender")}: </span>{invoice.recipient}
                                 </>
                               )}
                             </div>
