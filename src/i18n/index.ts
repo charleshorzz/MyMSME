@@ -146,10 +146,10 @@ const resources = {
 
       // Demo
       demoInstructions: "Demo Instructions:",
-      microEnterpriseDemo: "IC ending with 0: Micro Enterprise",
-      smallEnterpriseDemo: "IC ending with 1-2: Small Enterprise",
-      mediumEnterpriseDemo: "IC ending with 3-4: Medium Enterprise",
-      useAnyPassword: "Use any password to login",
+      microEnterpriseDemo: "IC ending with 010101010101: Micro Enterprise",
+      smallEnterpriseDemo: "IC ending with 020202020202: Small Enterprise",
+      mediumEnterpriseDemo: "IC ending with 030303030303: Medium Enterprise",
+      useAnyPassword: "Use password Qwerty123! to login",
 
       // Registration
       dontHaveAccount: "Don't have an account?",
