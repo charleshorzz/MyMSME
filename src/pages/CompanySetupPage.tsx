@@ -23,12 +23,12 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useToast } from "@/components/ui/use-toast";
-import { Building, Users, Plus, LogIn } from "lucide-react";
+import { Building, Users, Plus, LogIn, LogOut } from "lucide-react";
 import CompanyStatusPage from "./CompanyStatusPage";
 
 export default function CompanySetupPage() {
   const { t } = useTranslation();
-  const { user, updateUserProfile } = useAuth();
+  const { user, updateUserProfile, logout } = useAuth();
   const navigate = useNavigate();
   const { toast } = useToast();
   const [activeTab, setActiveTab] = useState<"create" | "join">("create");
@@ -99,7 +99,7 @@ export default function CompanySetupPage() {
 
       if (company) {
         // 更新用户的企业级别
-        await updateUserProfile({ level: newCompany.level });
+        await updateUserProfile({ level: "micro" });
 
         toast({
           title: t("companyCreated"),
@@ -175,6 +175,20 @@ export default function CompanySetupPage() {
   return (
     <div className="min-h-screen bg-white flex items-center justify-center p-4">
       <div className="max-w-2xl w-full">
+        {/* 顶部登出按钮 */}
+        <div className="flex justify-end mb-4">
+          <Button
+            variant="outline"
+            onClick={async () => {
+              await logout();
+              navigate("/");
+            }}
+            className="flex items-center gap-2"
+          >
+            <LogOut className="h-4 w-4" />
+            {t("logout")}
+          </Button>
+        </div>
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold mb-2">{t("companySetup")}</h1>
           <p className="text-muted-foreground">
@@ -185,24 +199,12 @@ export default function CompanySetupPage() {
         <Card className="shadow-soft">
           <CardHeader>
             <CardTitle>{t("setupYourCompany")}</CardTitle>
-            <CardDescription>{t("createOrJoinCompany")}</CardDescription>
           </CardHeader>
           <CardContent>
             <Tabs
               value={activeTab}
               onValueChange={(v) => setActiveTab(v as "create" | "join")}
             >
-              <TabsList className="grid w-full grid-cols-2 mb-6">
-                <TabsTrigger value="create" className="flex items-center gap-2">
-                  <Building className="h-4 w-4" />
-                  {t("createNewCompany")}
-                </TabsTrigger>
-                <TabsTrigger value="join" className="flex items-center gap-2">
-                  <Users className="h-4 w-4" />
-                  {t("joinExistingCompany")}
-                </TabsTrigger>
-              </TabsList>
-
               <TabsContent value="create">
                 <form onSubmit={handleCreateCompany} className="space-y-4">
                   {/* <div className="space-y-2">

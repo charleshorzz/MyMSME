@@ -39,6 +39,7 @@ export type Company = {
   createdAt: string;
   updatedAt: string;
   level: "micro" | "small" | "medium" | null;
+  password?: string; // 添加公司密码字段，用于公司登录
 };
 
 export type BusinessCode = {

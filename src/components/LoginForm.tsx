@@ -5,9 +5,10 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { LanguageSwitcher } from "./LanguageSwitcher";
-import { Eye, EyeOff, Shield, CreditCard } from "lucide-react";
+import { Eye, EyeOff, Shield, CreditCard, User, Building } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 import { useAuth } from "@/contexts/AuthContext";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 interface LoginFormProps {
   onShowRegister?: () => void;
@@ -18,19 +19,21 @@ export function LoginForm({ onShowRegister }: LoginFormProps) {
   const { toast } = useToast();
   const { login } = useAuth();
 
-  const [icNumber, setIcNumber] = useState("");
+  const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [rememberMe, setRememberMe] = useState(true);
+  const [loginType, setLoginType] = useState<"ic" | "company">("ic"); // 登录类型：IC号码或公司ID
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!icNumber.trim()) {
+    if (!identifier.trim()) {
       toast({
         title: t("error"),
-        description: t("pleaseEnterIC"),
+        description:
+          loginType === "ic" ? t("pleaseEnterIC") : t("pleaseEnterCompanyID"),
         variant: "destructive",
       });
       return;
@@ -48,8 +51,13 @@ export function LoginForm({ onShowRegister }: LoginFormProps) {
     setIsLoading(true);
 
     try {
-      // 使用 AuthContext 的 login 方法
-      const result = await login(icNumber, password, rememberMe);
+      // 使用 AuthContext 的 login 方法，传递登录类型
+      const result = await login(
+        identifier,
+        password,
+        rememberMe,
+        loginType === "company"
+      );
 
       if (result.success) {
         toast({
@@ -97,15 +105,41 @@ export function LoginForm({ onShowRegister }: LoginFormProps) {
             <CardTitle className="text-xl">{t("login")}</CardTitle>
           </CardHeader>
           <CardContent>
+            <Tabs
+              defaultValue="ic"
+              className="mb-4"
+              onValueChange={(value) => setLoginType(value as "ic" | "company")}
+            >
+              <TabsList className="grid w-full grid-cols-2">
+                <TabsTrigger value="ic" className="flex items-center gap-1">
+                  <User className="h-4 w-4" />
+                  <span>{t("personalLogin")}</span>
+                </TabsTrigger>
+                <TabsTrigger
+                  value="company"
+                  className="flex items-center gap-1"
+                >
+                  <Building className="h-4 w-4" />
+                  <span>{t("companyLogin")}</span>
+                </TabsTrigger>
+              </TabsList>
+            </Tabs>
+
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="ic">{t("icNumber")}</Label>
+                <Label htmlFor="identifier">
+                  {loginType === "ic" ? t("icNumber") : t("companyID")}
+                </Label>
                 <Input
-                  id="ic"
+                  id="identifier"
                   type="text"
-                  placeholder="e.g., 123456-78-9012"
-                  value={icNumber}
-                  onChange={(e) => setIcNumber(e.target.value)}
+                  placeholder={
+                    loginType === "ic"
+                      ? t("icNumberPlaceholder", "e.g., 123456-78-9012")
+                      : t("companyIDPlaceholder", "e.g., C123456")
+                  }
+                  value={identifier}
+                  onChange={(e) => setIdentifier(e.target.value)}
                   required
                   className="transition-fast"
                 />
@@ -117,7 +151,7 @@ export function LoginForm({ onShowRegister }: LoginFormProps) {
                   <Input
                     id="password"
                     type={showPassword ? "text" : "password"}
-                    placeholder="Enter your password"
+                    placeholder={t("enterPassword", "Enter your password")}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required

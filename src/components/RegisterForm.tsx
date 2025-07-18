@@ -26,6 +26,8 @@ export function RegisterForm({ onRegistered, onBack }: RegisterFormProps) {
     contact: "",
     password: "",
     confirmPassword: "",
+    companyName: "", // 添加公司名称
+    businessAddress: "", // 添加公司地址
   });
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -45,7 +47,9 @@ export function RegisterForm({ onRegistered, onBack }: RegisterFormProps) {
       !form.fullName ||
       !form.email ||
       !form.contact ||
-      !form.password
+      !form.password ||
+      !form.companyName ||
+      !form.businessAddress
     ) {
       toast({
         title: t("error"),
@@ -67,20 +71,22 @@ export function RegisterForm({ onRegistered, onBack }: RegisterFormProps) {
     setIsLoading(true);
 
     try {
-      // 使用 AuthContext 的 register 方法
+      // 使用 AuthContext 的 register 方法，同时传递公司信息
       const result = await register({
         icNo: form.icNo,
         fullName: form.fullName,
         email: form.email,
         contact: form.contact,
         password: form.password,
+        companyName: form.companyName,
+        businessAddress: form.businessAddress,
       });
 
       if (result.success) {
         // Instead of showing success dialog, navigate to eKYC verification
         toast({
           title: t("registerSuccess"),
-          description: "Please complete eKYC verification to activate your account",
+          description: t("ekycVerificationRequired"),
           duration: 3000,
         });
         if (onRegistered) onRegistered(); // This should navigate to verification page
@@ -111,16 +117,24 @@ export function RegisterForm({ onRegistered, onBack }: RegisterFormProps) {
           </div>
           <div className="space-y-2">
             <h1 className="text-3xl font-bold">{t("register")}</h1>
-            <p className="text-muted-foreground">{t("appTagline")}</p>
+            <p className="text-muted-foreground">{t("createYourAccount")}</p>
             <div className="flex justify-center">
               <LanguageSwitcher />
             </div>
           </div>
         </div>
         <Card className="shadow-large glass-effect">
-          <CardHeader className="text-center"></CardHeader>
+          <CardHeader className="text-center">
+            <CardTitle className="text-lg">
+              {t("personalAndCompanyInfo")}
+            </CardTitle>
+          </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
+              {/* 个人信息部分 */}
+              <h3 className="font-medium text-sm text-muted-foreground mb-2">
+                {t("personalInfo")}
+              </h3>
               <div className="space-y-2">
                 <Label htmlFor="icNo">{t("icNumber")}</Label>
                 <Input
@@ -163,6 +177,36 @@ export function RegisterForm({ onRegistered, onBack }: RegisterFormProps) {
                   required
                 />
               </div>
+
+              {/* 公司信息部分 */}
+              <h3 className="font-medium text-sm text-muted-foreground mt-6 mb-2">
+                {t("companyInfo")}
+              </h3>
+              <div className="space-y-2">
+                <Label htmlFor="companyName">{t("companyName")}</Label>
+                <Input
+                  id="companyName"
+                  name="companyName"
+                  value={form.companyName}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="businessAddress">{t("companyAddress")}</Label>
+                <Input
+                  id="businessAddress"
+                  name="businessAddress"
+                  value={form.businessAddress}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+
+              {/* 密码部分 */}
+              <h3 className="font-medium text-sm text-muted-foreground mt-6 mb-2">
+                {t("securityInfo")}
+              </h3>
               <div className="space-y-2">
                 <Label htmlFor="password">{t("password")}</Label>
                 <div className="relative">
@@ -217,6 +261,7 @@ export function RegisterForm({ onRegistered, onBack }: RegisterFormProps) {
                   </Button>
                 </div>
               </div>
+
               <div className="flex mt-6 justify-between">
                 <Button type="button" variant="outline" onClick={onBack}>
                   {t("back") || "返回"}
