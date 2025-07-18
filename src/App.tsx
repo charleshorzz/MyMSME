@@ -14,6 +14,7 @@ import { SmallEnterpriseDashboard } from "@/components/dashboard/SmallEnterprise
 import { MediumEnterpriseDashboard } from "@/components/dashboard/MediumEnterpriseDashboard";
 import EInvoicePage from "@/components/E-Invoice";
 import { MarketplacePage } from "./components/Marketplace";
+import { FoodStallAnalytics } from "./components/FoodStallAnalytics";
 import { Layout } from "@/components/Layout";
 import CompanyStatusPage from "./pages/CompanyStatusPage";
 
@@ -116,6 +117,15 @@ const App = () => (
               element={
                 <Layout userLevel="small">
                   <MarketplacePage userLevel="small" />
+                </Layout>
+              }
+            />
+
+            <Route
+              path="/small-enterprise/analytics"
+              element={
+                <Layout userLevel="small">
+                  <FoodStallAnalytics />
                 </Layout>
               }
             />

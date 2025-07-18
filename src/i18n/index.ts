@@ -485,6 +485,8 @@ const resources = {
       mediumEnterpriseDemo: "IC 030303030303: Medium Enterprise",
       useAnyPassword: "Use password Qwerty123! to login",
 
+
+
       dontHaveAccount: "Don't have an account?",
       registerHere: "Register here",
 
