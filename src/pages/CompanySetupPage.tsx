@@ -9,6 +9,7 @@ import {
   CardHeader,
   CardTitle,
   CardDescription,
+  CardFooter,
 } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
@@ -23,8 +24,19 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useToast } from "@/components/ui/use-toast";
-import { Building, Users, Plus, LogIn, LogOut } from "lucide-react";
+import {
+  Building,
+  Users,
+  Plus,
+  LogIn,
+  LogOut,
+  CreditCard,
+  CheckCircle,
+  ArrowLeft,
+} from "lucide-react";
 import CompanyStatusPage from "./CompanyStatusPage";
+import { Separator } from "@/components/ui/separator";
+import { Company } from "@/lib/supabase";
 
 export default function CompanySetupPage() {
   const { t } = useTranslation();
@@ -33,6 +45,9 @@ export default function CompanySetupPage() {
   const { toast } = useToast();
   const [activeTab, setActiveTab] = useState<"create" | "join">("create");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showPayment, setShowPayment] = useState(false);
+  const [paymentComplete, setPaymentComplete] = useState(false);
+  const [createdCompany, setCreatedCompany] = useState<Company | null>(null);
 
   // 创建公司的表单状态
   const [newCompany, setNewCompany] = useState({
@@ -95,20 +110,18 @@ export default function CompanySetupPage() {
           .map((code) => parseInt(code.trim())), // 假设用逗号分隔
         ownerIC: user.icNumber,
         level: "micro",
+        status: "pending", // 设置初始状态为待审核
       });
 
       if (company) {
         // 更新用户的企业级别
         await updateUserProfile({ level: "micro" });
 
-        toast({
-          title: t("companyCreated"),
-          description: t("companyCreatedDescription"),
-        });
+        // 保存创建的公司信息
+        setCreatedCompany(company);
 
-        // // 重定向到相应的企业仪表板
-        // navigate(`/${newCompany.level}-enterprise`);
-        navigate("/company-status"); // 跳转到状态页
+        // 显示支付页面
+        setShowPayment(true);
       }
     } catch (error) {
       console.error("创建公司失败:", error);
@@ -172,6 +185,144 @@ export default function CompanySetupPage() {
     }
   };
 
+  // 处理支付
+  const handlePayment = () => {
+    // 模拟支付过程
+    setIsSubmitting(true);
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setPaymentComplete(true);
+
+      toast({
+        title: t("paymentSuccessful"),
+        description: t("paymentSuccessfulDescription"),
+      });
+    }, 2000);
+  };
+
+  // 处理支付完成后跳转
+  const handleContinueAfterPayment = () => {
+    navigate("/company-status");
+  };
+
+  // 渲染支付页面
+  const renderPaymentPage = () => {
+    return (
+      <div className="min-h-screen bg-white flex items-center justify-center p-4">
+        <div className="max-w-md w-full">
+          <div className="text-center mb-8">
+            <h1 className="text-3xl font-bold mb-2">{t("paymentGateway")}</h1>
+            <p className="text-muted-foreground">{t("paymentDescription")}</p>
+          </div>
+
+          <Card className="shadow-soft">
+            <CardHeader>
+              <CardTitle>{t("registrationFee")}</CardTitle>
+              <CardDescription>{t("selectPaymentMethod")}</CardDescription>
+            </CardHeader>
+            <CardContent>
+              {paymentComplete ? (
+                <div className="flex flex-col items-center py-8 space-y-4">
+                  <div className="h-16 w-16 bg-green-100 rounded-full flex items-center justify-center">
+                    <CheckCircle className="h-8 w-8 text-green-600" />
+                  </div>
+                  <h3 className="text-xl font-medium">
+                    {t("paymentComplete")}
+                  </h3>
+                  <p className="text-center text-muted-foreground">
+                    {t("paymentCompleteDescription")}
+                  </p>
+                </div>
+              ) : (
+                <div className="space-y-6">
+                  <div className="bg-blue-50 p-4 rounded-md">
+                    <div className="flex justify-between items-center">
+                      <span className="font-medium">
+                        {t("registrationFeeAmount")}
+                      </span>
+                      <span className="font-bold">RM 50.00</span>
+                    </div>
+                  </div>
+
+                  <Separator />
+
+                  <div className="space-y-4">
+                    <div className="flex items-center space-x-2">
+                      <input
+                        type="radio"
+                        id="duitnow"
+                        name="paymentMethod"
+                        className="rounded border-gray-300"
+                        defaultChecked
+                      />
+                      <Label htmlFor="duitnow" className="cursor-pointer">
+                        DuitNow
+                      </Label>
+                    </div>
+
+                    <div className="bg-gray-50 p-4 rounded-md">
+                      <div className="flex justify-center mb-4">
+                        <img
+                          src="https://images.seeklogo.com/logo-png/37/1/duit-now-logo-png_seeklogo-374361.png"
+                          alt="DuitNow"
+                          className="h-12"
+                        />
+                      </div>
+                      <div className="text-center text-sm text-muted-foreground">
+                        {t("duitnowDescription")}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </CardContent>
+            <CardFooter>
+              {paymentComplete ? (
+                <Button className="w-full" onClick={handleContinueAfterPayment}>
+                  {t("continueToStatus")}
+                </Button>
+              ) : (
+                <div className="w-full space-y-3">
+                  <Button
+                    className="w-full"
+                    onClick={handlePayment}
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? (
+                      <span className="flex items-center">
+                        <span className="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent"></span>
+                        {t("processing")}
+                      </span>
+                    ) : (
+                      <>
+                        <CreditCard className="mr-2 h-4 w-4" />
+                        {t("payNow")}
+                      </>
+                    )}
+                  </Button>
+                  <Button
+                    variant="outline"
+                    className="w-full"
+                    onClick={() => setShowPayment(false)}
+                    disabled={isSubmitting}
+                  >
+                    <ArrowLeft className="mr-2 h-4 w-4" />
+                    {t("back")}
+                  </Button>
+                </div>
+              )}
+            </CardFooter>
+          </Card>
+        </div>
+      </div>
+    );
+  };
+
+  // 如果显示支付页面，则渲染支付页面
+  if (showPayment) {
+    return renderPaymentPage();
+  }
+
   return (
     <div className="min-h-screen bg-white flex items-center justify-center p-4">
       <div className="max-w-2xl w-full">
@@ -205,6 +356,11 @@ export default function CompanySetupPage() {
               value={activeTab}
               onValueChange={(v) => setActiveTab(v as "create" | "join")}
             >
+              <TabsList className="mb-4">
+                <TabsTrigger value="create">
+                  {t("createCompanyTab")}
+                </TabsTrigger>
+              </TabsList>
               <TabsContent value="create">
                 <form onSubmit={handleCreateCompany} className="space-y-4">
                   {/* <div className="space-y-2">
@@ -231,7 +387,7 @@ export default function CompanySetupPage() {
                   </div> */}
 
                   <div className="space-y-2">
-                    <Label htmlFor="nameType">{t("Name Type")}</Label>
+                    <Label htmlFor="nameType">{t("nameType")}</Label>
                     <Select
                       name="nameType"
                       value={newCompany.nameType}
@@ -247,9 +403,9 @@ export default function CompanySetupPage() {
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="personal">
-                          {t("Personal Name")}
+                          {t("personalName")}
                         </SelectItem>
-                        <SelectItem value="trade">{t("Trade Name")}</SelectItem>
+                        <SelectItem value="trade">{t("tradeName")}</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
@@ -266,7 +422,7 @@ export default function CompanySetupPage() {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="businessType">{t("Business Type")}</Label>
+                    <Label htmlFor="businessType">{t("businessType")}</Label>
                     <Input
                       id="business Type"
                       name="businessType"
@@ -292,7 +448,7 @@ export default function CompanySetupPage() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <Label htmlFor="registrationPeriod">
-                        {t("Registration Period (Years)")}
+                        {t("registrationPeriod")}
                       </Label>
                       <Input
                         id="registrationPeriod"
@@ -309,7 +465,7 @@ export default function CompanySetupPage() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <Label htmlFor="businessContact">
-                        {t("contactNumber (+60)")}
+                        {t("contactNumber")}
                       </Label>
                       <Input
                         id="businessContact"

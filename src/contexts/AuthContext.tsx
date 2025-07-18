@@ -40,8 +40,6 @@ interface AuthContextType {
     email: string;
     contact: string;
     password: string;
-    companyName?: string; // 添加公司名称
-    businessAddress?: string; // 添加公司地址
   }) => Promise<{ success: boolean; message: string }>;
   logout: () => Promise<void>;
   isAuthenticated: boolean;
@@ -312,8 +310,6 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
     email: string;
     contact: string;
     password: string;
-    companyName?: string;
-    businessAddress?: string;
   }): Promise<{ success: boolean; message: string }> => {
     try {
       // 检查用户是否已存在
@@ -330,35 +326,11 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
         contact: userData.contact,
         isKycVerified: false,
         password: userData.password,
-        level: "micro", // 默认为微型企业
+        level: null, // 不设置默认企业级别，等待用户后续设置
       });
 
       if (!newUser) {
         return { success: false, message: "注册失败，请稍后再试" };
-      }
-
-      // 如果提供了公司信息，则创建公司
-      if (userData.companyName && userData.businessAddress) {
-        const companyData = await companyService.createCompany({
-          businessName: userData.companyName,
-          businessAddress: userData.businessAddress,
-          ownerIC: userData.icNo,
-          businessEmail: userData.email,
-          businessContact: userData.contact,
-          businessType: "individual",
-          businessCode: [],
-          businessStartDate: new Date().toISOString(),
-          registrationPeriod: 1,
-          nameType: "personal",
-          incentiveSource: "none",
-          businessInfo: false,
-          level: "micro",
-          password: userData.password, // 使用相同的密码
-        });
-
-        if (!companyData) {
-          console.warn("用户创建成功，但公司创建失败");
-        }
       }
 
       return { success: true, message: "注册成功，请登录" };

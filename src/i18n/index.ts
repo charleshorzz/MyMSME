@@ -33,6 +33,7 @@ const resources = {
       save: "保存",
       edit: "编辑",
       delete: "删除",
+      email: "电子邮箱",
 
       // Enterprise levels
       micro: "微型企业",
@@ -201,6 +202,44 @@ const resources = {
       companyJoinedDescription: "您已成功加入公司",
       companyNotFound: "未找到公司",
       joinCompanyError: "加入公司时出错",
+
+      // 支付网关
+      paymentGateway: "支付网关",
+      paymentDescription: "请完成注册费用支付以继续",
+      registrationFee: "注册费用",
+      selectPaymentMethod: "请选择支付方式",
+      registrationFeeAmount: "公司注册费",
+      duitnowDescription: "使用DuitNow支付，安全便捷",
+      payNow: "立即支付",
+      processing: "处理中...",
+      paymentComplete: "支付完成",
+      paymentCompleteDescription: "您的注册费用已成功支付",
+      continueToStatus: "继续查看注册状态",
+      paymentSuccessful: "支付成功",
+      paymentSuccessfulDescription: "您的注册费用已成功支付",
+
+      // 公司状态页面
+      companyRegistrationStatus: "公司注册状态",
+      companyRegistrationStatusDescription: "查看您的公司注册申请状态",
+      companyStatusPending: "您的公司注册申请正在处理中",
+      companyStatusApproved: "您的公司注册申请已获批准",
+      companyStatusRejected: "您的公司注册申请已被拒绝",
+      companyStatusReview: "您的公司注册申请正在审核中",
+      companyStatusUnknown: "未知状态",
+      statusPending: "待处理",
+      statusApproved: "已批准",
+      statusRejected: "已拒绝",
+      statusReview: "审核中",
+      registrationNumber: "注册号码",
+      rejectionReason: "拒绝原因",
+      noReasonProvided: "未提供原因",
+      estimatedProcessingTime: "预计处理时间",
+      processingTimeMessage: "处理您的申请通常需要1-3个工作日",
+      approvalMessage: "恭喜！",
+      approvalInstructions: "您现在可以访问您的企业仪表板",
+      backToHome: "返回首页",
+      goToDashboard: "前往仪表板",
+      companyNotFoundDescription: "未找到与您的账户关联的公司信息",
     },
   },
   en: {
@@ -230,6 +269,7 @@ const resources = {
       save: "Save",
       edit: "Edit",
       delete: "Delete",
+      email: "Email",
 
       // Enterprise levels
       micro: "Micro Enterprise",
@@ -429,6 +469,54 @@ const resources = {
       companyJoinedDescription: "You have successfully joined the company",
       companyNotFound: "Company not found",
       joinCompanyError: "Error joining company",
+
+      // 支付网关
+      paymentGateway: "Payment Gateway",
+      paymentDescription:
+        "Please complete the registration fee payment to continue",
+      registrationFee: "Registration Fee",
+      selectPaymentMethod: "Please select a payment method",
+      registrationFeeAmount: "Company Registration Fee",
+      duitnowDescription: "Pay with DuitNow, secure and convenient",
+      payNow: "Pay Now",
+      processing: "Processing...",
+      paymentComplete: "Payment Complete",
+      paymentCompleteDescription:
+        "Your registration fee has been successfully paid",
+      continueToStatus: "Continue to Registration Status",
+      paymentSuccessful: "Payment Successful",
+      paymentSuccessfulDescription:
+        "Your registration fee has been successfully paid",
+
+      // 公司状态页面
+      companyRegistrationStatus: "Company Registration Status",
+      companyRegistrationStatusDescription:
+        "View the status of your company registration application",
+      companyStatusPending:
+        "Your company registration application is being processed",
+      companyStatusApproved:
+        "Your company registration application has been approved",
+      companyStatusRejected:
+        "Your company registration application has been rejected",
+      companyStatusReview:
+        "Your company registration application is under review",
+      companyStatusUnknown: "Unknown status",
+      statusPending: "Pending",
+      statusApproved: "Approved",
+      statusRejected: "Rejected",
+      statusReview: "Under Review",
+      registrationNumber: "Registration Number",
+      rejectionReason: "Reason for Rejection",
+      noReasonProvided: "No reason provided",
+      estimatedProcessingTime: "Estimated Processing Time",
+      processingTimeMessage:
+        "Processing your application typically takes 1-3 business days",
+      approvalMessage: "Congratulations!",
+      approvalInstructions: "You can now access your enterprise dashboard",
+      backToHome: "Back to Home",
+      goToDashboard: "Go to Dashboard",
+      companyNotFoundDescription:
+        "No company information found associated with your account",
     },
   },
   ms: {
@@ -458,6 +546,7 @@ const resources = {
       save: "Simpan",
       edit: "Edit",
       delete: "Padam",
+      email: "E-mel",
 
       // Enterprise levels
       micro: "Perusahaan Mikro",
@@ -619,6 +708,55 @@ const resources = {
       companyJoinedDescription: "Anda telah berjaya menyertai syarikat",
       companyNotFound: "Syarikat tidak dijumpai",
       joinCompanyError: "Ralat menyertai syarikat",
+
+      // 支付网关
+      paymentGateway: "Gerbang Pembayaran",
+      paymentDescription:
+        "Sila selesaikan pembayaran yuran pendaftaran untuk meneruskan",
+      registrationFee: "Yuran Pendaftaran",
+      selectPaymentMethod: "Sila pilih kaedah pembayaran",
+      registrationFeeAmount: "Yuran Pendaftaran Syarikat",
+      duitnowDescription: "Bayar dengan DuitNow, selamat dan mudah",
+      payNow: "Bayar Sekarang",
+      processing: "Memproses...",
+      paymentComplete: "Pembayaran Selesai",
+      paymentCompleteDescription:
+        "Yuran pendaftaran anda telah berjaya dibayar",
+      continueToStatus: "Teruskan ke Status Pendaftaran",
+      paymentSuccessful: "Pembayaran Berjaya",
+      paymentSuccessfulDescription:
+        "Yuran pendaftaran anda telah berjaya dibayar",
+
+      // 公司状态页面
+      companyRegistrationStatus: "Status Pendaftaran Syarikat",
+      companyRegistrationStatusDescription:
+        "Lihat status permohonan pendaftaran syarikat anda",
+      companyStatusPending:
+        "Permohonan pendaftaran syarikat anda sedang diproses",
+      companyStatusApproved:
+        "Permohonan pendaftaran syarikat anda telah diluluskan",
+      companyStatusRejected:
+        "Permohonan pendaftaran syarikat anda telah ditolak",
+      companyStatusReview:
+        "Permohonan pendaftaran syarikat anda sedang dalam semakan",
+      companyStatusUnknown: "Status tidak diketahui",
+      statusPending: "Tertunda",
+      statusApproved: "Diluluskan",
+      statusRejected: "Ditolak",
+      statusReview: "Dalam Semakan",
+      registrationNumber: "Nombor Pendaftaran",
+      rejectionReason: "Sebab Penolakan",
+      noReasonProvided: "Tiada sebab diberikan",
+      estimatedProcessingTime: "Anggaran Masa Pemprosesan",
+      processingTimeMessage:
+        "Pemprosesan permohonan anda biasanya mengambil masa 1-3 hari bekerja",
+      approvalMessage: "Tahniah!",
+      approvalInstructions:
+        "Anda kini boleh mengakses papan pemuka perusahaan anda",
+      backToHome: "Kembali ke Laman Utama",
+      goToDashboard: "Pergi ke Papan Pemuka",
+      companyNotFoundDescription:
+        "Tiada maklumat syarikat yang ditemui berkaitan dengan akaun anda",
     },
   },
 };

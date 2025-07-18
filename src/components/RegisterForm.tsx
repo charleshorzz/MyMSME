@@ -26,8 +26,6 @@ export function RegisterForm({ onRegistered, onBack }: RegisterFormProps) {
     contact: "",
     password: "",
     confirmPassword: "",
-    companyName: "", // 添加公司名称
-    businessAddress: "", // 添加公司地址
   });
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -47,9 +45,7 @@ export function RegisterForm({ onRegistered, onBack }: RegisterFormProps) {
       !form.fullName ||
       !form.email ||
       !form.contact ||
-      !form.password ||
-      !form.companyName ||
-      !form.businessAddress
+      !form.password
     ) {
       toast({
         title: t("error"),
@@ -71,15 +67,13 @@ export function RegisterForm({ onRegistered, onBack }: RegisterFormProps) {
     setIsLoading(true);
 
     try {
-      // 使用 AuthContext 的 register 方法，同时传递公司信息
+      // 使用 AuthContext 的 register 方法
       const result = await register({
         icNo: form.icNo,
         fullName: form.fullName,
         email: form.email,
         contact: form.contact,
         password: form.password,
-        companyName: form.companyName,
-        businessAddress: form.businessAddress,
       });
 
       if (result.success) {
@@ -126,15 +120,11 @@ export function RegisterForm({ onRegistered, onBack }: RegisterFormProps) {
         <Card className="shadow-large glass-effect">
           <CardHeader className="text-center">
             <CardTitle className="text-lg">
-              {t("personalAndCompanyInfo")}
+              {t("personalInformation")}
             </CardTitle>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
-              {/* 个人信息部分 */}
-              <h3 className="font-medium text-sm text-muted-foreground mb-2">
-                {t("personalInfo")}
-              </h3>
               <div className="space-y-2">
                 <Label htmlFor="icNo">{t("icNumber")}</Label>
                 <Input
@@ -178,35 +168,6 @@ export function RegisterForm({ onRegistered, onBack }: RegisterFormProps) {
                 />
               </div>
 
-              {/* 公司信息部分 */}
-              <h3 className="font-medium text-sm text-muted-foreground mt-6 mb-2">
-                {t("companyInfo")}
-              </h3>
-              <div className="space-y-2">
-                <Label htmlFor="companyName">{t("companyName")}</Label>
-                <Input
-                  id="companyName"
-                  name="companyName"
-                  value={form.companyName}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="businessAddress">{t("companyAddress")}</Label>
-                <Input
-                  id="businessAddress"
-                  name="businessAddress"
-                  value={form.businessAddress}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-
-              {/* 密码部分 */}
-              <h3 className="font-medium text-sm text-muted-foreground mt-6 mb-2">
-                {t("securityInfo")}
-              </h3>
               <div className="space-y-2">
                 <Label htmlFor="password">{t("password")}</Label>
                 <div className="relative">
