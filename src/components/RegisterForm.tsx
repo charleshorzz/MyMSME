@@ -130,7 +130,7 @@ export function RegisterForm({ onRegistered, onBack }: RegisterFormProps) {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="fullName">{t("fullName")}</Label>
+                <Label htmlFor="fullName">{t("Full Name")}</Label>
                 <Input
                   id="fullName"
                   name="fullName"
@@ -140,7 +140,7 @@ export function RegisterForm({ onRegistered, onBack }: RegisterFormProps) {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="email">{t("email")}</Label>
+                <Label htmlFor="email">{t("Email")}</Label>
                 <Input
                   id="email"
                   name="email"
@@ -151,7 +151,7 @@ export function RegisterForm({ onRegistered, onBack }: RegisterFormProps) {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="contact">{t("contact")}</Label>
+                <Label htmlFor="contact">{t("Contact")}</Label>
                 <Input
                   id="contact"
                   name="contact"
@@ -162,7 +162,7 @@ export function RegisterForm({ onRegistered, onBack }: RegisterFormProps) {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="password">{t("password")}</Label>
+                <Label htmlFor="password">{t("Password")}</Label>
                 <div className="relative">
                   <Input
                     id="password"
@@ -189,7 +189,7 @@ export function RegisterForm({ onRegistered, onBack }: RegisterFormProps) {
                 </div>
               </div>
               <div className="space-y-2">
-                <Label htmlFor="confirmPassword">{t("confirmPassword")}</Label>
+                <Label htmlFor="confirmPassword">{t("Confirm Password")}</Label>
                 <div className="relative">
                   <Input
                     id="confirmPassword"
