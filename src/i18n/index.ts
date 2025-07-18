@@ -154,7 +154,7 @@ const resources = {
       demoInstructions: "Demo Instructions:",
       microEnterpriseDemo: "IC 010101010101: Micro Enterprise",
       smallEnterpriseDemo: "IC 020202020202: Small Enterprise",
-      mediumEnterpriseDemo: "IC 03030303003: Medium Enterprise",
+      mediumEnterpriseDemo: "IC 030303030303: Medium Enterprise",
       useAnyPassword: "Use any password Qwerty123! to log in",
 
       // Registration

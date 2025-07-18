@@ -16,6 +16,8 @@ export function Layout({ userLevel = "micro", children }: LayoutProps) {
     if (path.includes("/profile")) return "profile";
     if (path.includes("/documents")) return "documents";
     if (path.includes("/e-invoice")) return "e-invoice";
+    if (path.includes("/marketplace")) return "marketplace";
+    if (path.includes("/analytics")) return "analytics";
     return "services";
   };
 

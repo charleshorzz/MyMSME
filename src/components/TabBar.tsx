@@ -9,6 +9,7 @@ import {
   User,
   LayoutGrid,
   Receipt,
+  BarChart3,
 } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 
@@ -41,6 +42,9 @@ export function TabBar({
         break;
       case "marketplace":
         navigate(`/${userLevel}-enterprise/marketplace`);
+        break;
+      case "analytics":
+        navigate(`/${userLevel}-enterprise/analytics`);
         break;
       default:
         navigate(`/${userLevel}-enterprise`);
@@ -78,8 +82,14 @@ export function TabBar({
           </TabsTrigger>
           <TabsTrigger value="marketplace" className="flex items-center gap-1">
             <Receipt className="h-4 w-4" />
-            <span>{t("marketplace")}</span>
+            <span>{t("Marketplace")}</span>
           </TabsTrigger>
+          {userLevel === "small" && (
+            <TabsTrigger value="analytics" className="flex items-center gap-1">
+              <BarChart3 className="h-4 w-4" />
+              <span>{t("Analytics") || "Analytics"}</span>
+            </TabsTrigger>
+          )}
         </TabsList>
       </Tabs>
 
