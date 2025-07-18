@@ -1,4 +1,5 @@
 import InvoiceDetails from "@/components/InvoiceDetails";
+import { companyService } from "@/services/companyService";
 import { sub } from "date-fns";
 import i18n from "i18next";
 import { Search } from "lucide-react";
@@ -436,6 +437,10 @@ const resources = {
       creditAnalysis: "Credit Analysis",
 
       // Services
+      financeCategory: "Finance",
+      analyticsCategory: "Analytics",
+      monthlyInvoices: "Monthly Invoices",
+      paidRate: "Paid Rate",
       accountingServices: "Accounting Services",
       recordKeeping: "Record Keeping",
       invoiceManagement: "Invoice Management",
@@ -584,6 +589,88 @@ const resources = {
     totalValue: "Total Value",
     sent: "Sent",
     invoiced: "Invoiced",
+
+    //Profile
+    personalInformation: "Personal Information",
+    manageYourProfile: "Manage Your Profile",
+    companyInformation: "Company Information",
+    bankInformation: "Bank Information",
+    fullName: "Full Name",
+    phone: "Contact Number",
+    companyName: "Company Name",
+    communicationPreferences: "Communication Preferences",
+    emailNotifications: "Email Notifications",
+    smsNotifications: "SMS Notifications",
+    pushNotifications: "Push Notifications",
+    marketingEmails: "Marketing Emails",
+    saveChanges: "Save Changes",
+    savePreferences: "Save Preferences",
+    position: "Position",
+    owner: "Owner",
+    businessId: "Business ID",
+    address: "Address",
+    industry: "Industry",
+    retail: "Retail",
+    email: "Email",
+    viewAllInvoices: "View All Invoices",
+    manageInvoices: "Manage Your Invoices",
+
+    //Documents
+    manageYourDocuments: "Manage Your Business Documents",
+    searchDocuments: "Search Documents...",
+    uploadDocument: "Upload Document",
+    allDocuments: "All Documents",
+    recentlyViewed: "Recently Viewed",
+    contract: "Contract",
+    taxDoc: "Tax Document",
+    handbook: "Handbook",
+    plan: "Business Plan",
+      // Categories
+      paymentCategory: "Payment",
+      accountingCategory: "Accounting",
+      documentsCategory: "Documents",
+      marketingCategory: "Marketing",
+      managementCategory: "Management",
+      operationsCategory: "Operations",
+      automationCategory: "Automation",
+      infrastructureCategory: "Infrastructure",
+
+      // Services page
+      qrPaymentGateway: "QR Payment Gateway",
+      acceptPaymentsViaQr: "Accept payments via QR code",
+      basicBusinessRecord: "Basic Business Record Management",
+      digitalSsmCertificate: "Digital SSM Certificate and Documents",
+      automatedEInvoicing: "Automated E-Invoicing System",
+      professionalWebsiteTemplates: "Professional Website Templates",
+      fullAccountingBookkeeping: "Full Accounting and Bookkeeping",
+      aiPoweredCreditScore: "AI-Powered Credit Score Analysis",
+
+      // Enterprise services
+      enterpriseCrm: "Enterprise CRM",
+      advancedCustomerRelationship: "Advanced Customer Relationship Management",
+      businessIntelligence: "Business Intelligence",
+      advancedAnalyticsReporting: "Advanced Analytics and Reporting",
+      projectManagementSuite: "Project Management Suite",
+      comprehensiveProjectManagement: "Comprehensive Project Management",
+      multiLocationManagement: "Multi-Location Management",
+        manageMultipleBusinessLocations: "Manage Multiple Business Locations",
+        businessAutomation: "Business Automation",
+        workflowAutomationIntegration: "Workflow Automation Integration",
+        enterpriseCloudBackup: "Enterprise Cloud Backup",
+        secureCloudStorageBackup: "Secure Cloud Storage and Backup",
+
+        monthlyInvoices: "Monthly Invoices",
+        paidRate: "Paid Rate",
+
+        digitalTransformation: "Digital Transformation Solutions for Modern Businesses",
+
+        ecommercePlatform: "E-commerce Platform Development and Integration",
+
+        mobileAppDevelopment: "Mobile App Development for Enhanced Customer Engagement",
+
+        planning: "Strategic Planning and Consultation Services",
+
+        excellentCreditRating: "Excellent Credit Rating for Business Growth Opportunities",
 
     },
   },

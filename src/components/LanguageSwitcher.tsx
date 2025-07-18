@@ -14,7 +14,11 @@ const languages = [
   { code: "zh", name: "中文", flag: "🇨🇳" },
 ];
 
-export function LanguageSwitcher() {
+interface LanguageSwitcherProps {
+  compact?: boolean;
+}
+
+export function LanguageSwitcher({ compact = false }: LanguageSwitcherProps) {
   const { i18n } = useTranslation();
 
   const handleLanguageChange = (languageCode: string) => {
@@ -27,11 +31,22 @@ export function LanguageSwitcher() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="sm" className="gap-2">
-          <span className="hidden sm:inline">
-            {currentLanguage.flag} {currentLanguage.name}
-          </span>
-          <span className="sm:hidden">{currentLanguage.flag}</span>
+        <Button 
+          variant="outline" 
+          size={compact ? "icon" : "sm"} 
+          className={compact ? "h-9 w-9" : "gap-2"}
+          title={compact ? currentLanguage.name : undefined}
+        >
+          {compact ? (
+            <span>{currentLanguage.flag}</span>
+          ) : (
+            <>
+              <span className="hidden sm:inline">
+                {currentLanguage.flag} {currentLanguage.name}
+              </span>
+              <span className="sm:hidden">{currentLanguage.flag}</span>
+            </>
+          )}
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
