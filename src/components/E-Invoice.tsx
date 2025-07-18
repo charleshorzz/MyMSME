@@ -306,9 +306,9 @@ const EInvoicePage = ({ userLevel = "micro" }: EInvoicePageProps) => {
         {/* Filters */}
         <Card>
           <CardHeader>
-            <CardTitle className="text-lg">{t("filter")}</CardTitle>
+            <CardTitle className="text-lg">{t("Filter")}</CardTitle>
             <CardDescription>
-              {t("filterBy")}
+              {t("Filter By")}
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -318,7 +318,7 @@ const EInvoicePage = ({ userLevel = "micro" }: EInvoicePageProps) => {
                 <div className="relative">
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                   <Input
-                    placeholder={t("searchInvoices")}
+                    placeholder={t("Search Invoices")}
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     className="pl-10"
@@ -327,13 +327,13 @@ const EInvoicePage = ({ userLevel = "micro" }: EInvoicePageProps) => {
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-medium">{t("transactionType")}</label>
+                <label className="text-sm font-medium">{t("Transaction Type")}</label>
                 <Select value={transactionType} onValueChange={(value: TransactionType) => setTransactionType(value)}>
                   <SelectTrigger>
                     <SelectValue placeholder="Select type" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="all">{t("allTypes")}</SelectItem>
+                    <SelectItem value="all">{t("All Types")}</SelectItem>
                     <SelectItem value="B2B">B2B (Business to Business)</SelectItem>
                     <SelectItem value="B2C">B2C (Business to Consumer)</SelectItem>
                     <SelectItem value="B2G">B2G (Business to Government)</SelectItem>
@@ -356,16 +356,16 @@ const EInvoicePage = ({ userLevel = "micro" }: EInvoicePageProps) => {
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-medium">{t("status")}</label>
+                <label className="text-sm font-medium">{t("Status")}</label>
                 <Select value={statusFilter} onValueChange={(value: StatusType) => setStatusFilter(value)}>
                   <SelectTrigger>
                     <SelectValue placeholder="Select status" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="all">{t("allStatuses")}</SelectItem>
-                    <SelectItem value="paid">{t("paid")}</SelectItem>
-                    <SelectItem value="pending">{t("pending")}</SelectItem>
-                    <SelectItem value="overdue">{t("overdue")}</SelectItem>
+                    <SelectItem value="all">{t("All Status")}</SelectItem>
+                    <SelectItem value="paid">{t("Paid")}</SelectItem>
+                    <SelectItem value="pending">{t("Pending")}</SelectItem>
+                    <SelectItem value="overdue">{t("Overdue")}</SelectItem>
                   </SelectContent>
                 </Select>
               </div>

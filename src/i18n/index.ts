@@ -404,6 +404,18 @@ const resources = {
       pleaseEnterIC: "请输入您的身份证号码",
       pleaseEnterPassword: "请输入您的密码",
 
+      // Registration
+      dontHaveAccount: "没有账户？",
+      registerHere: "在此注册",
+      registerSuccess: "注册成功",
+      registrationSuccess: "注册成功！",
+      registrationFailed: "注册失败",
+      emailVerificationRequired: "请检查您的电子邮件并点击验证链接以完成注册",
+      pleaseCompleteForm: "请填写所有必填字段",
+      passwordsDoNotMatch: "密码不匹配",
+      success: "成功",
+      understood: "我明白了",
+
       // Common
       welcome: "欢迎",
       to: "到",
@@ -759,6 +771,14 @@ ms: {
 
       dontHaveAccount: "Tiada akaun?",
       registerHere: "Daftar di sini",
+      registerSuccess: "Pendaftaran Berjaya",
+      registrationSuccess: "Pendaftaran Berjaya!",
+      registrationFailed: "Pendaftaran Gagal",
+      emailVerificationRequired: "Sila semak e-mel anda dan klik pautan pengesahan untuk melengkapkan pendaftaran",
+      pleaseCompleteForm: "Sila lengkapkan semua medan yang diperlukan",
+      passwordsDoNotMatch: "Kata laluan tidak sepadan",
+      success: "Berjaya",
+      understood: "Saya Faham",
 
       ekycVerified: "eKYC Disahkan",
       secureIdentityVerification: "Pengesahan identiti selamat",
@@ -1089,7 +1109,7 @@ ms: {
 
 i18n.use(initReactI18next).init({
   resources,
-  lng: "zh", // Default language
+  lng: "en", // Default language
   fallbackLng: "en",
   interpolation: {
     escapeValue: false,

@@ -36,6 +36,7 @@ import {
   Smartphone,
   Brain,
 } from "lucide-react";
+import { EnterpriseAnalyticsSummary } from "@/components/EnterpriseAnalyticsSummary";
 
 export function MediumEnterpriseDashboard() {
   const { t } = useTranslation();
@@ -1058,27 +1059,7 @@ export function MediumEnterpriseDashboard() {
         </TabsContent>
 
         <TabsContent value="analytics" className="space-y-6">
-          <Card className="shadow-soft">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <BarChart3 className="h-5 w-5" />
-                {t("advancedAnalyticsDashboard")}
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-muted-foreground mb-4">
-                {t("realTimeBusinessIntelligenceAndPredictiveAnalytics")}
-              </p>
-              <div className="h-80 flex items-center justify-center border-2 border-dashed border-muted-foreground/25 rounded-lg">
-                <div className="text-center">
-                  <BarChart3 className="h-12 w-12 mx-auto mb-4 text-muted-foreground" />
-                  <p className="text-muted-foreground">
-                    {t("advancedAnalyticsChartsAndVisualizations")}
-                  </p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+          <EnterpriseAnalyticsSummary />
         </TabsContent>
 
         <TabsContent value="services" className="space-y-6">

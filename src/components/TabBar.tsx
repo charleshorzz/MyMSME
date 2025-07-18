@@ -84,7 +84,7 @@ export function TabBar({
             <Receipt className="h-4 w-4" />
             <span>{t("Marketplace")}</span>
           </TabsTrigger>
-          {userLevel === "small" && (
+          {(userLevel === "small" || userLevel === "medium") && (
             <TabsTrigger value="analytics" className="flex items-center gap-1">
               <BarChart3 className="h-4 w-4" />
               <span>{t("Analytics") || "Analytics"}</span>

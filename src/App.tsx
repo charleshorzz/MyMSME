@@ -15,6 +15,7 @@ import { MediumEnterpriseDashboard } from "@/components/dashboard/MediumEnterpri
 import EInvoicePage from "@/components/E-Invoice";
 import { MarketplacePage } from "./components/Marketplace";
 import { FoodStallAnalytics } from "./components/FoodStallAnalytics";
+import { EnterpriseAnalytics } from "./components/EnterpriseAnalytics";
 import { Layout } from "@/components/Layout";
 import CompanyStatusPage from "./pages/CompanyStatusPage";
 
@@ -169,6 +170,15 @@ const App = () => (
               element={
                 <Layout userLevel="medium">
                   <MarketplacePage userLevel="medium" />
+                </Layout>
+              }
+            />
+
+            <Route
+              path="/medium-enterprise/analytics"
+              element={
+                <Layout userLevel="medium">
+                  <EnterpriseAnalytics />
                 </Layout>
               }
             />
