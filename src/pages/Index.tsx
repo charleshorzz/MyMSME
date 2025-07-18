@@ -12,6 +12,7 @@ import { ServicesPage } from "@/components/ServicesPage";
 import { Button } from "@/components/ui/button";
 import { Home, Briefcase, FileText, User, LogOut } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 type PageType = "dashboard" | "services" | "documents" | "profile";
 
@@ -19,10 +20,11 @@ type PageType = "dashboard" | "services" | "documents" | "profile";
 const PAGE_STORAGE_KEY = "mymsme-current-page";
 
 const Index = () => {
-  // Use the auth context
-  const { user, login, logout, isAuthenticated } = useAuth();
+  // 使用认证上下文
+  const { user, logout, isAuthenticated, isLoading } = useAuth();
+  const navigate = useNavigate();
 
-  // Initialize page state from localStorage if available
+  // 从 localStorage 初始化页面状态
   const [currentPage, setCurrentPage] = useState<PageType>(() => {
     const savedPage = localStorage.getItem(PAGE_STORAGE_KEY);
     return (savedPage as PageType) || "dashboard";
@@ -33,28 +35,54 @@ const Index = () => {
   const [showFaceVerification, setShowFaceVerification] = useState(false);
   const [showCameraTest, setShowCameraTest] = useState(false);
 
-  // Save current page to localStorage whenever it changes
+  // 当页面变化时保存到 localStorage
   useEffect(() => {
     localStorage.setItem(PAGE_STORAGE_KEY, currentPage);
   }, [currentPage]);
 
-  const handleLogin = (
-    icNumber: string,
-    enterpriseLevel: "micro" | "small" | "medium"
-  ) => {
-    login(icNumber, enterpriseLevel);
-  };
+  // 根据用户级别路由到相应页面
+  useEffect(() => {
+    if (isAuthenticated && user) {
+      if (user.level === null) {
+        // 如果用户已登录但没有设置企业级别，重定向到公司设置页面
+        navigate("/company-setup");
+      } else if (user.level === "micro") {
+        navigate("/micro-enterprise");
+      } else if (user.level === "small") {
+        navigate("/small-enterprise");
+      } else if (user.level === "medium") {
+        navigate("/medium-enterprise");
+      }
+    }
+  }, [isAuthenticated, user, navigate]);
 
-  const handleLogout = () => {
-    logout();
+  const handleLogout = async () => {
+    await logout();
+    // 登出后返回主页（登录页）
+    navigate("/");
     setCurrentPage("dashboard");
     localStorage.setItem(PAGE_STORAGE_KEY, "dashboard");
   };
 
+  // 显示加载状态
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-white">
+        <div className="text-center">
+          <div className="mx-auto h-16 w-16 rounded-2xl gradient-primary flex items-center justify-center shadow-large animate-pulse">
+            <span className="text-white font-bold text-2xl">M</span>
+          </div>
+          <p className="mt-4 text-muted-foreground">加载中...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // 未登录状态下显示登录/注册相关页面
   if (!isAuthenticated) {
     if (showCameraTest) {
       return (
-        <div className="min-h-screen bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5">
+        <div className="min-h-screen bg-white">
           <div className="container mx-auto p-4">
             <Button
               variant="outline"
@@ -64,7 +92,7 @@ const Index = () => {
               }}
               className="mb-4"
             >
-              Back to Login
+              返回登录
             </Button>
             <CameraTest />
           </div>
@@ -74,14 +102,14 @@ const Index = () => {
 
     if (showFaceVerification) {
       return (
-        <div>
+        <div className="bg-white min-h-screen">
           <FaceVerificationForm
             onBack={() => {
               setShowFaceVerification(false);
               setShowVerification(true);
             }}
             onComplete={() => {
-              // Handle completion - for now, go back to login
+              // 完成后返回登录
               setShowFaceVerification(false);
               setShowVerification(false);
               setShowRegister(false);
@@ -89,7 +117,7 @@ const Index = () => {
           />
           <div className="fixed bottom-4 right-4">
             <Button variant="outline" onClick={() => setShowCameraTest(true)}>
-              Try Camera Test
+              测试相机
             </Button>
           </div>
         </div>
@@ -120,114 +148,121 @@ const Index = () => {
         />
       );
     }
+    // 默认显示登录页面
+    return <LoginForm onShowRegister={() => setShowRegister(true)} />;
+  }
+
+  // 这段代码不应该被执行到，因为已登录用户会被重定向
+  // 但为了类型安全和防止意外情况，保留这部分代码
+  return renderDefaultDashboard();
+
+  // 渲染默认仪表盘的辅助函数
+  function renderDefaultDashboard() {
+    // 确保用户已定义
+    if (!user) {
+      return null;
+    }
+
+    const renderDashboard = () => {
+      switch (user.enterpriseLevel) {
+        case "small":
+          return <SmallEnterpriseDashboard />;
+        case "medium":
+          return <MediumEnterpriseDashboard />;
+        default:
+          return <MicroEnterpriseDashboard />;
+      }
+    };
+
+    const renderContent = () => {
+      switch (currentPage) {
+        case "services":
+          return <ServicesPage userLevel={user.enterpriseLevel} />;
+        case "documents":
+          return (
+            <div className="text-center py-20">
+              <FileText className="h-16 w-16 mx-auto mb-4 text-muted-foreground" />
+              <h2 className="text-2xl font-bold mb-2">文档</h2>
+              <p className="text-muted-foreground">您的业务文档和证书</p>
+            </div>
+          );
+        case "profile":
+          return (
+            <div className="text-center py-20">
+              <User className="h-16 w-16 mx-auto mb-4 text-muted-foreground" />
+              <h2 className="text-2xl font-bold mb-2">个人资料</h2>
+              <p className="text-muted-foreground">
+                {user.fullName}
+                <br />
+                {user.isKycVerified ? "已通过 KYC 验证" : "未通过 KYC 验证"}
+                <br />
+                {user.email}
+                <br />
+                {user.contact}
+              </p>
+            </div>
+          );
+        default:
+          return renderDashboard();
+      }
+    };
+
     return (
-      <LoginForm
-        onLogin={handleLogin}
-        onShowRegister={() => setShowRegister(true)}
-      />
+      <Layout userLevel={user.enterpriseLevel}>
+        {/* 导航标签 */}
+        <div className="flex flex-wrap gap-2 mb-6 p-1 bg-muted rounded-lg">
+          <Button
+            variant={currentPage === "dashboard" ? "default" : "ghost"}
+            size="sm"
+            onClick={() => setCurrentPage("dashboard")}
+            className="flex items-center gap-2"
+          >
+            <Home className="h-4 w-4" />
+            仪表盘
+          </Button>
+          <Button
+            variant={currentPage === "services" ? "default" : "ghost"}
+            size="sm"
+            onClick={() => setCurrentPage("services")}
+            className="flex items-center gap-2"
+          >
+            <Briefcase className="h-4 w-4" />
+            服务
+          </Button>
+          <Button
+            variant={currentPage === "documents" ? "default" : "ghost"}
+            size="sm"
+            onClick={() => setCurrentPage("documents")}
+            className="flex items-center gap-2"
+          >
+            <FileText className="h-4 w-4" />
+            文档
+          </Button>
+          <Button
+            variant={currentPage === "profile" ? "default" : "ghost"}
+            size="sm"
+            onClick={() => setCurrentPage("profile")}
+            className="flex items-center gap-2"
+          >
+            <User className="h-4 w-4" />
+            个人资料
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={handleLogout}
+            className="flex items-center gap-2 ml-auto text-destructive hover:text-destructive"
+          >
+            <LogOut className="h-4 w-4" />
+            登出
+          </Button>
+        </div>
+
+        {/* 内容 */}
+        {renderContent()}
+      </Layout>
     );
   }
-
-  // Ensure user is defined before accessing its properties
-  if (!user) {
-    return null; // This shouldn't happen due to isAuthenticated check, but TypeScript needs it
-  }
-
-  const renderDashboard = () => {
-    switch (user.enterpriseLevel) {
-      case "small":
-        return <SmallEnterpriseDashboard />;
-      case "medium":
-        return <MediumEnterpriseDashboard />;
-      default:
-        return <MicroEnterpriseDashboard />;
-    }
-  };
-
-  const renderContent = () => {
-    switch (currentPage) {
-      case "services":
-        return <ServicesPage userLevel={user.enterpriseLevel} />;
-      case "documents":
-        return (
-          <div className="text-center py-20">
-            <FileText className="h-16 w-16 mx-auto mb-4 text-muted-foreground" />
-            <h2 className="text-2xl font-bold mb-2">Documents</h2>
-            <p className="text-muted-foreground">
-              Your business documents and certificates
-            </p>
-          </div>
-        );
-      case "profile":
-        return (
-          <div className="text-center py-20">
-            <User className="h-16 w-16 mx-auto mb-4 text-muted-foreground" />
-            <h2 className="text-2xl font-bold mb-2">Profile</h2>
-            <p className="text-muted-foreground">
-              Manage your account settings
-            </p>
-          </div>
-        );
-      default:
-        return renderDashboard();
-    }
-  };
-
-  return (
-    <Layout userLevel={user.enterpriseLevel}>
-      {/* Navigation Tabs */}
-      <div className="flex flex-wrap gap-2 mb-6 p-1 bg-muted rounded-lg">
-        <Button
-          variant={currentPage === "dashboard" ? "default" : "ghost"}
-          size="sm"
-          onClick={() => setCurrentPage("dashboard")}
-          className="flex items-center gap-2"
-        >
-          <Home className="h-4 w-4" />
-          Dashboard
-        </Button>
-        <Button
-          variant={currentPage === "services" ? "default" : "ghost"}
-          size="sm"
-          onClick={() => setCurrentPage("services")}
-          className="flex items-center gap-2"
-        >
-          <Briefcase className="h-4 w-4" />
-          Services
-        </Button>
-        <Button
-          variant={currentPage === "documents" ? "default" : "ghost"}
-          size="sm"
-          onClick={() => setCurrentPage("documents")}
-          className="flex items-center gap-2"
-        >
-          <FileText className="h-4 w-4" />
-          Documents
-        </Button>
-        <Button
-          variant={currentPage === "profile" ? "default" : "ghost"}
-          size="sm"
-          onClick={() => setCurrentPage("profile")}
-          className="flex items-center gap-2"
-        >
-          <User className="h-4 w-4" />
-          Profile
-        </Button>
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={handleLogout}
-          className="flex items-center gap-2 ml-auto text-destructive hover:text-destructive"
-        >
-          <LogOut className="h-4 w-4" />
-          Logout
-        </Button>
-      </div>
-
-      {/* Content */}
-      {renderContent()}
-    </Layout>
-  );
 };
 
 export default Index;
