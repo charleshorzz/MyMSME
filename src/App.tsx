@@ -13,6 +13,7 @@ import { MicroEnterpriseDashboard } from "@/components/dashboard/MicroEnterprise
 import { SmallEnterpriseDashboard } from "@/components/dashboard/SmallEnterpriseDashboard";
 import { MediumEnterpriseDashboard } from "@/components/dashboard/MediumEnterpriseDashboard";
 import EInvoicePage from "@/components/E-Invoice";
+import { MarketplacePage } from "./components/Marketplace";
 import { Layout } from "@/components/Layout";
 import CompanyStatusPage from "./pages/CompanyStatusPage";
 
@@ -67,6 +68,15 @@ const App = () => (
               }
             />
 
+            <Route
+              path="/micro-enterprise/marketplace"
+              element={
+                <Layout userLevel="micro">
+                  <MarketplacePage userLevel="micro" />
+                </Layout>
+              }
+            />
+
             {/* 小型企业路由 */}
             <Route
               path="/small-enterprise"
@@ -101,6 +111,15 @@ const App = () => (
               }
             />
 
+            <Route
+              path="/small-enterprise/marketplace"
+              element={
+                <Layout userLevel="small">
+                  <MarketplacePage userLevel="small" />
+                </Layout>
+              }
+            />
+
             {/* 中型企业路由 */}
             <Route
               path="/medium-enterprise"
@@ -131,6 +150,15 @@ const App = () => (
               element={
                 <Layout userLevel="medium">
                   <EInvoicePage userLevel="medium" />
+                </Layout>
+              }
+            />
+
+            <Route
+              path="/medium-enterprise/marketplace"
+              element={
+                <Layout userLevel="medium">
+                  <MarketplacePage userLevel="medium" />
                 </Layout>
               }
             />
