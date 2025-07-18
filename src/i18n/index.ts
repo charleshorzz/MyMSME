@@ -241,6 +241,37 @@ const resources = {
       backToHome: "返回首页",
       goToDashboard: "前往仪表板",
       companyNotFoundDescription: "未找到与您的账户关联的公司信息",
+
+      companyFound: "找到公司",
+      companyFoundDescription: "我们发现与您的身份证号码关联的公司",
+      companyDetails: "公司详情",
+      verifyInformation: "请验证信息",
+      verifyCompanyInformationDescription: "请确认以下信息是否属于您的公司",
+      ssmCertificate: "SSM证书号码",
+      bankAccount: "银行账户",
+      confirmThisIsMyCompany: "确认这是我的公司",
+      thisIsNotMyCompany: "这不是我的公司",
+      companyConfirmed: "公司已确认",
+      companyConfirmationSuccess: "您已成功确认公司所有权",
+      companyConfirmationError: "确认公司所有权时出错",
+      companyRejected: "已拒绝公司",
+      companyRejectionSuccess: "您已拒绝此公司的所有权",
+
+      // 公司确认相关
+      companyFoundByIC: "找到公司",
+      companyFoundByICDescription: "我们发现与您的身份证号码关联的公司",
+      companyDetailsHeader: "公司详情",
+      verifyCompanyInfo: "请验证信息",
+      verifyCompanyInfoDescription: "请确认以下信息是否属于您的公司",
+      ssmCertificateNumber: "SSM证书号码",
+      bankAccountInfo: "银行账户",
+      confirmCompanyOwnership: "确认这是我的公司",
+      rejectCompanyOwnership: "这不是我的公司",
+      companyOwnershipConfirmed: "公司已确认",
+      companyOwnershipSuccess: "您已成功确认公司所有权",
+      companyOwnershipError: "确认公司所有权时出错",
+      companyOwnershipRejected: "已拒绝公司",
+      companyOwnershipRejectionSuccess: "您已拒绝此公司的所有权",
     },
   },
   en: {
@@ -492,6 +523,44 @@ const resources = {
         "Mobile App Development for Enhanced Customer Engagement",
 
       planning: "Strategic Planning and Consultation Services",
+
+      companyFound: "Company Found",
+      companyFoundDescription:
+        "We found a company associated with your IC number",
+      companyDetails: "Company Details",
+      verifyInformation: "Verify Information",
+      verifyCompanyInformationDescription:
+        "Please confirm if the following information belongs to your company",
+      ssmCertificate: "SSM Certificate Number",
+      bankAccount: "Bank Account",
+      confirmThisIsMyCompany: "Confirm This Is My Company",
+      thisIsNotMyCompany: "This Is Not My Company",
+      companyConfirmed: "Company Confirmed",
+      companyConfirmationSuccess:
+        "You have successfully confirmed company ownership",
+      companyConfirmationError: "Error confirming company ownership",
+      companyRejected: "Company Rejected",
+      companyRejectionSuccess: "You have rejected ownership of this company",
+
+      // 公司确认相关
+      companyFoundByIC: "Company Found",
+      companyFoundByICDescription:
+        "We found a company associated with your IC number",
+      companyDetailsHeader: "Company Details",
+      verifyCompanyInfo: "Verify Information",
+      verifyCompanyInfoDescription:
+        "Please confirm if the following information belongs to your company",
+      ssmCertificateNumber: "SSM Certificate Number",
+      bankAccountInfo: "Bank Account",
+      confirmCompanyOwnership: "Confirm This Is My Company",
+      rejectCompanyOwnership: "This Is Not My Company",
+      companyOwnershipConfirmed: "Company Confirmed",
+      companyOwnershipSuccess:
+        "You have successfully confirmed company ownership",
+      companyOwnershipError: "Error confirming company ownership",
+      companyOwnershipRejected: "Company Rejected",
+      companyOwnershipRejectionSuccess:
+        "You have rejected ownership of this company",
     },
   },
   ms: {
@@ -732,6 +801,44 @@ const resources = {
       goToDashboard: "Pergi ke Papan Pemuka",
       companyNotFoundDescription:
         "Tiada maklumat syarikat yang ditemui berkaitan dengan akaun anda",
+
+      companyFound: "Syarikat Dijumpai",
+      companyFoundDescription:
+        "Kami menemui syarikat yang dikaitkan dengan nombor IC anda",
+      companyDetails: "Butiran Syarikat",
+      verifyInformation: "Sahkan Maklumat",
+      verifyCompanyInformationDescription:
+        "Sila sahkan jika maklumat berikut adalah milik syarikat anda",
+      ssmCertificate: "Nombor Sijil SSM",
+      bankAccount: "Akaun Bank",
+      confirmThisIsMyCompany: "Sahkan Ini Adalah Syarikat Saya",
+      thisIsNotMyCompany: "Ini Bukan Syarikat Saya",
+      companyConfirmed: "Syarikat Disahkan",
+      companyConfirmationSuccess:
+        "Anda telah berjaya mengesahkan pemilikan syarikat",
+      companyConfirmationError: "Ralat mengesahkan pemilikan syarikat",
+      companyRejected: "Syarikat Ditolak",
+      companyRejectionSuccess: "Anda telah menolak pemilikan syarikat ini",
+
+      // 公司确认相关
+      companyFoundByIC: "Syarikat Dijumpai",
+      companyFoundByICDescription:
+        "Kami menemui syarikat yang dikaitkan dengan nombor IC anda",
+      companyDetailsHeader: "Butiran Syarikat",
+      verifyCompanyInfo: "Sahkan Maklumat",
+      verifyCompanyInfoDescription:
+        "Sila sahkan jika maklumat berikut adalah milik syarikat anda",
+      ssmCertificateNumber: "Nombor Sijil SSM",
+      bankAccountInfo: "Akaun Bank",
+      confirmCompanyOwnership: "Sahkan Ini Adalah Syarikat Saya",
+      rejectCompanyOwnership: "Ini Bukan Syarikat Saya",
+      companyOwnershipConfirmed: "Syarikat Disahkan",
+      companyOwnershipSuccess:
+        "Anda telah berjaya mengesahkan pemilikan syarikat",
+      companyOwnershipError: "Ralat mengesahkan pemilikan syarikat",
+      companyOwnershipRejected: "Syarikat Ditolak",
+      companyOwnershipRejectionSuccess:
+        "Anda telah menolak pemilikan syarikat ini",
     },
   },
 };

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
@@ -33,10 +33,14 @@ import {
   CreditCard,
   CheckCircle,
   ArrowLeft,
+  AlertCircle,
+  FileText,
+  CreditCard as BankCard,
 } from "lucide-react";
 import CompanyStatusPage from "./CompanyStatusPage";
 import { Separator } from "@/components/ui/separator";
 import { Company } from "@/lib/supabase";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 export default function CompanySetupPage() {
   const { t } = useTranslation();
@@ -48,6 +52,19 @@ export default function CompanySetupPage() {
   const [showPayment, setShowPayment] = useState(false);
   const [paymentComplete, setPaymentComplete] = useState(false);
   const [createdCompany, setCreatedCompany] = useState<Company | null>(null);
+
+  // 添加用于显示找到的公司信息的状态
+  const [foundCompany, setFoundCompany] = useState<{
+    businessName: string;
+    businessType: string;
+    businessAddress: string;
+    ssmCertificateNo: string;
+    bankName: string;
+    bankAccountNo: string;
+  } | null>(null);
+
+  // 添加用于显示公司确认UI的状态
+  const [showCompanyConfirmation, setShowCompanyConfirmation] = useState(false);
 
   // 创建公司的表单状态
   const [newCompany, setNewCompany] = useState({
@@ -318,9 +335,169 @@ export default function CompanySetupPage() {
     );
   };
 
+  // 检查用户IC号码是否有关联公司
+  useEffect(() => {
+    if (user && user.icNumber === "151515151515") {
+      // 硬编码示例公司数据
+      setFoundCompany({
+        businessName: "ABC Trading Sdn Bhd",
+        businessType: "Retail",
+        businessAddress: "123 Jalan Merdeka, 50000 Kuala Lumpur",
+        ssmCertificateNo: "SSM12345678",
+        bankName: "Maybank",
+        bankAccountNo: "1234567890",
+      });
+      setShowCompanyConfirmation(true);
+    }
+  }, [user]);
+
+  // 处理确认公司所有权
+  const handleConfirmCompany = async () => {
+    if (!user || !foundCompany) return;
+
+    setIsSubmitting(true);
+    try {
+      // 在实际应用中，这里应该更新用户与公司的关联
+      // 这里简化为模拟关联过程
+      await updateUserProfile({ level: "micro" });
+
+      toast({
+        title: t("companyOwnershipConfirmed"),
+        description: t("companyOwnershipSuccess"),
+      });
+
+      // 重定向到相应的企业仪表板
+      navigate(`/micro-enterprise`);
+    } catch (error) {
+      console.error("确认公司失败:", error);
+      toast({
+        title: t("error"),
+        description: t("companyOwnershipError"),
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  // 处理拒绝公司所有权
+  const handleRejectCompany = () => {
+    setFoundCompany(null);
+    setShowCompanyConfirmation(false);
+    toast({
+      title: t("companyOwnershipRejected"),
+      description: t("companyOwnershipRejectionSuccess"),
+    });
+  };
+
+  // 渲染公司确认UI
+  const renderCompanyConfirmation = () => {
+    if (!foundCompany) return null;
+
+    return (
+      <div className="min-h-screen bg-white flex items-center justify-center p-4">
+        <div className="max-w-md w-full">
+          <div className="text-center mb-8">
+            <h1 className="text-3xl font-bold mb-2">{t("companyFoundByIC")}</h1>
+            <p className="text-muted-foreground">
+              {t("companyFoundByICDescription")}
+            </p>
+          </div>
+
+          <Card className="shadow-soft">
+            <CardHeader>
+              <CardTitle>{foundCompany.businessName}</CardTitle>
+              <CardDescription>{t("companyDetailsHeader")}</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <Alert>
+                <AlertCircle className="h-4 w-4" />
+                <AlertTitle>{t("verifyCompanyInfo")}</AlertTitle>
+                <AlertDescription>
+                  {t("verifyCompanyInfoDescription")}
+                </AlertDescription>
+              </Alert>
+
+              <div className="space-y-4">
+                <div className="flex items-start gap-3">
+                  <Building className="h-5 w-5 text-muted-foreground mt-0.5" />
+                  <div>
+                    <p className="font-medium">{t("businessType")}</p>
+                    <p className="text-muted-foreground">
+                      {foundCompany.businessType}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <FileText className="h-5 w-5 text-muted-foreground mt-0.5" />
+                  <div>
+                    <p className="font-medium">{t("ssmCertificateNumber")}</p>
+                    <p className="text-muted-foreground">
+                      {foundCompany.ssmCertificateNo}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <BankCard className="h-5 w-5 text-muted-foreground mt-0.5" />
+                  <div>
+                    <p className="font-medium">{t("bankAccountInfo")}</p>
+                    <p className="text-muted-foreground">
+                      {foundCompany.bankName}: {foundCompany.bankAccountNo}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <Building className="h-5 w-5 text-muted-foreground mt-0.5" />
+                  <div>
+                    <p className="font-medium">{t("companyAddress")}</p>
+                    <p className="text-muted-foreground">
+                      {foundCompany.businessAddress}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+            <CardFooter className="flex flex-col gap-3">
+              <Button
+                className="w-full"
+                onClick={handleConfirmCompany}
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? (
+                  <span className="flex items-center">
+                    <span className="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent"></span>
+                    {t("processing")}
+                  </span>
+                ) : (
+                  t("confirmCompanyOwnership")
+                )}
+              </Button>
+              <Button
+                variant="outline"
+                className="w-full"
+                onClick={handleRejectCompany}
+                disabled={isSubmitting}
+              >
+                {t("rejectCompanyOwnership")}
+              </Button>
+            </CardFooter>
+          </Card>
+        </div>
+      </div>
+    );
+  };
+
   // 如果显示支付页面，则渲染支付页面
   if (showPayment) {
     return renderPaymentPage();
+  }
+
+  // 如果显示公司确认UI，则渲染公司确认UI
+  if (showCompanyConfirmation) {
+    return renderCompanyConfirmation();
   }
 
   return (
