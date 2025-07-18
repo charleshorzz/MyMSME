@@ -1,73 +1,139 @@
-# Welcome to your Lovable project
+# MyMSME - Enterprise Digital Gateway
 
-## Project info
+[![React](https://img.shields.io/badge/React-18.3.1-blue)](https://reactjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.5.3-blue)](https://www.typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/Vite-5.4.1-brightgreen)](https://vitejs.dev/)
+[![Supabase](https://img.shields.io/badge/Supabase-2.51.0-green)](https://supabase.io/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4.11-blueviolet)](https://tailwindcss.com/)
+[![i18next](https://img.shields.io/badge/i18next-25.3.2-orange)](https://www.i18next.com/)
 
-**URL**: https://lovable.dev/projects/e8dd3f25-8f92-443e-9247-da87c849e29e
+MyMSME is a comprehensive platform providing digital solutions for Micro, Small, and Medium Enterprises (MSME), helping businesses achieve digital transformation, improve operational efficiency, and streamline business processes.
 
-## How can I edit this code?
+## Features
 
-There are several ways of editing your application.
+- **Multi-language Support**: Chinese, English, and Malay
+- **Enterprise Level Classification**: Differentiated features for micro, small, and medium enterprises
+- **E-Invoice System**: Create, manage, and track electronic invoices
+- **QR Code Payment**: Integrated with DuitNow payment gateway
+- **Company Registration & Management**: Streamlined business registration and approval process
+- **User Authentication**: Support for IC number and company ID login
+- **Responsive Design**: Compatible with various device sizes
 
-**Use Lovable**
+## Quick Start
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/e8dd3f25-8f92-443e-9247-da87c849e29e) and start prompting.
+### Prerequisites
 
-Changes made via Lovable will be committed automatically to this repo.
+- Node.js 18.x or higher
+- npm 9.x or higher
+- Supabase account and project
 
-**Use your preferred IDE**
+### Installation Steps
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+1. Clone the repository
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+```bash
+git clone https://github.com/yourusername/MyMSME.git
+cd MyMSME/enterprise-digital-gateway
+```
 
-Follow these steps:
+2. Install dependencies
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+```bash
+npm install
+```
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+3. Create environment variables file
 
-# Step 3: Install the necessary dependencies.
-npm i
+Create a `.env` file based on the `.env.sample` template:
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+```bash
+cp .env.sample .env
+```
+
+Then edit the `.env` file with your Supabase project credentials.
+
+4. Start the development server
+
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+The application will run at http://localhost:5173.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## Environment Variables
 
-**Use GitHub Codespaces**
+Create a `.env` file with the following variables:
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+```
+# Supabase Configuration
+VITE_SUPABASE_URL=your_supabase_url
+VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
 
-## What technologies are used for this project?
+# Application Configuration
+VITE_APP_NAME=MyMSME
+VITE_APP_VERSION=1.0.0
+```
 
-This project is built with:
+## Project Structure
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+```
+enterprise-digital-gateway/
+├── public/              # Static assets
+├── src/
+│   ├── components/      # UI components
+│   │   ├── ui/          # Base UI components (shadcn)
+│   │   └── ...          # Business components
+│   ├── contexts/        # React contexts
+│   ├── hooks/           # Custom hooks
+│   ├── i18n/            # Internationalization resources
+│   ├── lib/             # Utility libraries
+│   ├── pages/           # Page components
+│   ├── services/        # API services
+│   └── utils/           # Utility functions
+├── .env.sample          # Environment variables example
+├── index.html           # HTML entry
+├── package.json         # Dependencies configuration
+├── tailwind.config.ts   # Tailwind configuration
+└── vite.config.ts       # Vite configuration
+```
 
-## How can I deploy this project?
+## Tech Stack
 
-Simply open [Lovable](https://lovable.dev/projects/e8dd3f25-8f92-443e-9247-da87c849e29e) and click on Share -> Publish.
+- **Frontend Framework**: React 18
+- **Language**: TypeScript
+- **Build Tool**: Vite
+- **UI Components**: shadcn/ui + Tailwind CSS
+- **State Management**: React Context API
+- **Routing**: React Router
+- **Backend Services**: Supabase (Authentication, Database)
+- **Internationalization**: i18next
+- **Charts**: Recharts
+- **Form Handling**: React Hook Form + Zod
 
-## Can I connect a custom domain to my Lovable project?
+## Database Models
 
-Yes, you can!
+Main data models include:
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+- **User**: User information including IC number, name, contact details, etc.
+- **Company**: Company information including business name, type, address, etc.
+- **Transaction**: Transaction records
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+## Deployment
+
+The project can be deployed to Vercel, Netlify, or any static site hosting service:
+
+```bash
+# Build for production
+npm run build
+
+# Preview build
+npm run preview
+```
+
+## Demo Accounts
+
+The system includes several demo accounts to test different enterprise levels:
+
+- **Micro Enterprise**: IC 010101010101, Password Qwerty123!
+- **Small Enterprise**: IC 020202020202, Password Qwerty123!
+- **Medium Enterprise**: IC 030303030303, Password Qwerty123!
