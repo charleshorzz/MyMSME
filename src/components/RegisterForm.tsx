@@ -77,11 +77,13 @@ export function RegisterForm({ onRegistered, onBack }: RegisterFormProps) {
       });
 
       if (result.success) {
+        // Instead of showing success dialog, navigate to eKYC verification
         toast({
-          title: t("success"),
-          description: t("registrationSuccess"),
+          title: t("registerSuccess"),
+          description: "Please complete eKYC verification to activate your account",
+          duration: 3000,
         });
-        if (onRegistered) onRegistered();
+        if (onRegistered) onRegistered(); // This should navigate to verification page
       } else {
         toast({
           title: t("error"),
