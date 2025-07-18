@@ -84,7 +84,7 @@ export function MicroEnterpriseDashboard() {
         <h1 className="text-3xl font-bold mb-2">
           {t("welcome")} {t("to")} {t("micro")}
         </h1>
-        <p className="text-muted-foreground">{t("description")}</p>
+        <p className="text-muted-foreground">{t("basicToolsEstablished")}</p>
       </div>
 
       <div className="grid gap-6 md:grid-cols-2">
@@ -130,7 +130,7 @@ export function MicroEnterpriseDashboard() {
                 <Clock className="h-4 w-4 text-primary" />
                 <span className="text-sm">{t("recentActivity")}</span>
               </div>
-              <span className="font-semibold">3 transactions</span>
+              <span className="font-semibold">3 {t("transactions")}</span>
             </div>
           </CardContent>
         </Card>
@@ -177,16 +177,16 @@ export function MicroEnterpriseDashboard() {
         <CardContent className="space-y-4">
           <div className="text-center py-6 border-2 border-dashed border-muted-foreground/25 rounded-lg">
             <Receipt className="h-12 w-12 mx-auto mb-4 text-muted-foreground" />
-            <h3 className="font-semibold mb-2">{t("Manage Invoices")}</h3>
+            <h3 className="font-semibold mb-2">{t("manageInvoices")}</h3>
             <p className="text-sm text-muted-foreground mb-4">
-              {t("Create And Manage Invoices")}
+              {t("createAndManageInvoices")}
             </p>
             <div className="flex gap-2 justify-center">
               <Button size="sm" onClick={() => navigate("/micro-enterprise/e-invoice?create=true")}>
-                {t("Create Invoice")}
+                {t("createInvoice")}
               </Button>
               <Button variant="outline" size="sm" onClick={() => navigate("/micro-enterprise/e-invoice")}>
-                {t("View Invoices")}
+                {t("viewInvoices")}
               </Button>
             </div>
           </div>

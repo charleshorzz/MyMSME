@@ -244,7 +244,7 @@ export function SmallEnterpriseDashboard() {
                 {t("createNewInvoice")}
               </Button>
               <Button variant="outline" className="flex-1" onClick={() => navigate("/small-enterprise/e-invoice")}>
-                {t("View All Invoices")}
+                {t("viewAllInvoices")}
               </Button>
             </div>
           </CardContent>

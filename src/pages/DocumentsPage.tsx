@@ -25,7 +25,7 @@ export default function DocumentsPage() {
     {
       id: 3,
       name: "税务报表-2023.xlsx",
-      type: "tax",
+      type: "taxDoc",
       date: "2023-12-28",
       size: "780 KB",
     },
