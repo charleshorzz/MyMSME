@@ -288,20 +288,32 @@ const resources = {
       Received: "已接收",
       received: "已接收",
       filter: "筛选",
+      Filter: "筛选",
       filterBy: "按交易类型、角色、状态或搜索词筛选发票。",
+      "Filter By": "按交易类型、角色、状态或搜索词筛选发票",
       search: "搜索",
       Search: "搜索...",
+      searchInvoices: "搜索发票",
+      "Search Invoices": "搜索发票",
       allTypes: "所有类型",
+      "All Types": "所有类型",
+      transactionType: "交易类型",
+      "Transaction Type": "交易类型",
 
       role: "角色",
       allRoles: "所有角色",
       senderOutgoing: "发送者（发出）",
       receiverIncoming: "接收者（接收）",
       status: "状态",
+      Status: "状态",
       allStatuses: "所有状态",
+      "All Status": "所有状态",
       paid: "已支付",
+      Paid: "已支付",
       pending: "待处理",
+      Pending: "待处理",
       overdue: "逾期",
+      Overdue: "逾期",
       createInvoice: "创建发票",
       viewInvoices: "查看发票",
       invoiceId: "发票 ID",
@@ -312,7 +324,6 @@ const resources = {
       sender: "发送者",
       dueDate: "到期日期",
       noInvoicesFound: "未找到发票。请创建新发票。",
-      searchInvoices: "搜索发票",
 
       // QR Invoice
       invoiceDetails: "发票详情",
@@ -343,7 +354,6 @@ const resources = {
       // Create Invoice
       createNewInvoice: "创建新发票",
       InvoiceDetails: "发票详情",
-      transactionType: "交易类型",
       select: "选择",
       orEnterManually: "或手动输入",
       b2cManualInvoice: "B2C 手动发票",
@@ -393,6 +403,8 @@ const resources = {
       viewAllInvoices: "查看所有发票",
       manageInvoices: "管理您的发票",
       createAndManageInvoices: "创建和管理发票",
+
+      
     },
   },
   en: {
@@ -659,9 +671,6 @@ const resources = {
         enterpriseCloudBackup: "Enterprise Cloud Backup",
         secureCloudStorageBackup: "Secure Cloud Storage and Backup",
 
-        monthlyInvoices: "Monthly Invoices",
-        paidRate: "Paid Rate",
-
         digitalTransformation: "Digital Transformation Solutions for Modern Businesses",
 
         ecommercePlatform: "E-commerce Platform Development and Integration",
@@ -672,119 +681,8 @@ const resources = {
 
         excellentCreditRating: "Excellent Credit Rating for Business Growth Opportunities",
 
-    },
-  },
-  zh: {
-    translation: {
-      // Navigation
-      dashboard: "仪表盘",
-      services: "服务",
-      documents: "文档",
-      profile: "个人资料",
-      logout: "退出登录",
-      notifications: "通知",
 
-      // Authentication
-      login: "登录",
-      register: "注册",
-      icNumber: "身份证号码",
-      password: "密码",
-      confirmPassword: "确认密码",
-      rememberMe: "记住我",
-      forgotPassword: "忘记密码？",
-      loginSuccess: "登录成功",
-      welcomeBack: "欢迎回到MyMSME",
-      loginFailed: "登录失败",
-      invalidCredentials: "无效的凭据。请重试。",
-      error: "错误",
-      pleaseEnterIC: "请输入您的身份证号码",
-      pleaseEnterPassword: "请输入您的密码",
-
-      // Registration
-      dontHaveAccount: "没有账户？",
-      registerHere: "在此注册",
-      registerSuccess: "注册成功",
-      registrationSuccess: "注册成功！",
-      registrationFailed: "注册失败",
-      emailVerificationRequired: "请检查您的电子邮件并点击验证链接以完成注册",
-      pleaseCompleteForm: "请填写所有必填字段",
-      passwordsDoNotMatch: "密码不匹配",
-      success: "成功",
-      understood: "我明白了",
-
-      // Common
-      welcome: "欢迎",
-      to: "到",
-      loading: "加载中...",
-      submit: "提交",
-      cancel: "取消",
-      save: "保存",
-      edit: "编辑",
-      delete: "删除",
-      download: "下载",
-      name: "名称",
-      type: "类型",
-      date: "日期",
-      size: "大小",
-      actions: "操作",
-
-      // Enterprise levels
-      micro: "微型企业",
-      small: "小型企业",
-      medium: "中型企业",
-
-      // Features
-      qrCode: "二维码",
-      transactions: "交易",
-      eInvoicing: "电子发票",
-      websiteBuilder: "网站构建器",
-      ssmCertificate: "SSM证书",
-      creditAnalysis: "信用分析",
-
-      // Services
-      accountingServices: "会计服务",
-      recordKeeping: "记录保存",
-      invoiceManagement: "发票管理",
-      websiteHosting: "网站托管",
-      aiAdvisor: "AI顾问",
-      basicReports: "基本报告",
-      acceptDigitalPayments: "接受数字支付",
-      simpleBusinessReports: "查看简单业务报告",
-      trackBusinessRecords: "跟踪您的业务记录",
-      fullAccountingSuite: "完整会计套件",
-      automatedInvoicing: "自动发票",
-      professionalHosting: "专业托管",
-      aiPoweredInsights: "AI驱动的洞察",
-
-      // App info
-      appName: "MyMSME",
-      appTagline: "您的数字商业平台",
-      description: "通过马来西亚的数字金融生态系统简化您的业务运营",
-
-      // Dashboard
-      quickStats: "快速统计",
-      todaysSales: "今日销售",
-      recentActivity: "最近活动",
-      viewAll: "查看全部",
-      getStarted: "开始使用",
-      downloadQrCode: "下载二维码",
-      shareQrCode: "分享此二维码以进行快速支付和业务识别",
-
-      // Business metrics
-      monthlyRevenue: "月收入",
-      invoicesSent: "已发送发票",
-      activeClients: "活跃客户",
-      growthRate: "增长率",
-      thisMonth: "本月",
-      newClients: "新客户",
-      yearOverYear: "同比",
-
-      documentManagement: "Document Management",
-      multiSiteManagement: "Multi-Site Management",
-      manageMultipleLocations: "Manage Multiple Locations",
-      automationSuite: "Automation Suite",
-      resourcePlanning: "Resource Planning",
-      erpIntegration: "ERP Integration",
+      appDescription: "Streamline your business operations through Malaysia's digital financial ecosystem",
 
       advancedAnalytics: "Advanced Analytics",
       realtimeBusinessIntelligence: "Real-time business intelligence and predictive analytics",
@@ -793,11 +691,7 @@ const resources = {
       personalInfo: "Personal Info",
       companyInfo: "Company Info",
       paymentGateway: "Payment Gateway",
-      fullName: "Full Name",
       contact: "Contact Number",
-      email: "Email",
-      phone: "Phone Number",
-      companyName: "Company Name",
       companyReg: "Company Registration No.",
       companyAddress: "Company Address",
       bankName: "Bank Name",
@@ -823,87 +717,6 @@ const resources = {
       retake: "Retake",
       faceVerificationStart: "Click the camera icon to start",
       faceVerificationComplete: "Face verification successful",
-
-      // Categories
-      paymentCategory: "Payment",
-      accountingCategory: "Accounting",
-      documentsCategory: "Documents",
-      marketingCategory: "Marketing",
-      financeCategory: "Finance",
-      managementCategory: "Management",
-      analyticsCategory: "Analytics",
-      operationsCategory: "Operations",
-      automationCategory: "Automation",
-      infrastructureCategory: "Infrastructure",
-
-      // Services page
-      qrPaymentGateway: "QR Payment Gateway",
-      acceptPaymentsViaQr: "Accept digital payments via QR code",
-      basicBusinessRecord: "Basic business record management",
-      digitalSsmCertificate: "Digital SSM certificate and documents",
-      automatedEInvoicing: "Automated e-invoicing system",
-      professionalWebsiteTemplates: "Professional website templates",
-      fullAccountingBookkeeping: "Full accounting and bookkeeping",
-      aiPoweredCreditScore: "AI-powered credit score analysis",
-
-      // Enterprise services
-      enterpriseCrm: "Enterprise CRM",
-      advancedCustomerRelationship: "Advanced customer relationship management",
-      businessIntelligence: "Business Intelligence",
-      advancedAnalyticsReporting: "Advanced analytics and reporting",
-      projectManagementSuite: "Project Management Suite",
-      comprehensiveProjectManagement: "Comprehensive project management",
-      multiLocationManagement: "Multi-Location Management",
-      manageMultipleBusinessLocations: "Manage multiple business locations",
-      businessAutomation: "Business Automation",
-      workflowAutomationIntegration: "Workflow automation integration",
-      enterpriseCloudBackup: "Enterprise Cloud Backup",
-      secureCloudStorageBackup: "Secure cloud storage and backup",
-
-      monthlyInvoices: "Monthly Invoices",
-      paidRate: "Paid Rate",
-      digitalTransformation: "Digital Transformation",
-      ecommercePlatform: "E-commerce Platform",
-      mobileAppDevelopment: "Mobile App Development",
-      planning: "Planning",
-      exellentCreditRating: "Excellent Credit Rating",
-      businessLoanApplication: "Business Loan Application",
-      centralizedDocumentSystem: "Centralized Document System",
-      contracts: "Contracts",
-      invoice: "Invoice",
-      reports: "Reports",
-      legal: "Legal Documents",
-      headquarters: "Headquarters",
-      branchOffice: "Branch Office",
-      workflowAutomation: "Workflow Automation",
-      invoiceProcessing: "Invoice Processing",
-      inventoryManagement: "Inventory Management",
-      customerOnboarding: "Customer Onboarding",
-      setup: "Setup",
-      humanResources: "Human Resources",
-      supplyChain: "Supply Chain",
-      financialManagement: "Financial Management",
-      integrated: "Integrated",
-      advancedAnalyticsDashboard: "Advanced Analytics Dashboard",
-      realTimeBusinessIntelligenceAndPredictiveAnalytics: "Real-time Business Intelligence and Predictive Analytics",
-      advancedAnalyticsChartsAndVisualizations: "Advanced Analytics Charts and Visualizations",
-      month: "Month",
-      download: "Download",
-      name: "Name",
-      type: "Type",
-      date: "Date",
-      size: "Size",
-      actions: "Actions",
-
-      // E-invoice
-      manageYourElectronicInvoices: "Manage Your Electronic Invoices -- Manual Payments and QR Generation",
-      createManualInvoice: "Create Manual Invoice",
-      exportAll: "Export All",
-      manualInvoice: "Manual Invoice",
-      totalInvoices: "Total Invoices",
-      totalValue: "Total Value",
-      sent: "Sent",
-      invoiced: "Invoiced",
 
       Received: "Received",
       received: "received",
@@ -937,7 +750,6 @@ const resources = {
       // QR Invoice
       invoiceDetails: "Invoice Details",
       customer: "Customer",
-      qrPaymentInvoice: "QR Payment Invoice",
       auttomaticallyGeneratedInvoice: "Invoice automatically generated from QR code payment",
       export: "Export",
       totalTransactions: "Total Transactions",
@@ -983,39 +795,10 @@ const resources = {
       searchBusinesses: "Search Businesses",
       marketplace: "Marketplace",
 
-      // Documents
-      manageYourDocuments: "Manage Your Business Documents",
-      searchDocuments: "Search documents...",
-      uploadDocument: "Upload Document",
-      allDocuments: "All Documents",
-      recentlyViewed: "Recently Viewed",
-      contract: "Contract",
-      taxDoc: "Tax Document",
-      handbook: "Handbook",
-      plan: "Business Plan",
-
-      // Profile Page
-      manageYourProfile: "Manage Your Personal and Company Information",
-      personalInformation: "Personal Information",
-      companyInformation: "Company Information",
-      communicationPreferences: "Communication Preferences",
-      saveChanges: "Save Changes",
-      savePreferences: "Save Preferences",
-      position: "Position",
-      owner: "Owner",
-      businessId: "Business ID",
-      address: "Address",
-      industry: "Industry",
-      retail: "Retail",
-      emailNotifications: "Email Notifications",
-      smsNotifications: "SMS Notifications",
-      marketingEmails: "Marketing Emails",
-      viewAllInvoices: "View All Invoices",
-      manageInvoices: "Manage Invoices",
       createAndManageInvoices: "Create and Manage Invoices",
     },
   },
-ms: {
+  ms: {
     translation: {
       // Navigation
       dashboard: "Papan Pemuka",
@@ -1111,14 +894,6 @@ ms: {
 
       dontHaveAccount: "Tiada akaun?",
       registerHere: "Daftar di sini",
-      registerSuccess: "Pendaftaran Berjaya",
-      registrationSuccess: "Pendaftaran Berjaya!",
-      registrationFailed: "Pendaftaran Gagal",
-      emailVerificationRequired: "Sila semak e-mel anda dan klik pautan pengesahan untuk melengkapkan pendaftaran",
-      pleaseCompleteForm: "Sila lengkapkan semua medan yang diperlukan",
-      passwordsDoNotMatch: "Kata laluan tidak sepadan",
-      success: "Berjaya",
-      understood: "Saya Faham",
 
       ekycVerified: "eKYC Disahkan",
       secureIdentityVerification: "Pengesahan identiti selamat",
@@ -1423,14 +1198,15 @@ ms: {
       viewAllInvoices: "Lihat Semua Invois",
       manageInvoices: "Urus Invois Anda",
       createAndManageInvoices: "Cipta dan Urus Invois",
-}
-}
+      
+    },
+  },
 };
 
 i18n.use(initReactI18next).init({
   resources,
   lng: "en", // Default language
-  fallbackLng: "en",
+  fallbackLng: "zh",
   interpolation: {
     escapeValue: false,
   },
