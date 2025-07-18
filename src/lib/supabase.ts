@@ -39,6 +39,9 @@ export type Company = {
   createdAt: string;
   updatedAt: string;
   level: "micro" | "small" | "medium" | null;
+  password?: string; // 添加公司密码字段，用于公司登录
+  status?: "pending" | "approved" | "rejected" | "review"; // 公司状态
+  rejectionReason?: string; // 拒绝原因
 };
 
 export type BusinessCode = {

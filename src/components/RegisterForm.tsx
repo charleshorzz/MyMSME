@@ -80,7 +80,7 @@ export function RegisterForm({ onRegistered, onBack }: RegisterFormProps) {
         // Instead of showing success dialog, navigate to eKYC verification
         toast({
           title: t("registerSuccess"),
-          description: "Please complete eKYC verification to activate your account",
+          description: t("ekycVerificationRequired"),
           duration: 3000,
         });
         if (onRegistered) onRegistered(); // This should navigate to verification page
@@ -111,14 +111,18 @@ export function RegisterForm({ onRegistered, onBack }: RegisterFormProps) {
           </div>
           <div className="space-y-2">
             <h1 className="text-3xl font-bold">{t("register")}</h1>
-            <p className="text-muted-foreground">{t("appTagline")}</p>
+            <p className="text-muted-foreground">{t("createYourAccount")}</p>
             <div className="flex justify-center">
               <LanguageSwitcher />
             </div>
           </div>
         </div>
         <Card className="shadow-large glass-effect">
-          <CardHeader className="text-center"></CardHeader>
+          <CardHeader className="text-center">
+            <CardTitle className="text-lg">
+              {t("personalInformation")}
+            </CardTitle>
+          </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-2">
@@ -163,6 +167,7 @@ export function RegisterForm({ onRegistered, onBack }: RegisterFormProps) {
                   required
                 />
               </div>
+
               <div className="space-y-2">
                 <Label htmlFor="password">{t("password")}</Label>
                 <div className="relative">
@@ -217,6 +222,7 @@ export function RegisterForm({ onRegistered, onBack }: RegisterFormProps) {
                   </Button>
                 </div>
               </div>
+
               <div className="flex mt-6 justify-between">
                 <Button type="button" variant="outline" onClick={onBack}>
                   {t("back") || "返回"}
