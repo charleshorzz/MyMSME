@@ -1,4 +1,5 @@
 import InvoiceDetails from "@/components/InvoiceDetails";
+import { companyService } from "@/services/companyService";
 import { sub } from "date-fns";
 import i18n from "i18next";
 import { Search } from "lucide-react";
@@ -285,6 +286,10 @@ const resources = {
       creditAnalysis: "Credit Analysis",
 
       // Services
+      financeCategory: "Finance",
+      analyticsCategory: "Analytics",
+      monthlyInvoices: "Monthly Invoices",
+      paidRate: "Paid Rate",
       accountingServices: "Accounting Services",
       recordKeeping: "Record Keeping",
       invoiceManagement: "Invoice Management",
@@ -410,113 +415,83 @@ const resources = {
       enterPassword: "Enter your password",
       pleaseEnterCompanyID: "Please enter company ID",
 
-      // 注册相关
-      createYourAccount: "Create Your Account",
-      personalAndCompanyInfo: "Personal & Company Information",
-      securityInfo: "Security Information",
-
-      // 错误信息
-      error: "Error",
-
-      // 公司信息
+      //Profile
+      personalInformation: "Personal Information",
+      manageYourProfile: "Manage Your Profile",
+      companyInformation: "Company Information",
+      bankInformation: "Bank Information",
+      fullName: "Full Name",
+      phone: "Contact Number",
       companyName: "Company Name",
-      companyAddress: "Company Address",
-      ekycVerificationRequired:
-        "Please complete eKYC verification to activate your account",
-
-      // 公司设置页面
-      companySetup: "Company Setup",
-      companySetupDescription:
-        "Setup your company information or join an existing company",
-      setupYourCompany: "Setup Your Company",
-      createOrJoinCompany: "Create a new company or join an existing one",
-      createCompanyTab: "Create Company",
-      joinCompanyTab: "Join Company",
-
-      // 公司表单字段
-      nameType: "Name Type",
-      selectNameType: "Select name type",
-      personalName: "Personal Name",
-      tradeName: "Trade Name",
-      businessType: "Business Type",
-      registrationPeriod: "Registration Period (Years)",
-      contactNumber: "Contact Number (+60)",
-      businessCode: "Business Code",
-      enterBusinessCode: "Enter business code",
-      businessStartDate: "Business Start Date",
-      incentiveSource: "Incentive Source",
-      businessInfo: "Business Information",
-
-      // 按钮和状态
-      creating: "Creating...",
-      createCompany: "Create Company",
-      joining: "Joining...",
-      joinCompany: "Join Company",
-
-      // 公司代码
-      companyCode: "Company Code",
-      enterCompanyCode: "Enter company code",
-      companyCodeDescription:
-        "Ask your company administrator for the company code",
+      communicationPreferences: "Communication Preferences",
+      emailNotifications: "Email Notifications",
+      smsNotifications: "SMS Notifications",
+      pushNotifications: "Push Notifications",
+      marketingEmails: "Marketing Emails",
+      saveChanges: "Save Changes",
+      savePreferences: "Save Preferences",
       position: "Position",
-      yourPositionInCompany: "Your position in the company",
+      owner: "Owner",
+      businessId: "Business ID",
+      address: "Address",
+      industry: "Industry",
+      retail: "Retail",
+      viewAllInvoices: "View All Invoices",
+      manageInvoices: "Manage Your Invoices",
 
-      // 成功和错误消息
-      companyCreated: "Company Created",
-      companyCreatedDescription: "Your company has been successfully created",
-      createCompanyError: "Error creating company",
-      companyJoined: "Company Joined",
-      companyJoinedDescription: "You have successfully joined the company",
-      companyNotFound: "Company not found",
-      joinCompanyError: "Error joining company",
+      //Documents
+      manageYourDocuments: "Manage Your Business Documents",
+      searchDocuments: "Search Documents...",
+      uploadDocument: "Upload Document",
+      allDocuments: "All Documents",
+      recentlyViewed: "Recently Viewed",
+      contract: "Contract",
+      taxDoc: "Tax Document",
+      handbook: "Handbook",
+      plan: "Business Plan",
+      // Categories
+      paymentCategory: "Payment",
+      accountingCategory: "Accounting",
+      documentsCategory: "Documents",
+      marketingCategory: "Marketing",
+      managementCategory: "Management",
+      operationsCategory: "Operations",
+      automationCategory: "Automation",
+      infrastructureCategory: "Infrastructure",
 
-      // 支付网关
-      paymentGateway: "Payment Gateway",
-      paymentDescription:
-        "Please complete the registration fee payment to continue",
-      registrationFee: "Registration Fee",
-      selectPaymentMethod: "Please select a payment method",
-      registrationFeeAmount: "Company Registration Fee",
-      duitnowDescription: "Pay with DuitNow, secure and convenient",
-      payNow: "Pay Now",
-      processing: "Processing...",
-      paymentComplete: "Payment Complete",
-      paymentCompleteDescription:
-        "Your registration fee has been successfully paid",
-      continueToStatus: "Continue to Registration Status",
-      paymentSuccessful: "Payment Successful",
-      paymentSuccessfulDescription:
-        "Your registration fee has been successfully paid",
+      // Services page
+      qrPaymentGateway: "QR Payment Gateway",
+      acceptPaymentsViaQr: "Accept payments via QR code",
+      basicBusinessRecord: "Basic Business Record Management",
+      digitalSsmCertificate: "Digital SSM Certificate and Documents",
+      automatedEInvoicing: "Automated E-Invoicing System",
+      professionalWebsiteTemplates: "Professional Website Templates",
+      fullAccountingBookkeeping: "Full Accounting and Bookkeeping",
+      aiPoweredCreditScore: "AI-Powered Credit Score Analysis",
 
-      // 公司状态页面
-      companyRegistrationStatus: "Company Registration Status",
-      companyRegistrationStatusDescription:
-        "View the status of your company registration application",
-      companyStatusPending:
-        "Your company registration application is being processed",
-      companyStatusApproved:
-        "Your company registration application has been approved",
-      companyStatusRejected:
-        "Your company registration application has been rejected",
-      companyStatusReview:
-        "Your company registration application is under review",
-      companyStatusUnknown: "Unknown status",
-      statusPending: "Pending",
-      statusApproved: "Approved",
-      statusRejected: "Rejected",
-      statusReview: "Under Review",
-      registrationNumber: "Registration Number",
-      rejectionReason: "Reason for Rejection",
-      noReasonProvided: "No reason provided",
-      estimatedProcessingTime: "Estimated Processing Time",
-      processingTimeMessage:
-        "Processing your application typically takes 1-3 business days",
-      approvalMessage: "Congratulations!",
-      approvalInstructions: "You can now access your enterprise dashboard",
-      backToHome: "Back to Home",
-      goToDashboard: "Go to Dashboard",
-      companyNotFoundDescription:
-        "No company information found associated with your account",
+      // Enterprise services
+      enterpriseCrm: "Enterprise CRM",
+      advancedCustomerRelationship: "Advanced Customer Relationship Management",
+      businessIntelligence: "Business Intelligence",
+      advancedAnalyticsReporting: "Advanced Analytics and Reporting",
+      projectManagementSuite: "Project Management Suite",
+      comprehensiveProjectManagement: "Comprehensive Project Management",
+      multiLocationManagement: "Multi-Location Management",
+      manageMultipleBusinessLocations: "Manage Multiple Business Locations",
+      businessAutomation: "Business Automation",
+      workflowAutomationIntegration: "Workflow Automation Integration",
+      enterpriseCloudBackup: "Enterprise Cloud Backup",
+      secureCloudStorageBackup: "Secure Cloud Storage and Backup",
+
+      digitalTransformation:
+        "Digital Transformation Solutions for Modern Businesses",
+
+      ecommercePlatform: "E-commerce Platform Development and Integration",
+
+      mobileAppDevelopment:
+        "Mobile App Development for Enhanced Customer Engagement",
+
+      planning: "Strategic Planning and Consultation Services",
     },
   },
   ms: {

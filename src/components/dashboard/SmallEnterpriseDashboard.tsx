@@ -47,7 +47,7 @@ export function SmallEnterpriseDashboard() {
     },
   ];
 
-  // 小型企业可用服务
+    // 小型企业可用服务
   const smallServices = [
     // 基础服务（微型企业也可用）
     {
@@ -57,6 +57,7 @@ export function SmallEnterpriseDashboard() {
       icon: Smartphone,
       price: "RM 15/month",
       category: t("paymentCategory"),
+      onClick: () => navigate("/digital-payment"),
     },
     {
       id: "basic-records",
@@ -334,7 +335,10 @@ export function SmallEnterpriseDashboard() {
                       {service.description}
                     </p>
 
-                    <Button className="w-full group-hover:scale-105 transition-transform">
+                    <Button 
+                      className="w-full group-hover:scale-105 transition-transform"
+                      onClick={service.onClick || (() => {})}
+                    >
                       {t("getStarted")}
                     </Button>
                   </CardContent>
