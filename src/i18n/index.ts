@@ -197,6 +197,34 @@ const resources = {
       professionalWebsiteTemplates: "专业网站模板",
       fullAccountingBookkeeping: "完整会计和簿记",
       aiPoweredCreditScore: "人工智能驱动的信用评分分析",
+      overview: "概览",
+      projects: "项目",
+      financeCategory: "财务",
+      operationsTab: "运营",
+      analyticsCategory: "分析",
+      financialOverview: "财务概览",
+      revenueOverview: "收入概览",
+      projectStatus: "项目状态",
+      teamPerformance: "团队表现",
+      active: "活跃",
+      completed: "已完成",
+      productivity: "生产力",
+      efficiency: "效率",
+      satisfaction: "满意度",
+      totalAssets: "总资产",
+      monthlyExpenses: "月支出",
+      netProfit: "净利润",
+      paymentHistory: "支付历史",
+      creditUtilization: "信用利用率",
+      businessStability: "业务稳定性",
+      Excellent: "优秀",
+      applyForBusinessLoan: "申请商业贷款",
+      paymentCategory: "支付",
+      accountingCategory: "会计",
+      documentsCategory: "文档",
+      marketingCategory: "市场营销",
+      managementCategory: "管理",
+      company: "公司",
 
       // Enterprise services
       enterpriseCrm: "企业 CRM",
@@ -340,7 +368,6 @@ const resources = {
       saveAsDraft: "保存为草稿",
       sendInvoice: "发送发票",
       invoiceItem: "发票项目",
-      company: "公司",
 
       // Marketplace
       findBusinessesToCollaborate: "寻找合作企业",
@@ -624,6 +651,7 @@ const resources = {
       businessStability: "Business Stability",
       excellent: "Excellent",
       applyForBusinessLoan: "Apply for Business Loan",
+      month: "month",
 
       // 登录相关
       personalLogin: "Personal Login",
@@ -864,6 +892,14 @@ const resources = {
       sendInvoice: "Send Invoice",
       invoiceItem: "Invoice Item",
       company: "Company",
+      createManualInvoice: "Create Manual Invoice",
+      manageYourElectronicInvoices:
+        "Manage your electronic invoices - manual payments and QR code generation",
+      exportAll: "Export All",
+      totalInvoices: "Total Invoices",
+      sent: "Sent",
+      manualInvoice: "Manual Invoice",
+      qrPaymentInvoice: "QR Payment Invoice",
 
       // Marketplace
       findBusinessesToCollaborate: "Find Businesses to Collaborate",
@@ -871,6 +907,7 @@ const resources = {
       marketplace: "Marketplace",
 
       createAndManageInvoices: "Create and Manage Invoices",
+      totalValue: "Total Value",
     },
   },
   ms: {
@@ -1167,7 +1204,7 @@ const resources = {
 i18n.use(initReactI18next).init({
   resources,
   lng: "en", // Default language
-  fallbackLng: "zh",
+  fallbackLng: "en",
   interpolation: {
     escapeValue: false,
   },

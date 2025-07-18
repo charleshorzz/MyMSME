@@ -341,7 +341,7 @@ export function CreateInvoice({
                 <div className="space-y-2">
                   <Label htmlFor="recipient">
                     {t("select")}{" "}
-                    {recipientType === "B2B" ? "Syarikat" : "Government Entity"}
+                    {recipientType === "B2B" ? "Company" : "Government Entity"}
                   </Label>
                   <Select onValueChange={handleCompanySelect}>
                     <SelectTrigger>
