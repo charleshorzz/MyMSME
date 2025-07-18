@@ -24,6 +24,7 @@ import {
 } from "@/components/ui/select";
 import { useToast } from "@/components/ui/use-toast";
 import { Building, Users, Plus, LogIn } from "lucide-react";
+import CompanyStatusPage from "./CompanyStatusPage";
 
 export default function CompanySetupPage() {
   const { t } = useTranslation();
@@ -45,8 +46,8 @@ export default function CompanySetupPage() {
     businessContact: "",
     businessEmail: "",
     businessType: "",
-    businessCode: "",
-    level: "micro" as "micro" | "small" | "medium",
+    businessCode: "", // 你可以用字符串输入，后端转为list<int>
+    ownerIC: user ? [user.icNumber] : [], // 这里是数组
   });
 
   // 加入公司的表单状态
@@ -79,13 +80,21 @@ export default function CompanySetupPage() {
     try {
       // 创建公司记录
       const company = await companyService.createCompany({
-        businessName: newCompany.businessName, // 使用businessName作为name
-        registrationNumber: newCompany.businessType, // 使用businessType作为registrationNumber
-        address: newCompany.businessAddress, // 使用businessAddress作为address
-        industry: newCompany.nameType, // 使用nameType作为industry
-        registrationPeriod: parseInt(newCompany.registrationPeriod) || 1, // 直接使用registrationPeriod
-        companyCode: newCompany.businessCode, // 添加companyCode字段
+        nameType: newCompany.nameType,
+        businessName: newCompany.businessName,
+        businessStartDate: newCompany.businessStartDate,
+        incentiveSource: newCompany.incentiveSource,
+        registrationPeriod: parseInt(newCompany.registrationPeriod) || 1,
+        businessInfo: newCompany.businessInfo,
+        businessAddress: newCompany.businessAddress,
+        businessContact: newCompany.businessContact,
+        businessEmail: newCompany.businessEmail,
+        businessType: newCompany.businessType,
+        businessCode: newCompany.businessCode
+          .split(",")
+          .map((code) => parseInt(code.trim())), // 假设用逗号分隔
         ownerIC: user.icNumber,
+        level: "micro",
       });
 
       if (company) {
@@ -97,8 +106,9 @@ export default function CompanySetupPage() {
           description: t("companyCreatedDescription"),
         });
 
-        // 重定向到相应的企业仪表板
-        navigate(`/${newCompany.level}-enterprise`);
+        // // 重定向到相应的企业仪表板
+        // navigate(`/${newCompany.level}-enterprise`);
+        navigate("/company-status"); // 跳转到状态页
       }
     } catch (error) {
       console.error("创建公司失败:", error);
@@ -195,6 +205,53 @@ export default function CompanySetupPage() {
 
               <TabsContent value="create">
                 <form onSubmit={handleCreateCompany} className="space-y-4">
+                  {/* <div className="space-y-2">
+                    <Label htmlFor="level">{t("enterpriseLevel")}</Label>
+                    <Select
+                      name="level"
+                      value={newCompany.level}
+                      onValueChange={(value) =>
+                        setNewCompany((prev) => ({
+                          ...prev,
+                          level: value as "micro" | "small" | "medium",
+                        }))
+                      }
+                    >
+                      <SelectTrigger>
+                        <SelectValue placeholder={t("selectEnterpriseLevel")} />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="micro">{t("micro")}</SelectItem>
+                        <SelectItem value="small">{t("small")}</SelectItem>
+                        <SelectItem value="medium">{t("medium")}</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div> */}
+
+                  <div className="space-y-2">
+                    <Label htmlFor="nameType">{t("Name Type")}</Label>
+                    <Select
+                      name="nameType"
+                      value={newCompany.nameType}
+                      onValueChange={(value) =>
+                        setNewCompany((prev) => ({
+                          ...prev,
+                          nameType: value as "personal" | "trade",
+                        }))
+                      }
+                    >
+                      <SelectTrigger>
+                        <SelectValue placeholder={t("selectNameType")} />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="personal">
+                          {t("Personal Name")}
+                        </SelectItem>
+                        <SelectItem value="trade">{t("Trade Name")}</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+
                   <div className="space-y-2">
                     <Label htmlFor="businessName">{t("companyName")}</Label>
                     <Input
@@ -207,11 +264,9 @@ export default function CompanySetupPage() {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="businessType">
-                      {t("registrationNumber")}
-                    </Label>
+                    <Label htmlFor="businessType">{t("Business Type")}</Label>
                     <Input
-                      id="businessType"
+                      id="business Type"
                       name="businessType"
                       value={newCompany.businessType}
                       onChange={handleCreateChange}
@@ -234,19 +289,8 @@ export default function CompanySetupPage() {
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="nameType">{t("industry")}</Label>
-                      <Input
-                        id="nameType"
-                        name="nameType"
-                        value={newCompany.nameType}
-                        onChange={handleCreateChange}
-                        required
-                      />
-                    </div>
-
-                    <div className="space-y-2">
                       <Label htmlFor="registrationPeriod">
-                        {t("employeeCount")}
+                        {t("Registration Period (Years)")}
                       </Label>
                       <Input
                         id="registrationPeriod"
@@ -263,7 +307,7 @@ export default function CompanySetupPage() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <Label htmlFor="businessContact">
-                        {t("contactNumber")}
+                        {t("contactNumber (+60)")}
                       </Label>
                       <Input
                         id="businessContact"
@@ -326,7 +370,7 @@ export default function CompanySetupPage() {
                     />
                   </div>
 
-                  <div className="space-y-2">
+                  {/* <div className="space-y-2">
                     <Label htmlFor="level">{t("enterpriseLevel")}</Label>
                     <Select
                       name="level"
@@ -347,7 +391,7 @@ export default function CompanySetupPage() {
                         <SelectItem value="medium">{t("medium")}</SelectItem>
                       </SelectContent>
                     </Select>
-                  </div>
+                  </div> */}
 
                   <div className="flex items-center space-x-2 my-4">
                     <Checkbox

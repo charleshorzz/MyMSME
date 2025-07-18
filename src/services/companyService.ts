@@ -30,7 +30,7 @@ export const companyService = {
     const { data, error } = await supabase
       .from("companies")
       .select("*")
-      .or(`registrationNumber.eq.${code},companyCode.eq.${code}`)
+      .or(`companyCode.eq.${code}`)
       .single();
 
     if (error) {

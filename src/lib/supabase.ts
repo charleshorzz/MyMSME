@@ -29,14 +29,16 @@ export type Company = {
   incentiveSource: string;
   businessInfo: boolean;
   businessAddress: string;
-  registrationNumber: string;
-  address: string;
-  industry: string;
+  businessEmail: string;
+  businessType: string;
+  businessCode: number[];
+  businessContact: string;
   registrationPeriod: number; // 用作员工数量的代理
-  companyCode: string; // 唯一公司代码，用于邀请其他用户加入
+  companyCode?: string; // 唯一公司代码，用于邀请其他用户加入
   ownerIC: string;
   createdAt: string;
   updatedAt: string;
+  level: "micro" | "small" | "medium" | null;
 };
 
 export type BusinessCode = {

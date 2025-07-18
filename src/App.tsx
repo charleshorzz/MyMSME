@@ -13,6 +13,7 @@ import { MicroEnterpriseDashboard } from "@/components/dashboard/MicroEnterprise
 import { SmallEnterpriseDashboard } from "@/components/dashboard/SmallEnterpriseDashboard";
 import { MediumEnterpriseDashboard } from "@/components/dashboard/MediumEnterpriseDashboard";
 import { Layout } from "@/components/Layout";
+import CompanyStatusPage from "./pages/CompanyStatusPage";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +29,8 @@ const App = () => (
 
             {/* 公司设置页面 */}
             <Route path="/company-setup" element={<CompanySetupPage />} />
+
+            <Route path="/company-status" element={<CompanyStatusPage />} />
 
             {/* 微型企业路由 */}
             <Route
