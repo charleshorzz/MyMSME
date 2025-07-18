@@ -205,16 +205,16 @@ export function MarketplacePage({ userLevel }: MarketplacePageProps) {
   return (
     <div className="space-y-6">
       <div className="text-center py-8">
-        <h1 className="text-3xl font-bold mb-2">{t("marketplace") || "Marketplace"}</h1>
+        <h1 className="text-3xl font-bold mb-2">{t("Marketplace") || "Marketplace"}</h1>
         <p className="text-muted-foreground">
-          {t("findBusinessesToCollaborate") || "Find businesses for B2B collaboration and networking."}
+          {t("Find Businesses To Collaborate") || "Find businesses for B2B collaboration and networking."}
         </p>
       </div>
       <div className="flex flex-col md:flex-row gap-4 items-center mb-6">
         <div className="flex-1 flex items-center gap-2">
           <Search className="h-4 w-4 text-muted-foreground" />
           <Input
-            placeholder={t("searchBusinesses") || "Search businesses..."}
+            placeholder={t("Search Businesses") || "Search businesses..."}
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             className="max-w-xs"
@@ -236,7 +236,7 @@ export function MarketplacePage({ userLevel }: MarketplacePageProps) {
       {Object.entries(grouped).map(([type, businesses]) => (
         <div key={type} className="space-y-4">
           <h2 className="text-xl font-semibold flex items-center gap-2">
-            {typeIcon(type)} {t(type) || type.charAt(0).toUpperCase() + type.slice(1)} {t("businesses") || "Businesses"}
+            {typeIcon(type)} {t(type) || type.charAt(0).toUpperCase() + type.slice(1)}
           </h2>
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {businesses.map((b) => (
@@ -281,7 +281,7 @@ export function MarketplacePage({ userLevel }: MarketplacePageProps) {
                   </div>
                   <Button asChild variant="gradient" size="sm" className="w-full mt-2">
                     <a href={`mailto:${b.email}`}>
-                      {t("contact") || "Contact"}
+                      {t("Contact") || "Contact"}
                     </a>
                   </Button>
                 </CardContent>
@@ -292,7 +292,7 @@ export function MarketplacePage({ userLevel }: MarketplacePageProps) {
       ))}
       {filtered.length === 0 && (
         <div className="text-center text-muted-foreground py-12">
-          {t("noBusinessesFound") || "No businesses found."}
+          {t("No Businesses Found") || "No businesses found."}
         </div>
       )}
     </div>

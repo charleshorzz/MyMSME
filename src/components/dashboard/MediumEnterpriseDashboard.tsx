@@ -224,28 +224,28 @@ export function MediumEnterpriseDashboard() {
       name: "Digital Transformation",
       client: "Tech Corp",
       progress: 85,
-      status: "active",
+      status: <span className="text-sm">{t("active")}</span>,
     },
     {
       id: "PRJ-002",
       name: "E-commerce Platform",
       client: "Retail Ltd",
       progress: 60,
-      status: "active",
+      status: <span className="text-sm">{t("active")}</span>,
     },
     {
       id: "PRJ-003",
       name: "Mobile App Development",
       client: "Startup Inc",
       progress: 30,
-      status: "planning",
+      status: <span className="text-sm">{t("planning")}</span>,
     },
     {
       id: "PRJ-004",
       name: "Data Analytics",
       client: "Finance Co",
       progress: 100,
-      status: "completed",
+      status: <span className="text-sm">{t("completed")}</span>,
     },
   ];
 
@@ -257,7 +257,7 @@ export function MediumEnterpriseDashboard() {
       title: t("qrPaymentGateway"),
       description: t("acceptPaymentsViaQr"),
       icon: Smartphone,
-      price: "RM 15/month",
+      price: <span className="text-sm">RM 15/{t("month")}</span>,
       category: t("paymentCategory"),
     },
     {
@@ -265,7 +265,7 @@ export function MediumEnterpriseDashboard() {
       title: t("recordKeeping"),
       description: t("basicBusinessRecord"),
       icon: FileText,
-      price: "RM 25/month",
+      price: <span className="text-sm">RM 25/{t("month")}</span>,
       category: t("accountingCategory"),
     },
     {
@@ -282,7 +282,7 @@ export function MediumEnterpriseDashboard() {
       title: t("eInvoicing"),
       description: t("automatedEInvoicing"),
       icon: Receipt,
-      price: "RM 50/month",
+      price: <span className="text-sm">RM 50/{t("month")}</span>,
       category: t("accountingCategory"),
     },
     {
@@ -290,7 +290,7 @@ export function MediumEnterpriseDashboard() {
       title: t("websiteBuilder"),
       description: t("professionalWebsiteTemplates"),
       icon: Globe,
-      price: "RM 80/month",
+      price: <span className="text-sm">RM 80/{t("month")}</span>,
       category: t("marketingCategory"),
     },
     {
@@ -298,7 +298,7 @@ export function MediumEnterpriseDashboard() {
       title: t("accountingServices"),
       description: t("fullAccountingBookkeeping"),
       icon: Calculator,
-      price: "RM 120/month",
+      price: <span className="text-sm">RM 120/{t("month")}</span>,
       category: t("accountingCategory"),
     },
     {
@@ -306,7 +306,7 @@ export function MediumEnterpriseDashboard() {
       title: t("creditAnalysis"),
       description: t("aiPoweredCreditScore"),
       icon: Brain,
-      price: "RM 40/month",
+      price: <span className="text-sm">RM 40/{t("month")}</span>,
       category: t("financeCategory"),
     },
     // 仅中型企业服务
@@ -315,7 +315,7 @@ export function MediumEnterpriseDashboard() {
       title: t("enterpriseCrm"),
       description: t("advancedCustomerRelationship"),
       icon: Users,
-      price: "RM 200/month",
+      price: <span className="text-sm">RM 200/{t("month")}</span>,
       category: t("managementCategory"),
     },
     {
@@ -323,7 +323,7 @@ export function MediumEnterpriseDashboard() {
       title: t("businessIntelligence"),
       description: t("advancedAnalyticsReporting"),
       icon: BarChart3,
-      price: "RM 150/month",
+      price: <span className="text-sm">RM 150/{t("month")}</span>,
       category: t("analyticsCategory"),
     },
     {
@@ -331,7 +331,7 @@ export function MediumEnterpriseDashboard() {
       title: t("projectManagementSuite"),
       description: t("comprehensiveProjectManagement"),
       icon: Briefcase,
-      price: "RM 180/month",
+      price: <span className="text-sm">RM 180/{t("month")}</span>,
       category: t("managementCategory"),
     },
     {
@@ -339,7 +339,7 @@ export function MediumEnterpriseDashboard() {
       title: t("multiLocationManagement"),
       description: t("manageMultipleBusinessLocations"),
       icon: Building2,
-      price: "RM 250/month",
+      price: <span className="text-sm">RM 250/{t("month")}</span>,
       category: t("operationsCategory"),
     },
     {
@@ -347,7 +347,7 @@ export function MediumEnterpriseDashboard() {
       title: t("businessAutomation"),
       description: t("workflowAutomationIntegration"),
       icon: Zap,
-      price: "RM 300/month",
+      price: <span className="text-sm">RM 300/{t("month")}</span>,
       category: t("automationCategory"),
     },
     {
@@ -355,7 +355,7 @@ export function MediumEnterpriseDashboard() {
       title: t("enterpriseCloudBackup"),
       description: t("secureCloudStorageBackup"),
       icon: Cloud,
-      price: "RM 100/month",
+      price: <span className="text-sm">RM 100/{t("month")}</span>,
       category: t("infrastructureCategory"),
     },
   ];
@@ -374,7 +374,7 @@ export function MediumEnterpriseDashboard() {
       {/* Welcome Section */}
       <div className="text-center py-8">
         <h1 className="text-3xl font-bold mb-2">
-          {t("welcome")} to {t("medium")}
+          {t("welcome")} {t("to")} {t("medium")}
         </h1>
         <p className="text-muted-foreground">{t("enterpriseGradeTools")}</p>
       </div>
@@ -465,23 +465,23 @@ export function MediumEnterpriseDashboard() {
               </CardHeader>
               <CardContent className="space-y-3">
                 <div className="flex justify-between">
-                  <span className="text-sm">Monthly Invoices</span>
+                  <span className="text-sm">{t("monthlyInvoices")}</span>
                   <span className="font-semibold">124</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-sm">Total Value</span>
+                  <span className="text-sm">{t("totalValue")}</span>
                   <span className="font-semibold">RM 2.4M</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-sm">Paid Rate</span>
+                  <span className="text-sm">{t("paidRate")}</span>
                   <span className="font-semibold text-success">98%</span>
                 </div>
                 <div className="flex gap-2">
                   <Button size="sm" className="flex-1" onClick={() => navigate("/medium-enterprise/e-invoice?create=true")}>
-                    {t("Create Invoice")}
+                    {t("createInvoice")}
                   </Button>
                   <Button variant="outline" size="sm" className="flex-1" onClick={() => navigate("/medium-enterprise/e-invoice")}>
-                    {t("View Invoices")}
+                    {t("viewInvoices")} 
                   </Button>
                 </div>
               </CardContent>
@@ -498,15 +498,15 @@ export function MediumEnterpriseDashboard() {
               <CardContent>
                 <div className="space-y-3">
                   <div className="flex justify-between">
-                    <span className="text-sm">Productivity</span>
+                    <span className="text-sm">{t("productivity")}</span>
                     <span className="font-semibold text-success">94%</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-sm">Efficiency</span>
+                    <span className="text-sm">{t("efficiency")}</span>
                     <span className="font-semibold text-primary">88%</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-sm">Satisfaction</span>
+                    <span className="text-sm">{t("satisfaction")}</span>
                     <span className="font-semibold text-secondary">91%</span>
                   </div>
                 </div>
@@ -518,7 +518,7 @@ export function MediumEnterpriseDashboard() {
         <TabsContent value="projects" className="space-y-6">
           <Card className="shadow-soft">
             <CardHeader>
-              <CardTitle>Active Projects</CardTitle>
+              <CardTitle>{t("activeProjects")}</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
@@ -532,9 +532,10 @@ export function MediumEnterpriseDashboard() {
                         <h3 className="font-semibold">{project.name}</h3>
                         <Badge
                           variant={
-                            project.status === "completed"
+                            project.status === <span className="text-sm">{t("completed")}</span>
+
                               ? "default"
-                              : project.status === "active"
+                              : project.status === <span className="text-sm">{t("active")}</span>
                               ? "secondary"
                               : "outline"
                           }
@@ -547,7 +548,7 @@ export function MediumEnterpriseDashboard() {
                       </p>
                       <div className="mt-2">
                         <div className="flex justify-between text-sm mb-1">
-                          <span>Progress</span>
+                          <span>{t("progress")}</span>
                           <span>{project.progress}%</span>
                         </div>
                         <div className="w-full bg-muted rounded-full h-2">
@@ -571,21 +572,21 @@ export function MediumEnterpriseDashboard() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <CreditCard className="h-5 w-5" />
-                  Financial Overview
+                  {t("financialOverview")}
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
                   <div className="flex justify-between p-3 bg-muted rounded-lg">
-                    <span>Total Assets</span>
+                    <span>{t("totalAssets")}</span>
                     <span className="font-semibold">RM 5.2M</span>
                   </div>
                   <div className="flex justify-between p-3 bg-muted rounded-lg">
-                    <span>Monthly Expenses</span>
+                    <span>{t("monthlyExpenses")}</span>
                     <span className="font-semibold">RM 180K</span>
                   </div>
                   <div className="flex justify-between p-3 bg-success/10 rounded-lg">
-                    <span>Net Profit</span>
+                    <span>{t("netProfit")}</span>
                     <span className="font-semibold text-success">RM 420K</span>
                   </div>
                 </div>
@@ -603,19 +604,19 @@ export function MediumEnterpriseDashboard() {
                 <div className="text-center space-y-4">
                   <div className="text-4xl font-bold text-success">A+</div>
                   <p className="text-muted-foreground">
-                    Excellent Credit Rating
+                    {t("exellentCreditRating")}
                   </p>
                   <div className="space-y-2">
                     <div className="flex justify-between text-sm">
-                      <span>Payment History</span>
+                      <span>{t("paymentHistory")}</span>
                       <span className="text-success">98%</span>
                     </div>
                     <div className="flex justify-between text-sm">
-                      <span>Credit Utilization</span>
+                      <span>{t("creditUtilization")}</span>
                       <span className="text-success">25%</span>
                     </div>
                     <div className="flex justify-between text-sm">
-                      <span>Business Stability</span>
+                      <span>{t("businessStability")}</span>
                       <span className="text-success">Excellent</span>
                     </div>
                   </div>
@@ -625,13 +626,13 @@ export function MediumEnterpriseDashboard() {
                   >
                     <DialogTrigger asChild>
                       <Button className="w-full">
-                        Apply for Business Loan
+                        {t("applyForBusinessLoan")}
                       </Button>
                     </DialogTrigger>
                     <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
                       <DialogHeader>
                         <DialogTitle className="text-2xl font-bold">
-                          Business Loan Applications
+                          {t("businessLoanApplication")}
                         </DialogTitle>
                       </DialogHeader>
 
@@ -942,29 +943,29 @@ export function MediumEnterpriseDashboard() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <FileText className="h-5 w-5" />
-                  Document Management
+                  {t("documentManagement")}
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <p className="text-muted-foreground">
-                  Centralized document system
+                  {t("centralizedDocumentSystem")}
                 </p>
                 <div className="grid grid-cols-2 gap-3">
                   <Button variant="outline" className="flex items-center gap-2">
                     <FileText className="h-4 w-4" />
-                    Contracts
+                    {t("contracts")}
                   </Button>
                   <Button variant="outline" className="flex items-center gap-2">
                     <FileText className="h-4 w-4" />
-                    Invoices
+                    {t("invoice")}
                   </Button>
                   <Button variant="outline" className="flex items-center gap-2">
                     <FileText className="h-4 w-4" />
-                    Reports
+                    {t("reports")}
                   </Button>
                   <Button variant="outline" className="flex items-center gap-2">
                     <FileText className="h-4 w-4" />
-                    Legal
+                    {t("legal")}
                   </Button>
                 </div>
               </CardContent>
@@ -974,25 +975,25 @@ export function MediumEnterpriseDashboard() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Building2 className="h-5 w-5" />
-                  Multi-Site Management
+                  {t("multiSiteManagement")}
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground mb-4">
-                  Manage multiple locations
+                  {t("manageMultipleLocations")}
                 </p>
                 <div className="space-y-3">
                   <div className="flex items-center justify-between p-3 bg-muted rounded-lg">
-                    <span>Headquarters</span>
-                    <Badge>Active</Badge>
+                    <span>{t("headquarters")}</span>
+                    <Badge>{t("active")}</Badge>
                   </div>
                   <div className="flex items-center justify-between p-3 bg-muted rounded-lg">
-                    <span>Branch Office 1</span>
-                    <Badge>Active</Badge>
+                    <span>{t("branchOffice")} 1</span>
+                    <Badge>{t("active")}</Badge>
                   </div>
                   <div className="flex items-center justify-between p-3 bg-muted rounded-lg">
-                    <span>Branch Office 2</span>
-                    <Badge variant="outline">Planning</Badge>
+                    <span>{t("branchOffice")} 2</span>
+                    <Badge variant="outline">{t("planning")}</Badge>
                   </div>
                 </div>
               </CardContent>
@@ -1004,25 +1005,25 @@ export function MediumEnterpriseDashboard() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Zap className="h-5 w-5" />
-                  Automation Suite
+                  {t("automationSuite")}
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground mb-4">
-                  Workflow automation
+                  {t("workflowAutomation")}
                 </p>
                 <div className="space-y-3">
                   <div className="flex items-center justify-between p-3 bg-muted rounded-lg">
-                    <span>Invoice Processing</span>
-                    <Badge variant="default">Active</Badge>
+                    <span>{t("invoiceProcessing")}</span>
+                    <Badge variant="default">{t("active")}</Badge>
                   </div>
                   <div className="flex items-center justify-between p-3 bg-muted rounded-lg">
-                    <span>Inventory Management</span>
-                    <Badge variant="default">Active</Badge>
+                    <span>{t("inventoryManagement")}</span>
+                    <Badge variant="default">{t("active")}</Badge>
                   </div>
                   <div className="flex items-center justify-between p-3 bg-muted rounded-lg">
-                    <span>Customer Onboarding</span>
-                    <Badge variant="outline">Setup</Badge>
+                    <span>{t("customerOnboarding")}</span>
+                    <Badge variant="outline">{t("setup")}</Badge>
                   </div>
                 </div>
               </CardContent>
@@ -1032,23 +1033,23 @@ export function MediumEnterpriseDashboard() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Calendar className="h-5 w-5" />
-                  Resource Planning
+                  {t("resourcePlanning")}
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground mb-4">ERP integration</p>
+                <p className="text-muted-foreground mb-4">{t("erpIntegration")}</p>
                 <div className="space-y-3">
                   <div className="flex items-center justify-between p-3 bg-muted rounded-lg">
-                    <span>Human Resources</span>
-                    <Badge variant="default">Integrated</Badge>
+                    <span>{t("humanResources")}</span>
+                    <Badge variant="default">{t("integrated")}</Badge>
                   </div>
                   <div className="flex items-center justify-between p-3 bg-muted rounded-lg">
-                    <span>Supply Chain</span>
-                    <Badge variant="default">Integrated</Badge>
+                    <span>{t("supplyChain")}</span>
+                    <Badge variant="default">{t("integrated")}</Badge>
                   </div>
                   <div className="flex items-center justify-between p-3 bg-muted rounded-lg">
-                    <span>Financial Management</span>
-                    <Badge variant="default">Integrated</Badge>
+                    <span>{t("financialManagement")}</span>
+                    <Badge variant="default">{t("integrated")}</Badge>
                   </div>
                 </div>
               </CardContent>
@@ -1061,18 +1062,18 @@ export function MediumEnterpriseDashboard() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <BarChart3 className="h-5 w-5" />
-                Advanced Analytics Dashboard
+                {t("advancedAnalyticsDashboard")}
               </CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-muted-foreground mb-4">
-                Real-time business intelligence and predictive analytics
+                {t("realTimeBusinessIntelligenceAndPredictiveAnalytics")}
               </p>
               <div className="h-80 flex items-center justify-center border-2 border-dashed border-muted-foreground/25 rounded-lg">
                 <div className="text-center">
                   <BarChart3 className="h-12 w-12 mx-auto mb-4 text-muted-foreground" />
                   <p className="text-muted-foreground">
-                    Advanced analytics charts and visualizations
+                    {t("advancedAnalyticsChartsAndVisualizations")}
                   </p>
                 </div>
               </div>

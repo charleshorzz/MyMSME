@@ -286,7 +286,7 @@ export function CreateInvoice({
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold">Create New Invoice</h1>
+        <h1 className="text-2xl font-bold">{t("createNewInvoice")}</h1>
         {onClose && (
           <Button variant="ghost" onClick={onClose}>
             <X className="h-4 w-4" />
@@ -298,12 +298,12 @@ export function CreateInvoice({
         {/* Invoice Details */}
         <Card>
           <CardHeader>
-            <CardTitle>Invoice Details</CardTitle>
+            <CardTitle>{t("InvoiceDetails")}</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             {/* Transaction Type Selection */}
             <div className="space-y-2">
-              <Label>Transaction Type</Label>
+              <Label>{t("transactionType")}</Label>
               <div className="flex gap-2">
                 <Button
                   variant={recipientType === "B2B" ? "default" : "outline"}
@@ -340,8 +340,8 @@ export function CreateInvoice({
               <>
                 <div className="space-y-2">
                   <Label htmlFor="recipient">
-                    Select{" "}
-                    {recipientType === "B2B" ? "Company" : "Government Entity"}
+                    {t("select")}{" "}
+                    {recipientType === "B2B" ? "Syarikat" : "Government Entity"}
                   </Label>
                   <Select onValueChange={handleCompanySelect}>
                     <SelectTrigger>
@@ -370,7 +370,9 @@ export function CreateInvoice({
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="recipient-manual">Or enter manually</Label>
+                  <Label htmlFor="recipient-manual">
+                    {t("orEnterManually")}
+                  </Label>
                   <Input
                     id="recipient-manual"
                     placeholder={`${
@@ -382,7 +384,7 @@ export function CreateInvoice({
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="email">Email</Label>
+                  <Label htmlFor="email">{t("email")}</Label>
                   <Input
                     id="email"
                     type="email"
@@ -401,18 +403,14 @@ export function CreateInvoice({
                   <div className="flex items-center gap-2 mb-2">
                     <Users className="h-4 w-4 text-blue-600" />
                     <span className="font-medium text-blue-800">
-                      B2C Manual Invoice
+                      {t("b2cManualInvoice")}
                     </span>
                   </div>
-                  <p className="text-sm text-blue-700">
-                    Note: QR payment invoices are automatically generated when
-                    customers make payments. Use this for manual B2C invoicing
-                    only.
-                  </p>
+                  <p className="text-sm text-blue-700">{t("noteInvoice")}</p>
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="customer-name">Customer Name</Label>
+                  <Label htmlFor="customer-name">{t("customerName")}</Label>
                   <Input
                     id="customer-name"
                     placeholder="Enter customer name"
@@ -423,7 +421,7 @@ export function CreateInvoice({
 
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="customer-email">Email</Label>
+                    <Label htmlFor="customer-email">{t("email")}</Label>
                     <Input
                       id="customer-email"
                       type="email"
@@ -433,7 +431,7 @@ export function CreateInvoice({
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="customer-phone">Phone</Label>
+                    <Label htmlFor="customer-phone">{t("phone")}</Label>
                     <Input
                       id="customer-phone"
                       type="tel"
@@ -448,7 +446,7 @@ export function CreateInvoice({
 
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="date">Invoice Date</Label>
+                <Label htmlFor="date">{t("invoiceDate")}</Label>
                 <Input
                   id="date"
                   type="date"
@@ -457,7 +455,7 @@ export function CreateInvoice({
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="due-date">Due Date</Label>
+                <Label htmlFor="due-date">{t("dueDate")}</Label>
                 <Input
                   id="due-date"
                   type="date"
@@ -468,7 +466,7 @@ export function CreateInvoice({
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="description">Description</Label>
+              <Label htmlFor="description">{t("description")}</Label>
               <Textarea
                 id="description"
                 placeholder="Invoice description"
@@ -482,11 +480,11 @@ export function CreateInvoice({
         {/* Add Items */}
         <Card>
           <CardHeader>
-            <CardTitle>Add Items</CardTitle>
+            <CardTitle>{t("addItems")}</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="space-y-2">
-              <Label>Item Description</Label>
+              <Label>{t("itemDescription")}</Label>
               <Input
                 placeholder="Product/Service description"
                 value={currentItem.description}
@@ -501,7 +499,7 @@ export function CreateInvoice({
 
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label>Quantity</Label>
+                <Label>{t("quantity")}</Label>
                 <Input
                   type="number"
                   min="1"
@@ -515,7 +513,7 @@ export function CreateInvoice({
                 />
               </div>
               <div className="space-y-2">
-                <Label>Unit Price (RM)</Label>
+                <Label>{t("unitPrice")} (RM)</Label>
                 <Input
                   type="number"
                   min="0"
@@ -533,7 +531,7 @@ export function CreateInvoice({
 
             <Button onClick={addItem} className="w-full">
               <Plus className="h-4 w-4 mr-2" />
-              Add Item
+              {t("addItems")}
             </Button>
           </CardContent>
         </Card>
@@ -542,22 +540,22 @@ export function CreateInvoice({
       {/* Items Table */}
       <Card>
         <CardHeader>
-          <CardTitle>Invoice Items</CardTitle>
+          <CardTitle>{t("invoiceItem")}</CardTitle>
         </CardHeader>
         <CardContent>
           {invoiceItems.length === 0 ? (
             <p className="text-center text-muted-foreground py-8">
-              No items added yet
+              {t("noItemAddedYet")}
             </p>
           ) : (
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead>Description</TableHead>
-                  <TableHead className="text-center">Quantity</TableHead>
-                  <TableHead className="text-right">Unit Price</TableHead>
-                  <TableHead className="text-right">Total</TableHead>
-                  <TableHead className="text-center">Actions</TableHead>
+                  <TableHead>"{t("description")}"</TableHead>
+                  <TableHead className="text-center">{t("quantity")}</TableHead>
+                  <TableHead className="text-right">{t("unitPrice")}</TableHead>
+                  <TableHead className="text-right">{t("total")}</TableHead>
+                  <TableHead className="text-center">{t("actions")}</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -618,21 +616,23 @@ export function CreateInvoice({
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Calculator className="h-5 w-5" />
-            Invoice Summary
+            {t("invoiceSummary")}
           </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-3">
             <div className="flex justify-between">
-              <span>Subtotal:</span>
+              <span>{t("subtotal")}:</span>
               <span>RM {subtotal.toFixed(2)}</span>
             </div>
             <div className="flex justify-between">
-              <span>Tax ({taxRate}%):</span>
+              <span>
+                {t("tax")} ({taxRate}%):
+              </span>
               <span>RM {taxAmount.toFixed(2)}</span>
             </div>
             <div className="flex justify-between text-lg font-bold border-t pt-2">
-              <span>Total:</span>
+              <span>{t("total")}:</span>
               <span>RM {total.toFixed(2)}</span>
             </div>
           </div>
@@ -643,7 +643,7 @@ export function CreateInvoice({
       <div className="flex gap-4">
         <Button onClick={saveAsDraft} variant="outline" className="flex-1">
           <Save className="h-4 w-4 mr-2" />
-          Save as Draft
+          {t("saveAsDraft")}
         </Button>
         <Button
           onClick={sendInvoice}
@@ -651,7 +651,7 @@ export function CreateInvoice({
           disabled={!recipient || !recipientEmail || invoiceItems.length === 0}
         >
           <Send className="h-4 w-4 mr-2" />
-          Send Invoice
+          {t("sendInvoice")}
         </Button>
       </div>
     </div>
