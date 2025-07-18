@@ -237,7 +237,8 @@ const resources = {
       financialManagement: "财务管理",
       integrated: "集成",
       advancedAnalyticsDashboard: "高级分析仪表盘",
-      realTimeBusinessIntelligenceAndPredictiveAnalytics: "实时商业智能和预测分析",
+      realTimeBusinessIntelligenceAndPredictiveAnalytics:
+        "实时商业智能和预测分析",
       advancedAnalyticsChartsAndVisualizations: "高级分析图表和可视化",
       month: "月",
       download: "下载",
@@ -329,7 +330,8 @@ const resources = {
       select: "选择",
       orEnterManually: "或手动输入",
       b2cManualInvoice: "B2C 手动发票",
-      noteInvoice: "注意：二维码支付发票在客户付款时自动生成。\n仅将此功能用于手动 B2C 账单。",
+      noteInvoice:
+        "注意：二维码支付发票在客户付款时自动生成。\n仅将此功能用于手动 B2C 账单。",
       customerName: "客户名称",
       invoiceDate: "发票日期",
       addItems: "添加项目",
@@ -376,12 +378,10 @@ const resources = {
       manageInvoices: "管理您的发票",
       createAndManageInvoices: "创建和管理发票",
 
-      
       // 公司代码
       companyCode: "公司代码",
       enterCompanyCode: "输入公司代码",
       companyCodeDescription: "向公司管理员索取公司代码",
-      position: "职位",
       yourPositionInCompany: "您在公司中的职位",
 
       // 成功和错误消息
@@ -430,6 +430,36 @@ const resources = {
       backToHome: "返回首页",
       goToDashboard: "前往仪表板",
       companyNotFoundDescription: "未找到与您的账户关联的公司信息",
+
+      companyFound: "找到公司",
+      companyFoundDescription: "我们发现与您的身份证号码关联的公司",
+      companyDetails: "公司详情",
+      verifyInformation: "请验证信息",
+      verifyCompanyInformationDescription: "请确认以下信息是否属于您的公司",
+      bankAccount: "银行账户",
+      confirmThisIsMyCompany: "确认这是我的公司",
+      thisIsNotMyCompany: "这不是我的公司",
+      companyConfirmed: "公司已确认",
+      companyConfirmationSuccess: "您已成功确认公司所有权",
+      companyConfirmationError: "确认公司所有权时出错",
+      companyRejected: "已拒绝公司",
+      companyRejectionSuccess: "您已拒绝此公司的所有权",
+
+      // 公司确认相关
+      companyFoundByIC: "找到公司",
+      companyFoundByICDescription: "我们发现与您的身份证号码关联的公司",
+      companyDetailsHeader: "公司详情",
+      verifyCompanyInfo: "请验证信息",
+      verifyCompanyInfoDescription: "请确认以下信息是否属于您的公司",
+      ssmCertificateNumber: "SSM证书号码",
+      bankAccountInfo: "银行账户",
+      confirmCompanyOwnership: "确认这是我的公司",
+      rejectCompanyOwnership: "这不是我的公司",
+      companyOwnershipConfirmed: "公司已确认",
+      companyOwnershipSuccess: "您已成功确认公司所有权",
+      companyOwnershipError: "确认公司所有权时出错",
+      companyOwnershipRejected: "已拒绝公司",
+      companyOwnershipRejectionSuccess: "您已拒绝此公司的所有权",
     },
   },
   en: {
@@ -666,27 +696,65 @@ const resources = {
       projectManagementSuite: "Project Management Suite",
       comprehensiveProjectManagement: "Comprehensive Project Management",
       multiLocationManagement: "Multi-Location Management",
-        manageMultipleBusinessLocations: "Manage Multiple Business Locations",
-        businessAutomation: "Business Automation",
-        workflowAutomationIntegration: "Workflow Automation Integration",
-        enterpriseCloudBackup: "Enterprise Cloud Backup",
-        secureCloudStorageBackup: "Secure Cloud Storage and Backup",
+      manageMultipleBusinessLocations: "Manage Multiple Business Locations",
+      businessAutomation: "Business Automation",
+      workflowAutomationIntegration: "Workflow Automation Integration",
+      enterpriseCloudBackup: "Enterprise Cloud Backup",
+      secureCloudStorageBackup: "Secure Cloud Storage and Backup",
 
-        digitalTransformation: "Digital Transformation Solutions for Modern Businesses",
+      digitalTransformation:
+        "Digital Transformation Solutions for Modern Businesses",
 
-        ecommercePlatform: "E-commerce Platform Development and Integration",
+      ecommercePlatform: "E-commerce Platform Development and Integration",
 
-        mobileAppDevelopment: "Mobile App Development for Enhanced Customer Engagement",
+      mobileAppDevelopment:
+        "Mobile App Development for Enhanced Customer Engagement",
 
-        planning: "Strategic Planning and Consultation Services",
+      planning: "Strategic Planning and Consultation Services",
 
-        excellentCreditRating: "Excellent Credit Rating for Business Growth Opportunities",
+      companyFound: "Company Found",
+      companyFoundDescription:
+        "We found a company associated with your IC number",
+      companyDetails: "Company Details",
+      verifyInformation: "Verify Information",
+      verifyCompanyInformationDescription:
+        "Please confirm if the following information belongs to your company",
+      bankAccount: "Bank Account",
+      confirmThisIsMyCompany: "Confirm This Is My Company",
+      thisIsNotMyCompany: "This Is Not My Company",
+      companyConfirmed: "Company Confirmed",
+      companyConfirmationSuccess:
+        "You have successfully confirmed company ownership",
+      companyConfirmationError: "Error confirming company ownership",
+      companyRejected: "Company Rejected",
+      companyRejectionSuccess: "You have rejected ownership of this company",
 
+      // 公司确认相关
+      companyFoundByIC: "Company Found",
+      companyFoundByICDescription:
+        "We found a company associated with your IC number",
+      companyDetailsHeader: "Company Details",
+      verifyCompanyInfo: "Verify Information",
+      verifyCompanyInfoDescription:
+        "Please confirm if the following information belongs to your company",
+      ssmCertificateNumber: "SSM Certificate Number",
+      bankAccountInfo: "Bank Account",
+      confirmCompanyOwnership: "Confirm This Is My Company",
+      rejectCompanyOwnership: "This Is Not My Company",
+      companyOwnershipConfirmed: "Company Confirmed",
+      companyOwnershipSuccess:
+        "You have successfully confirmed company ownership",
+      companyOwnershipError: "Error confirming company ownership",
+      companyOwnershipRejected: "Company Rejected",
+      companyOwnershipRejectionSuccess:
+        "You have rejected ownership of this company",
 
-      appDescription: "Streamline your business operations through Malaysia's digital financial ecosystem",
+      appDescription:
+        "Streamline your business operations through Malaysia's digital financial ecosystem",
 
       advancedAnalytics: "Advanced Analytics",
-      realtimeBusinessIntelligence: "Real-time business intelligence and predictive analytics",
+      realtimeBusinessIntelligence:
+        "Real-time business intelligence and predictive analytics",
 
       // Registration steps and fields
       personalInfo: "Personal Info",
@@ -702,15 +770,18 @@ const resources = {
       next: "Next",
 
       icVerification: "IC Verification",
-      uploadICDescription: "Please upload clear images of the front and back of your IC",
+      uploadICDescription:
+        "Please upload clear images of the front and back of your IC",
       frontIC: "Front IC",
       backIC: "Back IC",
       clickToUpload: "Click to upload",
       supportedFormats: "PNG, JPG, or JPEG (max 5MB)",
       continue: "Continue",
       faceVerification: "Face Verification",
-      faceVerificationDescription: "Please place your face within the frame for verification",
-      faceVerificationInstructions: "Ensure your face is well-lit and clearly visible",
+      faceVerificationDescription:
+        "Please place your face within the frame for verification",
+      faceVerificationInstructions:
+        "Ensure your face is well-lit and clearly visible",
       complete: "Complete Verification",
 
       clickToStartCamera: "Click to start camera",
@@ -722,7 +793,8 @@ const resources = {
       Received: "Received",
       received: "received",
       filter: "Filter",
-      filterBy: "Filter invoices by transaction type, role, status, or search term.",
+      filterBy:
+        "Filter invoices by transaction type, role, status, or search term.",
       search: "Search",
       Search: "Search...",
       allTypes: "All Types",
@@ -751,7 +823,8 @@ const resources = {
       // QR Invoice
       invoiceDetails: "Invoice Details",
       customer: "Customer",
-      auttomaticallyGeneratedInvoice: "Invoice automatically generated from QR code payment",
+      auttomaticallyGeneratedInvoice:
+        "Invoice automatically generated from QR code payment",
       export: "Export",
       totalTransactions: "Total Transactions",
       totalAmount: "Total Amount",
@@ -780,7 +853,8 @@ const resources = {
       select: "Select",
       orEnterManually: "Or enter manually",
       b2cManualInvoice: "B2C Manual Invoice",
-      noteInvoice: "Note: QR payment invoices are automatically generated when a customer makes a payment.\nUse this function only for manual B2C billing.",
+      noteInvoice:
+        "Note: QR payment invoices are automatically generated when a customer makes a payment.\nUse this function only for manual B2C billing.",
       customerName: "Customer Name",
       invoiceDate: "Invoice Date",
       addItems: "Add Items",
@@ -989,7 +1063,7 @@ const resources = {
       viewAllInvoices: "Lihat Semua Invois",
       manageInvoices: "Urus Invois Anda",
       createAndManageInvoices: "Cipta dan Urus Invois",
-      
+
       yourPositionInCompany: "Jawatan anda dalam syarikat",
 
       // 成功和错误消息
@@ -1049,6 +1123,43 @@ const resources = {
       goToDashboard: "Pergi ke Papan Pemuka",
       companyNotFoundDescription:
         "Tiada maklumat syarikat yang ditemui berkaitan dengan akaun anda",
+
+      companyFound: "Syarikat Dijumpai",
+      companyFoundDescription:
+        "Kami menemui syarikat yang dikaitkan dengan nombor IC anda",
+      companyDetails: "Butiran Syarikat",
+      verifyInformation: "Sahkan Maklumat",
+      verifyCompanyInformationDescription:
+        "Sila sahkan jika maklumat berikut adalah milik syarikat anda",
+      bankAccount: "Akaun Bank",
+      confirmThisIsMyCompany: "Sahkan Ini Adalah Syarikat Saya",
+      thisIsNotMyCompany: "Ini Bukan Syarikat Saya",
+      companyConfirmed: "Syarikat Disahkan",
+      companyConfirmationSuccess:
+        "Anda telah berjaya mengesahkan pemilikan syarikat",
+      companyConfirmationError: "Ralat mengesahkan pemilikan syarikat",
+      companyRejected: "Syarikat Ditolak",
+      companyRejectionSuccess: "Anda telah menolak pemilikan syarikat ini",
+
+      // 公司确认相关
+      companyFoundByIC: "Syarikat Dijumpai",
+      companyFoundByICDescription:
+        "Kami menemui syarikat yang dikaitkan dengan nombor IC anda",
+      companyDetailsHeader: "Butiran Syarikat",
+      verifyCompanyInfo: "Sahkan Maklumat",
+      verifyCompanyInfoDescription:
+        "Sila sahkan jika maklumat berikut adalah milik syarikat anda",
+      ssmCertificateNumber: "Nombor Sijil SSM",
+      bankAccountInfo: "Akaun Bank",
+      confirmCompanyOwnership: "Sahkan Ini Adalah Syarikat Saya",
+      rejectCompanyOwnership: "Ini Bukan Syarikat Saya",
+      companyOwnershipConfirmed: "Syarikat Disahkan",
+      companyOwnershipSuccess:
+        "Anda telah berjaya mengesahkan pemilikan syarikat",
+      companyOwnershipError: "Ralat mengesahkan pemilikan syarikat",
+      companyOwnershipRejected: "Syarikat Ditolak",
+      companyOwnershipRejectionSuccess:
+        "Anda telah menolak pemilikan syarikat ini",
     },
   },
 };
