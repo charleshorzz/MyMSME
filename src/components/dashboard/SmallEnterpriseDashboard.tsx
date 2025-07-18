@@ -122,7 +122,7 @@ export function SmallEnterpriseDashboard() {
       {/* Welcome Section */}
       <div className="text-center py-8">
         <h1 className="text-3xl font-bold mb-2">
-          {t("welcome")} to {t("small")}
+          {t("welcome")} {t("to")} {t("small")}
         </h1>
         <p className="text-muted-foreground">{t("advancedToolsEstablished")}</p>
       </div>
